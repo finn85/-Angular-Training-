@@ -1,0 +1,16 @@
+{
+  "name": "angular-training",
+  "scripts": {
+    "build": "tsc",
+    "run": "tsc & copy users.json .\\build & node build/app.js",
+    "test": "node build/app.js"
+  },
+  "author": "Artsiom Finenka <finn85@yandex.ru>",
+  "dependencies": {
+    "@types/body-parser": "1.17.0",
+    "@types/express": "4.16.0",
+    "body-parser": "1.18.3",
+    "express": "4.16.3",
+    "typescript": "3.0.3"
+  }
+}

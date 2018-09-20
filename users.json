@@ -1,0 +1,27 @@
+[
+  {
+    "id": "0",
+    "name": "artsiom",
+    "password": "11111",
+    "dateOfBirth": "1985-09-20T13:03:10.008Z",
+    "dateOfFirstLogin": "2018-09-20T13:03:10.008Z",
+    "dateOfNextNotification": "2018-10-20T13:03:10.008Z",
+    "information": "info"
+  },  {
+    "id": "1",
+    "name": "katya",
+    "password": "11111",
+    "dateOfBirth": "1985-09-20T13:03:10.008Z",
+    "dateOfFirstLogin": "2018-09-20T13:03:10.008Z",
+    "dateOfNextNotification": "2018-10-20T13:03:10.008Z",
+    "information": "info"
+  },  {
+    "id": "2",
+    "name": "petr",
+    "password": "11111",
+    "dateOfBirth": "1985-09-20T13:03:10.008Z",
+    "dateOfFirstLogin": "2018-09-20T13:03:10.008Z",
+    "dateOfNextNotification": "2018-10-20T13:03:10.008Z",
+    "information": "info"
+  }
+]
