@@ -2,8 +2,8 @@
   "name": "angular-training",
   "scripts": {
     "build": "tsc",
-    "run": "tsc & copy users.json .\\build & node build/app.js",
-    "test": "node build/app.js"
+    "run": "tsc & copy users.json .\\build & node build/api.js",
+    "test": "node build/api.js"
   },
   "author": "Artsiom Finenka <finn85@yandex.ru>",
   "dependencies": {
