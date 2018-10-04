@@ -2,8 +2,8 @@
   "name": "angular-training",
   "scripts": {
     "build": "tsc",
-    "run": "tsc & copy users.json .\\build & node build/api.js",
-    "test": "node build/api.js"
+    "run": "tsc & mkdir .\\build\\data & copy .\\data\\users.json .\\build\\data & node build/api.js",
+    "test": ""
   },
   "author": "Artsiom Finenka <finn85@yandex.ru>",
   "dependencies": {
@@ -11,6 +11,7 @@
     "@types/express": "4.16.0",
     "body-parser": "1.18.3",
     "express": "4.16.3",
+    "fs": "0.0.1-security",
     "typescript": "3.0.3"
   }
 }

@@ -1,23 +1,38 @@
 import {Request, Response} from 'express';
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import {json} from 'body-parser';
+import {readFile} from 'fs';
+import {resolve} from 'path';
 import {User} from "./api_modules/interface_User";
+import {writeFile} from './api_modules/writeFile';
+
 
 const api = express();
-const jsonParser = bodyParser.json();
+const jsonParser = json();
+
 const port: number = 3000;
-const users: User[] = require('./users.json');
+const usersFilePath: string = resolve(__dirname, './data/users.json');
+
+const users: User[] = [];
+readFile(usersFilePath, 'utf-8', (err: NodeJS.ErrnoException, data:string) => {
+        if (err) throw err;
+        users.push.apply(users, JSON.parse(data));
+});
 
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));
 
+
 api.get('/users', (req: Request, res: Response) => {
+
     const curUsers = users.filter( (item) => !item.deleted );
 
     res.json(curUsers);
 });
 
+
 api.get('/users/:id', (req: Request, res: Response) => {
+
     const curUser: User = users[req.params.id];
 
     if (curUser === undefined || curUser.deleted) {
@@ -27,7 +42,9 @@ api.get('/users/:id', (req: Request, res: Response) => {
     }
 });
 
+
 api.post('/users/add', jsonParser, (req: Request, res: Response) => {
+
     const newUser: User = {
         id: users.length,
         name: req.body.name,
@@ -39,8 +56,12 @@ api.post('/users/add', jsonParser, (req: Request, res: Response) => {
     };
 
     users.push(newUser);
+
+    writeFile(usersFilePath, users);
+
     res.send(newUser);
 });
+
 
 api.put('/users/:id', jsonParser, (req: Request, res: Response) => {
     const curUser = users[req.params.id];
@@ -54,9 +75,12 @@ api.put('/users/:id', jsonParser, (req: Request, res: Response) => {
         curUser.dateOfNextNotification = req.body.dateOfNextNotification;
         curUser.information = req.body.information;
 
+        writeFile(usersFilePath, users);
+
         res.send(curUser);
     }
 });
+
 
 api.delete('/users/:id', (req: Request, res: Response) => {
     const curUser = users[req.params.id];
@@ -65,6 +89,8 @@ api.delete('/users/:id', (req: Request, res: Response) => {
         res.send('user is not exist');
     } else {
         curUser.deleted = true;
+
+        writeFile(usersFilePath, users);
 
         res.send(curUser);
     }
