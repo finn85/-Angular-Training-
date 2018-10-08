@@ -6,11 +6,15 @@
     "test": "node build/api.js"
   },
   "author": "Artsiom Finenka <finn85@yandex.ru>",
+  "license": "UNLICENSED",
   "dependencies": {
     "@types/body-parser": "1.17.0",
     "@types/express": "4.16.0",
     "body-parser": "1.18.3",
     "express": "4.16.3",
     "typescript": "3.0.3"
+  },
+  "devDependencies": {
+
   }
 }
