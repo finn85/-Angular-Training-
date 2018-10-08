@@ -1,12 +1,12 @@
 import {Request, Response} from 'express';
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import {json} from 'body-parser';
 import {User} from "./api_modules/interface_User";
 
 const api = express();
-const jsonParser = bodyParser.json();
+const jsonParser = json();
 const port: number = 3000;
-const users: User[] = require('../users.json');
+const users: User[] = require('./data/users.json');
 
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));

@@ -1,9 +1,10 @@
 {
   "name": "angular-training",
   "scripts": {
-    "build": "tsc",
-    "run": "tsc & copy users.json .\\build & node build/api.js",
-    "test": "node build/api.js"
+    "clearBuild": "node -e \"const fs = require('fs-extra'); fs.removeSync('build');\" ",
+    "copyData": "node -e \"const fs = require('fs-extra'); fs.copySync('server/data', 'build/server/data');\" ",
+    "server": "npm run clearBuild && npm run copyData && tsc -p server && node ./build/server/api.js",
+    "test": ""
   },
   "author": "Artsiom Finenka <finn85@yandex.ru>",
   "license": "UNLICENSED",
@@ -15,6 +16,6 @@
     "typescript": "3.0.3"
   },
   "devDependencies": {
-
+    "fs-extra": "7.0.0"
   }
 }
