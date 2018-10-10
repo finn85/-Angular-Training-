@@ -11,6 +11,8 @@ const users: User[] = require('./data/users.json');
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));
 
+api.use(express.static(__dirname + '/static'));
+
 api.get('/users', (req: Request, res: Response) => {
     const curUsers = users.filter( (item) => !item.deleted );
 

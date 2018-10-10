@@ -7,7 +7,7 @@
       "es2017"
     ],
     "sourceMap": true,
-    "outDir": "../build/server",
+    "outDir": "../build",
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,
