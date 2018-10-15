@@ -1,31 +1,35 @@
-<p>{{placeholder.userName}}</p>
 <form [formGroup] = 'userForm'>
 
   <label>
     Name:
-    <input name='name' type='text' formControlName='userName' [placeholder]='placeholder.userName'>
+    <input name='name' type='text' formControlName='userName' [placeholder]='placeholders.name'>
   </label>
+  <div class="error">{{userNameErrMsg}}</div>
 
   <label>
     Age:
-    <input name='age' type='text' formControlName='userAge' [placeholder]='placeholder.userAge'>
+    <input name='age' type='text' formControlName='userAge' [placeholder]='placeholders.age'>
   </label>
+  <div class="error">{{userAgeErrMsg}}</div>
 
   <label>
     Birthday date:
-    <input name='dateOfBirth' type='text' formControlName='userDateOfBirth' [placeholder]='placeholder.userDateOfBirth'>
+    <input name='dateOfBirth' type='text' formControlName='userDateOfBirth' [placeholder]='placeholders.dateOfBirth'>
   </label>
+  <div class="error">{{userDateOfBirthErrMsg}}</div>
 
   <label>
     Date of login:
-    <input name='dateOfLogin' type='text' formControlName='userDateOfLogin' [placeholder]='placeholder.userDateOfLogin'>
+    <input name='dateOfLogin' type='text' formControlName='userDateOfLogin' [placeholder]='placeholders.dateOfLogin'>
   </label>
+  <div class="error">{{userDateOfLoginErrMsg}}</div>
 
   <label>
     Date of notification:
-    <input name='dateOfNotif' type='text' formControlName='userDateOfNotif' [placeholder]='placeholder.userDateOfNotif'>
+    <input name='dateOfNotif' type='text' formControlName='userDateOfNotif' [placeholder]='placeholders.dateOfNotif'>
   </label>
+  <div class="error">{{userDateOfNotifErrMsg}}</div>
 
-  <button (click)='submit()' [disabled]='userForm.invalid'>Send</button>
+  <button (click)='submit()' [disabled]='userForm.invalid'>Submit</button>
   <button (click)='submit()'>testing</button>
 </form>
