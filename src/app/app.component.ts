@@ -65,7 +65,7 @@ export class AppComponent {
   userDateOfNotifErrMsg: string|null = null;
 
   submit = () => {
-    console.log(this.userForm);
+    console.log(this.userForm.controls.userAge);
     this.userAgeErrMsg = getErrMsg(this.userForm, 'userAge', this.errMsgs.userAge);
     this.userNameErrMsg = getErrMsg(this.userForm, 'userName', this.errMsgs.userName);
     this.userDateOfBirthErrMsg = getErrMsg(this.userForm, 'userDateOfBirth', this.errMsgs.dateOfBirth);
