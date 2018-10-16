@@ -1,6 +1,6 @@
 import {FormGroup} from "@angular/forms";
 
-const showErrMsg = (formName: FormGroup, controlName: string, messages: object) => {
+const getErrMsg = (formName: FormGroup, controlName: string, messages: any) : string|null => {
 
   const errObj = formName.controls[controlName].errors;
 
@@ -15,4 +15,4 @@ const showErrMsg = (formName: FormGroup, controlName: string, messages: object) 
   return null;
 };
 
-export {showErrMsg};
+export {getErrMsg};

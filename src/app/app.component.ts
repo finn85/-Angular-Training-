@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
-import {showErrMsg} from "./formsValidation/showErrMsg";
+import {getErrMsg} from "./formsValidation/getErrMsg";
+import {validNumbers} from "./formsValidation/validSymbols";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent {
       Validators.required
     ]),
     'userAge': new FormControl(null, [
-      Validators.required
+      Validators.required,
+      validNumbers
     ]),
     'userDateOfBirth': new FormControl(null, [
       Validators.required
@@ -43,7 +45,7 @@ export class AppComponent {
     },
     userAge: {
       required: 'please, enter your age',
-      NaN: 'please, enter numbers'
+      notANumber: 'please, enter numbers'
     },
     dateOfBirth: {
       required: 'please, enter your birthday'
@@ -56,19 +58,19 @@ export class AppComponent {
     }
   };
 
-  userNameErrMsg: string;
-  userAgeErrMsg: string;
-  userDateOfBirthErrMsg: string;
-  userDateOfLoginErrMsg: string;
-  userDateOfNotifErrMsg: string;
+  userNameErrMsg: string|null = null;
+  userAgeErrMsg: string|null = null;
+  userDateOfBirthErrMsg: string|null = null;
+  userDateOfLoginErrMsg: string|null = null;
+  userDateOfNotifErrMsg: string|null = null;
 
   submit = () => {
-
-    this.userAgeErrMsg = showErrMsg(this.userForm, 'userAge', this.errMsgs.userAge);
-    this.userNameErrMsg = showErrMsg(this.userForm, 'userName', this.errMsgs.userName);
-    this.userDateOfBirthErrMsg = showErrMsg(this.userForm, 'userDateOfBirth', this.errMsgs.dateOfBirth);
-    this.userDateOfLoginErrMsg = showErrMsg(this.userForm, 'userDateOfLogin', this.errMsgs.dateOfLogin);
-    this.userDateOfNotifErrMsg = showErrMsg(this.userForm, 'userDateOfNotif', this.errMsgs.dateOfNotif);
+    console.log(this.userForm);
+    this.userAgeErrMsg = getErrMsg(this.userForm, 'userAge', this.errMsgs.userAge);
+    this.userNameErrMsg = getErrMsg(this.userForm, 'userName', this.errMsgs.userName);
+    this.userDateOfBirthErrMsg = getErrMsg(this.userForm, 'userDateOfBirth', this.errMsgs.dateOfBirth);
+    this.userDateOfLoginErrMsg = getErrMsg(this.userForm, 'userDateOfLogin', this.errMsgs.dateOfLogin);
+    this.userDateOfNotifErrMsg = getErrMsg(this.userForm, 'userDateOfNotif', this.errMsgs.dateOfNotif);
   };
 }
 

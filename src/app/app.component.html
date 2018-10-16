@@ -1,31 +1,31 @@
 <form [formGroup] = 'userForm'>
 
   <label>
-    Name:
+    Name: <br>
     <input name='name' type='text' formControlName='userName' [placeholder]='placeholders.name'>
   </label>
   <div class="error">{{userNameErrMsg}}</div>
 
   <label>
-    Age:
+    Age: <br>
     <input name='age' type='text' formControlName='userAge' [placeholder]='placeholders.age'>
   </label>
   <div class="error">{{userAgeErrMsg}}</div>
 
   <label>
-    Birthday date:
+    Birthday date: <br>
     <input name='dateOfBirth' type='text' formControlName='userDateOfBirth' [placeholder]='placeholders.dateOfBirth'>
   </label>
   <div class="error">{{userDateOfBirthErrMsg}}</div>
 
   <label>
-    Date of login:
+    Date of login: <br>
     <input name='dateOfLogin' type='text' formControlName='userDateOfLogin' [placeholder]='placeholders.dateOfLogin'>
   </label>
   <div class="error">{{userDateOfLoginErrMsg}}</div>
 
   <label>
-    Date of notification:
+    Date of notification: <br>
     <input name='dateOfNotif' type='text' formControlName='userDateOfNotif' [placeholder]='placeholders.dateOfNotif'>
   </label>
   <div class="error">{{userDateOfNotifErrMsg}}</div>
