@@ -1,6 +1,6 @@
 import {FormControl} from "@angular/forms";
 
-function validNumbers(control: FormControl): {[s:string]:boolean}|null {
+function checkIsNumbers(control: FormControl): {[s:string]:boolean}|null {
 
   if (control.value !== null) {
 
@@ -24,4 +24,4 @@ function validNumbers(control: FormControl): {[s:string]:boolean}|null {
   }
 }
 
-export {validNumbers};
+export {checkIsNumbers};

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import {getErrMsg} from "./formsValidation/getErrMsg";
-import {validNumbers} from "./formsValidation/validSymbols";
+import {checkIsNumbers} from "./formsValidation/checkIsNumbers";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent {
     ]),
     'userAge': new FormControl(null, [
       Validators.required,
-      validNumbers
+      checkIsNumbers
     ]),
     'userDateOfBirth': new FormControl(null, [
       Validators.required
