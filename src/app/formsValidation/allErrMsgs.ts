@@ -4,13 +4,14 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
   },
   age: {
     required: 'Age is required',
-    notANumber: 'Please, enter numbers',
+    notNumbers: 'Please, enter numbers only',
     lessThan18: 'Your age is less than 18',
     moreThan65: 'Your age is more than 65'
   },
   dateOfBirth: {
-    required: 'please, enter your birthday',
-    incorrectFormat: 'Incorrect. Correct date format: YYYY/MM/DD'
+    required: 'Birthday is required',
+    notNumsAndSeprs: 'Please, enter numbers and "/" only'
+    // incorrectFormat: 'Incorrect. Correct date format: YYYY/MM/DD'
   },
   dateOfLogin: {
     required:'please, enter date of your login'

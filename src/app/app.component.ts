@@ -6,7 +6,7 @@ import {allErrMsgs} from "./formsValidation/allErrMsgs";
 
 import {checkIsNumbers} from "./formsValidation/checkIsNumbers";
 import {checkNumberInterval} from "./formsValidation/checkNumberInterval";
-import {checkDateFormat} from "./formsValidation/checkDateFormat";
+import {checkIsNumsAndSeprs} from "./formsValidation/checkIsNumsAndSeprs";
 
 
 @Component({
@@ -28,7 +28,7 @@ export class AppComponent {
     ]),
     'dateOfBirth': new FormControl(null, [
       Validators.required,
-      checkDateFormat('YYYY/MM/DD')
+      checkIsNumsAndSeprs('/')
     ]),
     'dateOfLogin': new FormControl(null, [
       Validators.required
@@ -39,8 +39,8 @@ export class AppComponent {
   });
 
   placeholders = {
-    name: 'Enter your name',
-    age: 'Enter your age',
+    name: 'One or two words',
+    age: 'From 18 till 65',
     dateOfBirth: 'YYYY/MM/DD',
     dateOfLogin: 'DD MMMM YYYY',
     dateOfNotif: 'DD-MMM-YY'
