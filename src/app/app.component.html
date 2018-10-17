@@ -1,35 +1,55 @@
-<form [formGroup] = 'userForm'>
+<form [formGroup] = "userForm">
 
-  <label>
-    Name: <br>
-    <input name='name' type='text' formControlName='userName' [placeholder]='placeholders.name'>
-  </label>
-  <div class="error">{{userNameErrMsg}}</div>
+  <!--<div class="input-group">-->
+    <!--<label>-->
+      <!--Name: <br>-->
+      <!--<input name="name" type="text" formControlName="name" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
+    <!--</label>-->
+    <!--<div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">-->
+      <!--{{errMsgs['name']}}-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <label>
-    Age: <br>
-    <input name='age' type='text' formControlName='userAge' [placeholder]='placeholders.age'>
-  </label>
-  <div class="error">{{userAgeErrMsg}}</div>
+  <div class="input-group">
+    <label>
+      Age: <br>
+      <input type="text" formControlName="age" [placeholder]="placeholders.age" (input)="getErrMsg('age')">
+    </label>
+    <div class="error" *ngIf = "userForm.controls['age'].invalid && userForm.controls['age'].dirty">
+      {{errMsgs['age']}}
+    </div>
+  </div>
 
-  <label>
-    Birthday date: <br>
-    <input name='dateOfBirth' type='text' formControlName='userDateOfBirth' [placeholder]='placeholders.dateOfBirth'>
-  </label>
-  <div class="error">{{userDateOfBirthErrMsg}}</div>
+  <div class="input-group">
+    <label>
+      Date of birth: <br>
+      <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth" (input)="getErrMsg('dateOfBirth')">
+    </label>
+    <div class="error" *ngIf = "userForm.controls['dateOfBirth'].invalid && userForm.controls['dateOfBirth'].dirty">
+      {{errMsgs['dateOfBirth']}}
+    </div>
+  </div>
 
-  <label>
-    Date of login: <br>
-    <input name='dateOfLogin' type='text' formControlName='userDateOfLogin' [placeholder]='placeholders.dateOfLogin'>
-  </label>
-  <div class="error">{{userDateOfLoginErrMsg}}</div>
+  <!--<div class="input-group">-->
+    <!--<label>-->
+      <!--Name: <br>-->
+      <!--<input name="name" type="text" formControlName="dateOfLogin" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
+    <!--</label>-->
+    <!--<div class="error" *ngIf = "userForm.controls['userName'].invalid && userForm.controls['userName'].dirty">-->
+      <!--{{userErrMsg['userName']}}-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <label>
-    Date of notification: <br>
-    <input name='dateOfNotif' type='text' formControlName='userDateOfNotif' [placeholder]='placeholders.dateOfNotif'>
-  </label>
-  <div class="error">{{userDateOfNotifErrMsg}}</div>
+  <!--<div class="input-group">-->
+    <!--<label>-->
+      <!--Name: <br>-->
+      <!--<input name="name" type="text" formControlName="dateOfNotif" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
+    <!--</label>-->
+    <!--<div class="error" *ngIf = "userForm.controls['userName'].invalid && userForm.controls['userName'].dirty">-->
+      <!--{{userErrMsg['userName']}}-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <button (click)='submit()' [disabled]='userForm.invalid'>Submit</button>
-  <button (click)='submit()'>testing</button>
+  <button (click)="submit()" [disabled]="userForm.invalid">Submit</button>
+  <button (click)="submit()">testing</button>
 </form>

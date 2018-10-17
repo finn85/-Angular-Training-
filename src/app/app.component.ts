@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
-import {getErrMsg} from "./formsValidation/getErrMsg";
+import {selectErrMsg} from "./formsValidation/selectErrMsg";
+import {allErrMsgs} from "./formsValidation/allErrMsgs";
+
 import {checkIsNumbers} from "./formsValidation/checkIsNumbers";
+import {checkNumberInterval} from "./formsValidation/checkNumberInterval";
+import {checkDateFormat} from "./formsValidation/checkDateFormat";
+
 
 @Component({
   selector: 'app-root',
@@ -13,20 +18,22 @@ import {checkIsNumbers} from "./formsValidation/checkIsNumbers";
 export class AppComponent {
 
   userForm: FormGroup = new FormGroup({
-    'userName': new FormControl(null, [
+    'name': new FormControl(null, [
       Validators.required
     ]),
-    'userAge': new FormControl(null, [
+    'age': new FormControl(null, [
       Validators.required,
-      checkIsNumbers
+      checkIsNumbers,
+      checkNumberInterval(18, 65)
     ]),
-    'userDateOfBirth': new FormControl(null, [
+    'dateOfBirth': new FormControl(null, [
+      Validators.required,
+      checkDateFormat('YYYY/MM/DD')
+    ]),
+    'dateOfLogin': new FormControl(null, [
       Validators.required
     ]),
-    'userDateOfLogin': new FormControl(null, [
-      Validators.required
-    ]),
-    'userDateOfNotif': new FormControl(null, [
+    'dateOfNotif': new FormControl(null, [
       Validators.required
     ])
   });
@@ -39,38 +46,22 @@ export class AppComponent {
     dateOfNotif: 'DD-MMM-YY'
   };
 
-  errMsgs = {
-    userName: {
-      required: 'please, enter your name'
-    },
-    userAge: {
-      required: 'please, enter your age',
-      notANumber: 'please, enter numbers'
-    },
-    dateOfBirth: {
-      required: 'please, enter your birthday'
-    },
-    dateOfLogin: {
-      required:'please, enter date of your login'
-    },
-    dateOfNotif: {
-      required: 'please, enter date of notification'
-    }
+  errMsgs: {[key: string]: string|null} = {
+    name: null,
+    age: null,
+    dateOfBirth: null,
+    dateOfLogin: null,
+    dateOfNotif: null
   };
 
-  userNameErrMsg: string|null = null;
-  userAgeErrMsg: string|null = null;
-  userDateOfBirthErrMsg: string|null = null;
-  userDateOfLoginErrMsg: string|null = null;
-  userDateOfNotifErrMsg: string|null = null;
 
   submit = () => {
-    console.log(this.userForm.controls.userAge);
-    this.userAgeErrMsg = getErrMsg(this.userForm, 'userAge', this.errMsgs.userAge);
-    this.userNameErrMsg = getErrMsg(this.userForm, 'userName', this.errMsgs.userName);
-    this.userDateOfBirthErrMsg = getErrMsg(this.userForm, 'userDateOfBirth', this.errMsgs.dateOfBirth);
-    this.userDateOfLoginErrMsg = getErrMsg(this.userForm, 'userDateOfLogin', this.errMsgs.dateOfLogin);
-    this.userDateOfNotifErrMsg = getErrMsg(this.userForm, 'userDateOfNotif', this.errMsgs.dateOfNotif);
+    console.log(this.userForm);//todo after delete
+  };
+
+  getErrMsg = (controlName: string) => {
+    this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
+    console.log(this.errMsgs[controlName]);
   };
 }
 

@@ -1,6 +1,6 @@
 import {FormGroup} from "@angular/forms";
-
-const getErrMsg = (formName: FormGroup, controlName: string, messages: {[key: string]: string}) : string|null => {
+//todo interface for messages
+export const selectErrMsg = (formName: FormGroup, controlName: string, messages: {[key: string]: string} ): string|null => {
 
   const errObj = formName.controls[controlName].errors;
 
@@ -14,5 +14,3 @@ const getErrMsg = (formName: FormGroup, controlName: string, messages: {[key: st
 
   return null;
 };
-
-export {getErrMsg};
