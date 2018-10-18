@@ -6,9 +6,7 @@ import {allErrMsgs} from './formsValidation/allErrMsgs';
 
 import {checkInputsSymbols} from "./formsValidation/checkInputsSymbols";
 import {checkNumberInterval} from './formsValidation/checkNumberInterval';
-import {checkDateFormat} from "./formsValidation/checkDateFormat";
-import {checkDateYearFormat} from "./formsValidation/checkDateYearFormat";
-import {checkDateOfBirthYear, checkDateOfLoginYear, checkDateOfNotifYear} from "./formsValidation/checkDateYear";
+import {checkDate} from './formsValidation/checkDate';
 
 
 
@@ -31,23 +29,17 @@ export class AppComponent {
       checkNumberInterval(18, 65)
     ]),
     'dateOfBirth': new FormControl(null, [
-      checkDateOfBirthYear,
-      checkDateYearFormat('YYYY/MM/DD'),
-      checkDateFormat('/'),
+      checkDate('YYYY/MM/DD'),
       checkInputsSymbols.dateOfBirth('/'),
       Validators.required
     ]),
     'dateOfLogin': new FormControl(null, [
-      checkDateOfLoginYear,
-      checkDateYearFormat('DD MMMM YYYY'),
-      checkDateFormat(' '),
+      checkDate('DD MMMM YYYY'),
       checkInputsSymbols.dateOfLogin(' '),
       Validators.required
     ]),
     'dateOfNotif': new FormControl(null, [
-      checkDateOfNotifYear,
-      checkDateYearFormat('DD-MMM-YY'),
-      checkDateFormat('-'),
+      checkDate('DD-MMM-YY'),
       checkInputsSymbols.dateOfNotif('-'),
       Validators.required
     ])

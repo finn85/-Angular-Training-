@@ -31,11 +31,6 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectYear: 'Incorrect. Please enter year from current till 50'
   }
 };
-//todo FORMAT ERRORS
-//todo  -------------------only numbers and separators - OK
-//todo  -------------------should be 3 numbers => after split arr.length === 3
-//todo  without empty numbers
-//todo  every number should be has strict length
 
 
 //todo CONTENT ERRORS
