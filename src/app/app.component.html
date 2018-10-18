@@ -1,14 +1,14 @@
 <form [formGroup] = "userForm">
 
-  <!--<div class="input-group">-->
-    <!--<label>-->
-      <!--Name: <br>-->
-      <!--<input name="name" type="text" formControlName="name" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
-    <!--</label>-->
-    <!--<div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">-->
-      <!--{{errMsgs['name']}}-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="input-group">
+    <label>
+      Name: <br>
+      <input type="text" formControlName="name" [placeholder]="placeholders.name" (input)="getErrMsg('name')">
+    </label>
+    <div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">
+      {{errMsgs['name']}}
+    </div>
+  </div>
 
   <div class="input-group">
     <label>
@@ -30,25 +30,25 @@
     </div>
   </div>
 
-  <!--<div class="input-group">-->
-    <!--<label>-->
-      <!--Name: <br>-->
-      <!--<input name="name" type="text" formControlName="dateOfLogin" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
-    <!--</label>-->
-    <!--<div class="error" *ngIf = "userForm.controls['userName'].invalid && userForm.controls['userName'].dirty">-->
-      <!--{{userErrMsg['userName']}}-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="input-group">
+    <label>
+      Date of login: <br>
+      <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin" (input)="getErrMsg('dateOfLogin')">
+    </label>
+    <div class="error" *ngIf = "userForm.controls['dateOfLogin'].invalid && userForm.controls['dateOfLogin'].dirty">
+      {{errMsgs['dateOfLogin']}}
+    </div>
+  </div>
 
-  <!--<div class="input-group">-->
-    <!--<label>-->
-      <!--Name: <br>-->
-      <!--<input name="name" type="text" formControlName="dateOfNotif" [placeholder]="placeholders.name" (input)="getErrMsg('userName')">-->
-    <!--</label>-->
-    <!--<div class="error" *ngIf = "userForm.controls['userName'].invalid && userForm.controls['userName'].dirty">-->
-      <!--{{userErrMsg['userName']}}-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="input-group">
+    <label>
+      Date of notification: <br>
+      <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif" (input)="getErrMsg('dateOfNotif')">
+    </label>
+    <div class="error" *ngIf = "userForm.controls['dateOfNotif'].invalid && userForm.controls['dateOfNotif'].dirty">
+      {{errMsgs['dateOfNotif']}}
+    </div>
+  </div>
 
   <button (click)="submit()" [disabled]="userForm.invalid">Submit</button>
   <button (click)="submit()">testing</button>

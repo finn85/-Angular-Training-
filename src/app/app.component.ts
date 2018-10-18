@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
-import {selectErrMsg} from "./formsValidation/selectErrMsg";
-import {allErrMsgs} from "./formsValidation/allErrMsgs";
+import {selectErrMsg} from './formsValidation/selectErrMsg';
+import {allErrMsgs} from './formsValidation/allErrMsgs';
 
-import {checkIsNumbers} from "./formsValidation/checkIsNumbers";
-import {checkNumberInterval} from "./formsValidation/checkNumberInterval";
-import {checkIsNumsAndSeprs} from "./formsValidation/checkIsNumsAndSeprs";
+import {checkInputsSymbols} from "./formsValidation/checkInputsSymbols";
+import {checkNumberInterval} from './formsValidation/checkNumberInterval';
+import {checkDateFormat} from "./formsValidation/checkDateFormat";
 
 
 @Component({
@@ -19,22 +19,28 @@ export class AppComponent {
 
   userForm: FormGroup = new FormGroup({
     'name': new FormControl(null, [
-      Validators.required
+      Validators.required,
+      checkInputsSymbols.name()
     ]),
     'age': new FormControl(null, [
       Validators.required,
-      checkIsNumbers,
+      checkInputsSymbols.age(),
       checkNumberInterval(18, 65)
     ]),
     'dateOfBirth': new FormControl(null, [
       Validators.required,
-      checkIsNumsAndSeprs('/')
+      checkDateFormat('/'),
+      checkInputsSymbols.dateOfBirth('/')
     ]),
     'dateOfLogin': new FormControl(null, [
-      Validators.required
+      Validators.required,
+      checkDateFormat(' '),
+      checkInputsSymbols.dateOfLogin(' ')
     ]),
     'dateOfNotif': new FormControl(null, [
-      Validators.required
+      Validators.required,
+      checkDateFormat('-'),
+      checkInputsSymbols.dateOfNotif('-')
     ])
   });
 
@@ -61,8 +67,6 @@ export class AppComponent {
 
   getErrMsg = (controlName: string) => {
     this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
-    console.log(this.errMsgs[controlName]);
+    console.log(this.userForm.controls[controlName].errors);//todo after delete
   };
 }
-
-
