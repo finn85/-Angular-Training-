@@ -13,24 +13,27 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     required: 'Birthday is required',
     incorrectSymbols: 'Please, enter numbers and "/" only',
     incorrectFormat: 'Incorrect. Correct format is "YYYY/MM/DD"',
-    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"'
+    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
+    incorrectYear: 'Incorrect. Please enter year from 1950 till current'
   },
   dateOfLogin: {
     required:'Date of login is required',
     incorrectSymbols: 'Please, enter numbers, english letters and spaces only',
     incorrectFormat: 'Incorrect. Correct format is "DD MMMM YYYY"',
-    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"'
+    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
+    incorrectYear: 'Incorrect. Please enter year from 1950 till 2050'
   },
   dateOfNotif: {
     required: 'Date of notification is required',
     incorrectSymbols: 'Please, enter numbers, english letters and "-" only',
     incorrectFormat: 'Incorrect. Correct format is "DD-MMM-YY"',
-    incorrectYearFormat: 'Incorrect. Correct year format is "YY"'
+    incorrectYearFormat: 'Incorrect. Correct year format is "YY"',
+    incorrectYear: 'Incorrect. Please enter year from current till 50'
   }
 };
 //todo FORMAT ERRORS
 //todo  -------------------only numbers and separators - OK
-//todo  should be 3 numbers => after split arr.length === 3
+//todo  -------------------should be 3 numbers => after split arr.length === 3
 //todo  without empty numbers
 //todo  every number should be has strict length
 
