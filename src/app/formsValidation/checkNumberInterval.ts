@@ -1,4 +1,4 @@
-import {FormControl} from "@angular/forms";
+import {FormControl} from '@angular/forms';
 
 export const checkNumberInterval = (minNumber: number, maxNumber: number) =>
   (control: FormControl): {[s:string]: boolean}|null => {

@@ -12,17 +12,20 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
   dateOfBirth: {
     required: 'Birthday is required',
     incorrectSymbols: 'Please, enter numbers and "/" only',
-    incorrectFormat: 'Incorrect. Correct format is "YYYY/MM/DD"'
+    incorrectFormat: 'Incorrect. Correct format is "YYYY/MM/DD"',
+    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"'
   },
   dateOfLogin: {
     required:'Date of login is required',
     incorrectSymbols: 'Please, enter numbers, english letters and spaces only',
-    incorrectFormat: 'Incorrect. Correct format is "DD MMMM YYYY"'
+    incorrectFormat: 'Incorrect. Correct format is "DD MMMM YYYY"',
+    incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"'
   },
   dateOfNotif: {
     required: 'Date of notification is required',
     incorrectSymbols: 'Please, enter numbers, english letters and "-" only',
-    incorrectFormat: 'Incorrect. Correct format is "DD-MMM-YY"'
+    incorrectFormat: 'Incorrect. Correct format is "DD-MMM-YY"',
+    incorrectYearFormat: 'Incorrect. Correct year format is "YY"'
   }
 };
 //todo FORMAT ERRORS
