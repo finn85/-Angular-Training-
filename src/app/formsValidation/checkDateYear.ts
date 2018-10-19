@@ -1,4 +1,4 @@
-export const checkDateYear = (year: number, minYear: number, maxYear: number) => {
+export const checkDateYear = (year: string, minYear: number, maxYear: number): boolean => {
 
-  return (year > maxYear || year < minYear);
+  return (+year > maxYear || +year < minYear);
 };

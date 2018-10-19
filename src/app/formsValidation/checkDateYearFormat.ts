@@ -1,4 +1,4 @@
-export const checkDateYearFormat = (year: number, length: number): boolean => {
+export const checkDateYearFormat = (year: string, length: number): boolean => {
 
-  return (year !== undefined && (year.toString().length !== length || isNaN(year)));
+  return (year !== undefined && (year.length !== length || isNaN(+year)));
 };

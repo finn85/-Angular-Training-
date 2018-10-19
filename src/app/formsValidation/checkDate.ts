@@ -3,6 +3,8 @@ import {DateParams} from "./DateParamsInterface";
 import {checkDateFormat} from './checkDateFormat';
 import {checkDateYearFormat} from './checkDateYearFormat';
 import {checkDateYear} from './checkDateYear';
+import {checkDateMonth} from "./checkDateMonth";
+// import {checkDateDay} from "./checkDateDay";
 
 export const checkDate = (fullFormat: string) =>
   (control: FormControl): {[s:string]: boolean}|null => {
@@ -48,8 +50,8 @@ export const checkDate = (fullFormat: string) =>
       return {incorrectFormat: true};
     }
 
-    const year: number = +control.value.split(params.dateSeparator)[params.yearIndex];
-    // const month = control.value.split(params.dateSeparator)[1];
+    const year: string = control.value.split(params.dateSeparator)[params.yearIndex];
+    const month: string = control.value.split(params.dateSeparator)[1];
     // const day = control.value.split(params.dateSeparator)[params.dayIndex];
 
     if (checkDateYearFormat(year, params.yearLength)) {
@@ -58,6 +60,12 @@ export const checkDate = (fullFormat: string) =>
     if (checkDateYear(year, params.minYear, params.maxYear)) {
       return {incorrectYear: true};
     }
+    if (checkDateMonth(month, fullFormat)) {
+      return {incorrectMonth: true};
+    }
+    // if (checkDateDay(month, day)) {
+    //   return {incorrectDay: true}
+    // }
     return null;
   }
   return null;

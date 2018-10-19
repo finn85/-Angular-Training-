@@ -14,21 +14,24 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectSymbols: 'Please, enter numbers and "/" only',
     incorrectFormat: 'Incorrect. Correct format is "YYYY/MM/DD"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
-    incorrectYear: 'Incorrect. Please enter year from 1950 till current'
+    incorrectYear: 'Incorrect. Please enter year from 1950 till current',
+    incorrectMonth: 'Incorrect. Please check month (example - 01, 02 ... 12)'
   },
   dateOfLogin: {
     required:'Date of login is required',
     incorrectSymbols: 'Please, enter numbers, english letters and spaces only',
     incorrectFormat: 'Incorrect. Correct format is "DD MMMM YYYY"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
-    incorrectYear: 'Incorrect. Please enter year from 1950 till 2050'
+    incorrectYear: 'Incorrect. Please enter year from 1950 till 2050',
+    incorrectMonth:'Incorrect. Please check month (example - january)'
   },
   dateOfNotif: {
     required: 'Date of notification is required',
     incorrectSymbols: 'Please, enter numbers, english letters and "-" only',
     incorrectFormat: 'Incorrect. Correct format is "DD-MMM-YY"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YY"',
-    incorrectYear: 'Incorrect. Please enter year from current till 50'
+    incorrectYear: 'Incorrect. Please enter year from current till 50',
+    incorrectMonth:'Incorrect. Please check month (example - jan)'
   }
 };
 
