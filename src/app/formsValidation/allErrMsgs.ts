@@ -15,7 +15,10 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectFormat: 'Incorrect. Correct format is "YYYY/MM/DD"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
     incorrectYear: 'Incorrect. Please enter year from 1950 till current',
-    incorrectMonth: 'Incorrect. Please check month (example - 01, 02 ... 12)'
+    incorrectMonth: 'Incorrect. Please check month (example - 01, 02 ... 12)',
+    incorrectDayFormat: 'Incorrect. Please check date (example - 01, 02 ...)',
+    incorrectDay: 'Incorrect. Please check date (number of days in a month)'
+
   },
   dateOfLogin: {
     required:'Date of login is required',
@@ -23,7 +26,9 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectFormat: 'Incorrect. Correct format is "DD MMMM YYYY"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YYYY"',
     incorrectYear: 'Incorrect. Please enter year from 1950 till 2050',
-    incorrectMonth:'Incorrect. Please check month (example - january)'
+    incorrectMonth:'Incorrect. Please check month (example - january)',
+    incorrectDayFormat: 'Incorrect. Please check date (example - 01, 02 ...)',
+    incorrectDay: 'Incorrect. Please check date (number of days in a month)'
   },
   dateOfNotif: {
     required: 'Date of notification is required',
@@ -31,15 +36,8 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectFormat: 'Incorrect. Correct format is "DD-MMM-YY"',
     incorrectYearFormat: 'Incorrect. Correct year format is "YY"',
     incorrectYear: 'Incorrect. Please enter year from current till 50',
-    incorrectMonth:'Incorrect. Please check month (example - jan)'
+    incorrectMonth:'Incorrect. Please check month (example - jan)',
+    incorrectDayFormat: 'Incorrect. Please check date (example - 01, 02 ...)',
+    incorrectDay: 'Incorrect. Please check date (number of days in a month)'
   }
 };
-
-
-//todo CONTENT ERRORS
-//todo month should be from 1 till 12
-//todo day should be from 1 till 31
-//todo year should be from 2000 till 2100
-//todo date birth should be from 18 till 65 years ago
-//todo date of login should be current date
-//todo date of notification should be future date

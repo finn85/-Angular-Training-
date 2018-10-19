@@ -6,11 +6,11 @@ export const checkDateMonth = (month: string, format: string): boolean => {
   };
   switch (format) {
     case 'YYYY/MM/DD':
-      return (!months.mm.some((m) => m === month.toLowerCase()));
+      return (!months.mm.some((m) => m === month));
     case 'DD MMMM YYYY':
-      return (!months.mmmm.some((m) => m === month.toLowerCase()));
+      return (!months.mmmm.some((m) => m === month));
     case 'DD-MMM-YY':
-      return (!months.mmm.some((m) => m === month.toLowerCase()));
+      return (!months.mmm.some((m) => m === month));
   }
   return false;
 };

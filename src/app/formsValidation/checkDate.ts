@@ -4,55 +4,53 @@ import {checkDateFormat} from './checkDateFormat';
 import {checkDateYearFormat} from './checkDateYearFormat';
 import {checkDateYear} from './checkDateYear';
 import {checkDateMonth} from "./checkDateMonth";
-// import {checkDateDay} from "./checkDateDay";
+import {checkDateDay} from "./checkDateDay";
+import {checkDateDayFormat} from "./checkDateDayFormat";
 
 export const checkDate = (fullFormat: string) =>
   (control: FormControl): {[s:string]: boolean}|null => {
 
   if (control.value !== null) {
 
-    const params: DateParams = {
-      dateSeparator: '',
-      yearIndex: 0,
-      yearLength: 0,
-      minYear: 0,
-      maxYear: 0,
-      dayIndex: 0
-    };
-
-    switch (fullFormat){
-      case 'YYYY/MM/DD':
-        params.dateSeparator = '/';
-        params.yearIndex = 0;
-        params.yearLength = 4;
-        params.minYear = 1950;
-        params.maxYear = new Date().getFullYear();
-        params.dayIndex = 2;
-        break;
-      case 'DD MMMM YYYY':
-        params.dateSeparator = ' ';
-        params.yearIndex = 2;
-        params.yearLength = 4;
-        params.minYear = 1950;
-        params.maxYear = 2050;
-        params.dayIndex = 0;
-        break;
-      case 'DD-MMM-YY':
-        params.dateSeparator = '-';
-        params.yearIndex = 2;
-        params.yearLength = 2;
-        params.minYear = new Date().getFullYear() % 100;
-        params.maxYear = 50;
-        params.dayIndex = 0;
-    }
+    const params: DateParams = ((format: string) => {
+      switch (format){
+        case 'YYYY/MM/DD':
+          return {
+            dateSeparator: '/',
+            yearIndex: 0,
+            yearLength: 4,
+            minYear: 1950,
+            maxYear: new Date().getFullYear(),
+            dayIndex: 2
+          };
+        case 'DD MMMM YYYY':
+          return {
+            dateSeparator: ' ',
+            yearIndex: 2,
+            yearLength: 4,
+            minYear: 1950,
+            maxYear: 2050,
+            dayIndex: 0
+          };
+        default: //case 'DD-MMM-YY':
+          return {
+            dateSeparator: '-',
+            yearIndex: 2,
+            yearLength: 2,
+            minYear: new Date().getFullYear() % 100,
+            maxYear: 50,
+            dayIndex: 0
+          };
+      }
+    })(fullFormat);
 
     if (checkDateFormat(control.value, params.dateSeparator)) {
       return {incorrectFormat: true};
     }
 
     const year: string = control.value.split(params.dateSeparator)[params.yearIndex];
-    const month: string = control.value.split(params.dateSeparator)[1];
-    // const day = control.value.split(params.dateSeparator)[params.dayIndex];
+    const month: string = control.value.split(params.dateSeparator)[1].toLowerCase();
+    const day: string = control.value.split(params.dateSeparator)[params.dayIndex];
 
     if (checkDateYearFormat(year, params.yearLength)) {
       return {incorrectYearFormat: true};
@@ -63,9 +61,12 @@ export const checkDate = (fullFormat: string) =>
     if (checkDateMonth(month, fullFormat)) {
       return {incorrectMonth: true};
     }
-    // if (checkDateDay(month, day)) {
-    //   return {incorrectDay: true}
-    // }
+    if (checkDateDayFormat(day)) {
+      return {incorrectDayFormat: true};
+    }
+    if (checkDateDay(month, day)) {
+      return {incorrectDay: true}
+    }
     return null;
   }
   return null;
