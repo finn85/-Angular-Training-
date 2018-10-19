@@ -4,7 +4,8 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {selectErrMsg} from './formsValidation/selectErrMsg';
 import {allErrMsgs} from './formsValidation/allErrMsgs';
 
-import {checkInputsSymbols} from "./formsValidation/checkInputsSymbols";
+import {checkInputsSymbols} from './formsValidation/checkInputsSymbols';
+import {checkName} from './formsValidation/checkName';
 import {checkNumberInterval} from './formsValidation/checkNumberInterval';
 import {checkDate} from './formsValidation/checkDate';
 
@@ -20,8 +21,9 @@ export class AppComponent {
 
   userForm: FormGroup = new FormGroup({
     'name': new FormControl(null, [
-      Validators.required,
-      checkInputsSymbols.name()
+      checkName,
+      checkInputsSymbols.name(),
+      Validators.required
     ]),
     'age': new FormControl(null, [
       Validators.required,

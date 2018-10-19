@@ -70,4 +70,4 @@ export const checkDate = (fullFormat: string) =>
     return null;
   }
   return null;
-  };
+};
