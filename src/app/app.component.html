@@ -1,3 +1,5 @@
+<h1>User Form</h1>
+
 <form [formGroup] = "userForm">
 
   <div class="input-group">
@@ -49,7 +51,5 @@
       {{errMsgs['dateOfNotif']}}
     </div>
   </div>
-
   <button (click)="submit()" [disabled]="userForm.invalid">Submit</button>
-  <button (click)="submit()">testing</button>
 </form>
