@@ -10,23 +10,23 @@ import {required,
 
 export const asyncNameValidator: AsyncValidatorFn = (control: AbstractControl) => {
 
-  const valueStr: string = (control.value !==null) ? control.value.trim() : '';
+  const value: string = (control.value !==null) ? control.value.trim() : '';
   const validSymbols: string[] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '.split('');
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
-    if (required(valueStr, control)) {
+    if (required(value, control)) {
       observer.next({required: 'true'});
       observer.complete();
     }
-    if (checkSymbols(validSymbols, valueStr)) {
+    if (checkSymbols(validSymbols, value)) {
       observer.next({incorrectSymbols: 'true'});
       observer.complete();
     }
-    if (checkMoreThanTwoWords(valueStr)) {
+    if (checkMoreThanTwoWords(value)) {
       observer.next({moreThanTwoWords: 'true'});
       observer.complete();
     }
-    if (checkPascalCase(valueStr)) {
+    if (checkPascalCase(value)) {
       observer.next({noPascalCase: 'true'});
       observer.complete();
     }
