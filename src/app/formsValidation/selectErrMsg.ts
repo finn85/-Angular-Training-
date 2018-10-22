@@ -1,6 +1,6 @@
-import {FormGroup} from "@angular/forms";
+import {FormGroup, ValidationErrors} from "@angular/forms";
 
-export const selectErrMsg = (formName: FormGroup, controlName: string, messages: {[key: string]: string} ): string|null => {
+export const selectErrMsg = (formName: FormGroup, controlName: string, messages: ValidationErrors) => {
 
   const errObj = formName.controls[controlName].errors;
 

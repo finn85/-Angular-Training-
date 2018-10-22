@@ -42,7 +42,19 @@
       }
     }
     .ng-pending.ng-dirty {
-      background-color: yellow;
+      animation-duration: 0.5s;
+      animation-name: pending;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    $pendingAnimColor: rgba(255, 245, 9, 0.37);
+    @keyframes pending {
+      @for $pendingCounter from 0 through 100 {
+        #{$pendingCounter}% {
+          background-image: linear-gradient(to left,transparent 0%,$pendingAnimColor  0% + $pendingCounter, transparent 100%);
+        }
+      }
     }
     .ng-valid.ng-dirty {
       background-color: rgba(17, 164, 8, 0.15);

@@ -2,13 +2,13 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
   name: {
     required: 'Name is required',
     incorrectSymbols: 'Please, enter english letters only',
-    moreThanTwoWords: 'Please, use one or two words, no more(including camelCase)'
+    noPascalCase: 'Please, enter a first letter in each word in upper case, other letters - in lower case',
+    moreThanTwoWords: 'Please, use one or two words, no more'
   },
   age: {
     required: 'Age is required',
-    incorrectSymbols: 'Please, enter numbers only',
-    lessThan18: 'Your age is less than 18',
-    moreThan65: 'Your age is more than 65'
+    incorrectSymbols: 'Please, enter integer number only',
+    incorrectInterval: 'Please, enter integer number from 18 to 65'
   },
   dateOfBirth: {
     required: 'Birthday is required',

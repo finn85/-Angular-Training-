@@ -5,9 +5,9 @@
   <div class="input-group">
     <label>
       Name: <br>
-      <input type="text" formControlName="name" [placeholder]="placeholders.name" (input)="getErrMsg('name')">
+      <input type="text" formControlName="name" [placeholder]="placeholders.name">
     </label>
-    <div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">
+    <div class="error">
       {{errMsgs['name']}}
     </div>
   </div>
@@ -15,9 +15,9 @@
   <div class="input-group">
     <label>
       Age: <br>
-      <input type="text" formControlName="age" [placeholder]="placeholders.age" (change)="getErrMsg('age')">
+      <input type="text" formControlName="age" [placeholder]="placeholders.age">
     </label>
-    <div class="error" *ngIf = "userForm.controls['age'].invalid && userForm.controls['age'].dirty">
+    <div class="error">
       {{errMsgs['age']}}
     </div>
   </div>
@@ -25,9 +25,9 @@
   <div class="input-group">
     <label>
       Date of birth: <br>
-      <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth" (input)="getErrMsg('dateOfBirth')">
+      <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth">
     </label>
-    <div class="error" *ngIf = "userForm.controls['dateOfBirth'].invalid && userForm.controls['dateOfBirth'].dirty">
+    <div class="error">
       {{errMsgs['dateOfBirth']}}
     </div>
   </div>
@@ -35,9 +35,9 @@
   <div class="input-group">
     <label>
       Date of login: <br>
-      <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin" (input)="getErrMsg('dateOfLogin')">
+      <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin">
     </label>
-    <div class="error" *ngIf = "userForm.controls['dateOfLogin'].invalid && userForm.controls['dateOfLogin'].dirty">
+    <div class="error">
       {{errMsgs['dateOfLogin']}}
     </div>
   </div>
@@ -45,9 +45,9 @@
   <div class="input-group">
     <label>
       Date of notification: <br>
-      <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif" (input)="getErrMsg('dateOfNotif')">
+      <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif">
     </label>
-    <div class="error" *ngIf = "userForm.controls['dateOfNotif'].invalid && userForm.controls['dateOfNotif'].dirty">
+    <div class="error">
       {{errMsgs['dateOfNotif']}}
     </div>
   </div>

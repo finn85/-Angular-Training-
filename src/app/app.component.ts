@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, DoCheck } from '@angular/core';
+import {FormGroup, FormControl, Validators, ValidationErrors} from '@angular/forms';
 
 import {selectErrMsg} from './formsValidation/selectErrMsg';
 import {allErrMsgs} from './formsValidation/allErrMsgs';
 
 import {checkInputsSymbols} from './formsValidation/checkInputsSymbols';
-import {checkName} from './formsValidation/checkName';
-// import {checkNumberInterval} from './formsValidation/checkNumberInterval';
 import {checkDate} from './formsValidation/checkDate';
-import {asyncTestValidator} from "./formsValidation/asyncTestValidator";
+import {asyncAgeValidator} from "./formsValidation/asyncAgeValidator";
+import {asyncNameValidator} from "./formsValidation/asyncNameValidator";
 
 
 @Component({
@@ -17,37 +16,45 @@ import {asyncTestValidator} from "./formsValidation/asyncTestValidator";
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements DoCheck{
+  userForm: FormGroup;
+  constructor(){
+    this.userForm = new FormGroup({
+      'name': new FormControl(null, [], [
+        asyncNameValidator
+      ]),
+      'age': new FormControl(null,[],[
+        asyncAgeValidator
+      ]),
+      'dateOfBirth': new FormControl(null, [
+        checkDate('YYYY/MM/DD'),
+        checkInputsSymbols.dateOfBirth('/'),
+        Validators.required
+      ]),
+      'dateOfLogin': new FormControl(null, [
+        checkDate('DD MMMM YYYY'),
+        checkInputsSymbols.dateOfLogin(' '),
+        Validators.required
+      ]),
+      'dateOfNotif': new FormControl(null, [
+        checkDate('DD-MMM-YY'),
+        checkInputsSymbols.dateOfNotif('-'),
+        Validators.required
+      ])
+    });
+  }
 
-  userForm: FormGroup = new FormGroup({
-    'name': new FormControl(null, [
-      checkName,
-      checkInputsSymbols.name(),
-      Validators.required
-    ]),
-    'age': new FormControl(null, [
-      // Validators.required,
-      // checkInputsSymbols.age(),
-      // checkNumberInterval(18, 65)
-    ],[
-      asyncTestValidator
-    ]),
-    'dateOfBirth': new FormControl(null, [
-      checkDate('YYYY/MM/DD'),
-      checkInputsSymbols.dateOfBirth('/'),
-      Validators.required
-    ]),
-    'dateOfLogin': new FormControl(null, [
-      checkDate('DD MMMM YYYY'),
-      checkInputsSymbols.dateOfLogin(' '),
-      Validators.required
-    ]),
-    'dateOfNotif': new FormControl(null, [
-      checkDate('DD-MMM-YY'),
-      checkInputsSymbols.dateOfNotif('-'),
-      Validators.required
-    ])
-  });
+  ngDoCheck(){
+    if (!this.userForm.controls.name.pending && this.userForm.controls.name.dirty) {
+      this.getErrMsg('name');
+    }
+    if (!this.userForm.controls.age.pending && this.userForm.controls.age.dirty) {
+      this.getErrMsg('age');
+    }
+    if (!this.userForm.controls.dateOfBirth.pending && this.userForm.controls.dateOfBirth.dirty) {
+      this.getErrMsg('dateOfBirth');
+    }
+  }
 
   placeholders = {
     name: 'One or two words',
@@ -57,7 +64,7 @@ export class AppComponent {
     dateOfNotif: 'DD-MMM-YY'
   };
 
-  errMsgs: {[key: string]: string|null} = {
+  errMsgs: ValidationErrors = {
     name: null,
     age: null,
     dateOfBirth: null,
@@ -73,6 +80,6 @@ export class AppComponent {
   getErrMsg = (controlName: string) => {
 
     this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
-    console.log(this.userForm.controls[controlName].errors);//todo after delete
+    // console.log(this.userForm.controls[controlName].errors);//todo after delete
   };
 }
