@@ -15,7 +15,7 @@
   <div class="input-group">
     <label>
       Age: <br>
-      <input type="text" formControlName="age" [placeholder]="placeholders.age" (input)="getErrMsg('age')">
+      <input type="text" formControlName="age" [placeholder]="placeholders.age" (change)="getErrMsg('age')">
     </label>
     <div class="error" *ngIf = "userForm.controls['age'].invalid && userForm.controls['age'].dirty">
       {{errMsgs['age']}}
@@ -51,5 +51,5 @@
       {{errMsgs['dateOfNotif']}}
     </div>
   </div>
-  <button (click)="submit()" [disabled]="userForm.invalid">Submit</button>
+  <button (click)="submit()" [disabled]="userForm.invalid||userForm.status === 'PENDING'">Submit</button>
 </form>

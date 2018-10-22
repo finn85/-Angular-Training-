@@ -41,6 +41,9 @@
         outline: none;
       }
     }
+    .ng-pending.ng-dirty {
+      background-color: yellow;
+    }
     .ng-valid.ng-dirty {
       background-color: rgba(17, 164, 8, 0.15);
     }

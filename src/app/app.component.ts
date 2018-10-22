@@ -6,9 +6,9 @@ import {allErrMsgs} from './formsValidation/allErrMsgs';
 
 import {checkInputsSymbols} from './formsValidation/checkInputsSymbols';
 import {checkName} from './formsValidation/checkName';
-import {checkNumberInterval} from './formsValidation/checkNumberInterval';
+// import {checkNumberInterval} from './formsValidation/checkNumberInterval';
 import {checkDate} from './formsValidation/checkDate';
-
+import {asyncTestValidator} from "./formsValidation/asyncTestValidator";
 
 
 @Component({
@@ -26,9 +26,11 @@ export class AppComponent {
       Validators.required
     ]),
     'age': new FormControl(null, [
-      Validators.required,
-      checkInputsSymbols.age(),
-      checkNumberInterval(18, 65)
+      // Validators.required,
+      // checkInputsSymbols.age(),
+      // checkNumberInterval(18, 65)
+    ],[
+      asyncTestValidator
     ]),
     'dateOfBirth': new FormControl(null, [
       checkDate('YYYY/MM/DD'),
@@ -69,6 +71,7 @@ export class AppComponent {
   };
 
   getErrMsg = (controlName: string) => {
+
     this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
     console.log(this.userForm.controls[controlName].errors);//todo after delete
   };
