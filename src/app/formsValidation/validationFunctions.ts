@@ -1,4 +1,5 @@
 import {AbstractControl} from "@angular/forms";
+import {validatedDataInterface} from "./interfaceValidatedData";
 //common
 export const required = (value: string, control: AbstractControl): boolean =>
   (value === '' && control.dirty);
@@ -96,3 +97,58 @@ export const clearFromSpaces = (value: string): string =>
 
 export const clearFromMoreThenOneSpace = (value: string): string =>
   value.trim().split('').filter((i,ind, arr) => i !== ' ' || (i === ' ' && arr[++ind] !== ' ')).join('');
+
+export const covertDateFormat = (source: validatedDataInterface, name: string, inputFormat: string): void => {
+  switch (inputFormat) {
+    case 'DD MMMM YYYY': {
+      const day: string = source[name].split(' ')[0];
+      const month: string = source[name].split(' ')[1];
+      const newMonth = (month: string): string => {
+        switch (month) {
+          case 'january': return '01';
+          case 'february': return '02';
+          case 'march': return '03';
+          case 'april': return '04';
+          case 'may': return '05';
+          case 'june': return '06';
+          case 'july': return '07';
+          case 'august': return '08';
+          case 'september': return '09';
+          case 'october': return '10';
+          case 'november': return '11';
+          case 'december': return '12';
+          default: return '';
+        }
+      };
+      const year: string = source[name].split(' ')[2];
+
+      source[name] = year + '/' + newMonth(month) + '/' + day;
+      break;
+    }
+    case 'DD-MMM-YY': {
+      const day: string = source[name].split('-')[0];
+      const month: string = source[name].split('-')[1];
+      const newMonth = (month: string): string => {
+        switch (month) {
+          case 'jan': return '01';
+          case 'feb': return '02';
+          case 'mar': return '03';
+          case 'apr': return '04';
+          case 'may': return '05';
+          case 'jun': return '06';
+          case 'jul': return '07';
+          case 'aug': return '08';
+          case 'sep': return '09';
+          case 'oct': return '10';
+          case 'nov': return '11';
+          case 'dec': return '12';
+          default: return '';
+        }
+      };
+      const year: string = source[name].split('-')[2];
+      const newYear: string = '20' + year;
+
+      source[name] = newYear + '/' + newMonth(month) + '/' + day;
+    }
+  }
+};

@@ -5,19 +5,12 @@
   "private": true,
 
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --open",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
+
+    "build": "npm run clearBuild && ng build && npm run buildServer",
 
     "clearBuild": "node -e \"const fs = require('fs-extra'); fs.removeSync('build');\" ",
     "copyData": "node -e \"const fs = require('fs-extra'); fs.copySync('server/data', 'build/data');\" ",
-    "buildServer": "npm run copyData && tsc -p server && node ./build/api.js",
-
-    "prod": "npm run clearBuild && ng build --prod && npm run buildServer",
-    "mytest": ""
+    "buildServer": "npm run copyData && tsc -p server && node ./build/api.js"
   },
 
 

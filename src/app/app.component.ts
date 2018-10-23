@@ -3,6 +3,7 @@ import {FormGroup, FormControl, ValidationErrors} from '@angular/forms';
 
 import {selectErrMsg} from './formsValidation/selectErrMsg';
 import {allErrMsgs} from './formsValidation/allErrMsgs';
+import {covertDateFormat} from './formsValidation/validationFunctions';
 
 import {asyncAgeValidator} from "./formsValidation/asyncAgeValidator";
 import {asyncNameValidator} from "./formsValidation/asyncNameValidator";
@@ -10,8 +11,6 @@ import {asyncDateOfBirthValidator} from "./formsValidation/asyncDateOfBirthValid
 import {asyncDateOfLoginValidator} from "./formsValidation/asyncDateOfLoginValidator";
 import {asyncDateOfNotifValidator} from "./formsValidation/asyncDateOfNotifValidator";
 import {validatedDataInterface} from "./formsValidation/interfaceValidatedData";
-
-
 
 @Component({
   selector: 'app-root',
@@ -44,24 +43,29 @@ export class AppComponent implements DoCheck {
   ngDoCheck(){
     if (!this.userForm.controls.name.pending && this.userForm.controls.name.dirty) {
       this.getErrMsg('name');
-      if (this.userForm.controls.name.valid) {this.validatedData.name = this.userForm.controls.name.value}
+      this.getValidatedData('name');
     }
     if (!this.userForm.controls.age.pending && this.userForm.controls.age.dirty) {
       this.getErrMsg('age');
-      if (this.userForm.controls.age.valid) {this.validatedData.age = this.userForm.controls.age.value}
+      this.getValidatedData('age');
     }
     //todo convert date format
     if (!this.userForm.controls.dateOfBirth.pending && this.userForm.controls.dateOfBirth.dirty) {
       this.getErrMsg('dateOfBirth');
-      if (this.userForm.controls.dateOfBirth.valid) {this.validatedData.dateOfBirth = this.userForm.controls.dateOfBirth.value}
+      this.getValidatedData('dateOfBirth');
     }
     if (!this.userForm.controls.dateOfLogin.pending && this.userForm.controls.dateOfLogin.dirty) {
       this.getErrMsg('dateOfLogin');
-      if (this.userForm.controls.dateOfLogin.valid) {this.validatedData.dateOfLogin = this.userForm.controls.dateOfLogin.value}
+      this.getValidatedData('dateOfLogin');
+      covertDateFormat(this.validatedData,'dateOfLogin', 'DD MMMM YYYY');
     }
     if (!this.userForm.controls.dateOfNotif.pending && this.userForm.controls.dateOfNotif.dirty) {
       this.getErrMsg('dateOfNotif');
-      if (this.userForm.controls.dateOfNotif.valid) {this.validatedData.dateOfNotif = this.userForm.controls.dateOfNotif.value}
+      this.getValidatedData('dateOfNotif');
+      covertDateFormat(this.validatedData,'dateOfNotif', 'DD-MMM-YY');
+    }
+    if (this.userForm.invalid || this.userForm.pending) {
+      this.submitted = false;
     }
   }
 
@@ -82,18 +86,26 @@ export class AppComponent implements DoCheck {
   };
 
   validatedData: validatedDataInterface = {
-    name: null,
-    age: null,
-    dateOfBirth: null,
-    dateOfLogin: null,
-    dateOfNotif: null
+    name: '',
+    age: '',
+    dateOfBirth: '',
+    dateOfLogin: '',
+    dateOfNotif: ''
+  };
+
+  submitted: boolean = false;
+
+  getValidatedData = (controlName: string): void => {
+    if (this.userForm.controls[controlName].valid) {
+      this.validatedData[controlName] = this.userForm.controls[controlName].value
+    }
+  };
+
+  getErrMsg = (controlName: string): void => {
+    this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
   };
 
   submit = () => {
-    console.log(this.userForm);//todo after delete
-  };
-
-  getErrMsg = (controlName: string) => {
-    this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
+      this.submitted = true;
   };
 }

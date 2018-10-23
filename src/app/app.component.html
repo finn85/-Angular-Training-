@@ -53,3 +53,11 @@
   </div>
   <button (click)="submit()" [disabled]="userForm.invalid||userForm.status === 'PENDING'">Submit</button>
 </form>
+<div class="submitted" *ngIf="submitted">
+  <h3>Submitted information</h3>
+  <p>Name: {{validatedData['name']}}</p>
+  <p>Age: {{validatedData['age']}}</p>
+  <p>Date of birth: {{validatedData['dateOfBirth']}}</p>
+  <p>Date of login: {{validatedData['dateOfLogin']}}</p>
+  <p>Date of notification: {{validatedData['dateOfNotif']}}</p>
+</div>
