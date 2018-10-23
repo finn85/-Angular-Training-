@@ -44,8 +44,8 @@ export const checkNumberInterval = (value:number,minNumber: number, maxNumber: n
 export const checkDateFormat = (value: string, separator: string): boolean =>
   (value.split(separator).length !== 3);
 
-export const checkDateYearFormat = (year: number, length: number): boolean =>
-  (year !== undefined && (year.toString().length !== length || isNaN(year)));
+export const checkDateYearFormat = (year: string, length: number): boolean =>
+  (year !== undefined && (year.toString().length !== length || isNaN(+year)));
 
 export const checkDateYear = (year: number, minYear: number, maxYear: number): boolean =>
   (year > maxYear || year < minYear);
@@ -93,3 +93,6 @@ export const checkDateDay = (month: string, day: number): boolean => {
 //addition
 export const clearFromSpaces = (value: string): string =>
   (value.trim().split('').filter((i) => i !== ' ').join(''));
+
+export const clearFromMoreThenOneSpace = (value: string): string =>
+  value.trim().split('').filter((i,ind, arr) => i !== ' ' || (i === ' ' && arr[++ind] !== ' ')).join('');

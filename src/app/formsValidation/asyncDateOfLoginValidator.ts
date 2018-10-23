@@ -5,7 +5,7 @@ import {Observer} from 'rxjs/internal/types';
 import {
   checkSymbols,
   required,
-  clearFromSpaces,
+  clearFromMoreThenOneSpace,
   checkDateFormat,
   checkDateYearFormat,
   checkDateYear,
@@ -15,16 +15,15 @@ import {
 } from './validationFunctions';
 
 
-export const asyncDateOfBirthValidator: AsyncValidatorFn = (control: AbstractControl) => {
+export const asyncDateOfLoginValidator: AsyncValidatorFn = (control: AbstractControl) => {
 
-  const value: string = (control.value !==null) ? clearFromSpaces(control.value) : '';
-  const validSymbols: string[] = '0123456789/ '.split('');
-  const currentYear: number = new Date().getFullYear();
-  const yearStr: string = value.split('/')[0];
-  const year: number = +value.split('/')[0];
-  const month: string = value.split('/')[1];
-  const dayStr: string = value.split('/')[2];
-  const day: number = +value.split('/')[2];
+  const value: string = (control.value !==null) ? clearFromMoreThenOneSpace(control.value) : '';
+  const validSymbols: string[] = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '.split('');
+  const dayStr: string = value.split(' ')[0];
+  const day: number = +value.split(' ')[0];
+  const month: string = value.split(' ')[1];
+  const yearStr: string = value.split(' ')[2];
+  const year: number = +value.split(' ')[2];
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
     if (required(value, control)) {
@@ -35,20 +34,8 @@ export const asyncDateOfBirthValidator: AsyncValidatorFn = (control: AbstractCon
       observer.next({incorrectSymbols: 'true'});
       observer.complete();
     }
-    if (checkDateFormat(value, '/')) {
+    if (checkDateFormat(value, ' ')) {
       observer.next({incorrectFormat: 'true'});
-      observer.complete();
-    }
-    if (checkDateYearFormat(yearStr, 4)) {
-      observer.next({incorrectYearFormat: 'true'});
-      observer.complete();
-    }
-    if (checkDateYear(year, 1950, currentYear)) {
-      observer.next({incorrectYear: 'true'});
-      observer.complete();
-    }
-    if (checkDateMonth(month, 'MM')) {
-      observer.next({incorrectMonth: 'true'});
       observer.complete();
     }
     if (checkDateDayFormat(dayStr)) {
@@ -57,6 +44,18 @@ export const asyncDateOfBirthValidator: AsyncValidatorFn = (control: AbstractCon
     }
     if (checkDateDay(month, day)) {
       observer.next({incorrectDay: 'true'});
+      observer.complete();
+    }
+    if (checkDateMonth(month, 'MMMM')) {
+      observer.next({incorrectMonth: 'true'});
+      observer.complete();
+    }
+    if (checkDateYearFormat(yearStr, 4)) {
+      observer.next({incorrectYearFormat: 'true'});
+      observer.complete();
+    }
+    if (checkDateYear(year, 1950, 2050)) {
+      observer.next({incorrectYear: 'true'});
       observer.complete();
     }
     observer.next(null);
