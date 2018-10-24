@@ -7,7 +7,7 @@
       Name: <br>
       <input type="text" formControlName="name" [placeholder]="placeholders.name">
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">
       {{errMsgs['name']}}
     </div>
   </div>
@@ -17,7 +17,7 @@
       Age: <br>
       <input type="text" formControlName="age" [placeholder]="placeholders.age">
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "userForm.controls['age'].invalid && userForm.controls['age'].dirty">
       {{errMsgs['age']}}
     </div>
   </div>
@@ -27,7 +27,7 @@
       Date of birth: <br>
       <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth">
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "userForm.controls['dateOfBirth'].invalid && userForm.controls['dateOfBirth'].dirty">
       {{errMsgs['dateOfBirth']}}
     </div>
   </div>
@@ -37,7 +37,7 @@
       Date of login: <br>
       <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin">
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "userForm.controls['dateOfLogin'].invalid && userForm.controls['dateOfLogin'].dirty">
       {{errMsgs['dateOfLogin']}}
     </div>
   </div>
@@ -47,7 +47,7 @@
       Date of notification: <br>
       <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif">
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "userForm.controls['dateOfNotif'].invalid && userForm.controls['dateOfNotif'].dirty">
       {{errMsgs['dateOfNotif']}}
     </div>
   </div>

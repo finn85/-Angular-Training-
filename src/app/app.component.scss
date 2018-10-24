@@ -2,7 +2,7 @@
   grid-area: form;
   color: #fbfdff;
   padding: 10px 30px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(215, 215, 215, 0.55);
   border-radius: 20px;
   box-shadow: 6px 0 15px -7px rgba(0, 0, 0, 0.48),
   -6px 0 15px -7px rgba(0, 0, 0, 0.48),
@@ -73,6 +73,8 @@
     font-size: 90%;
     text-shadow: none;
     color: #910800;
+    animation-duration: 1s;
+    animation-name: increase-opacity;
   }
   button {
     color: #fbfdff;
@@ -115,13 +117,23 @@
     }
   }
   .submitted {
-    margin: 15px 0;
+     margin: 15px 0;
     h3 {
       text-align: center;
       margin: 0 0 10px;
     }
     p {
       margin: 0;
+    }
+    animation-duration: 1s;
+    animation-name: increase-opacity;
+  }
+  @keyframes increase-opacity {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100%;
     }
   }
 }

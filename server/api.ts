@@ -6,6 +6,7 @@ import {User} from "./api_modules/interface_User";
 const api = express();
 const jsonParser = json();
 const port: number = 3000;
+const delay: number = 1000;
 const users: User[] = require('./data/users.json');
 
 
@@ -14,19 +15,21 @@ api.listen(port, () => console.log(`[Angular Platform] API listening on port ${p
 api.use(express.static(__dirname + '/static'));
 
 api.get('/users', (req: Request, res: Response) => {
-    const curUsers = users.filter( (item) => !item.deleted );
+  const curUsers = users.filter( (item) => !item.deleted );
 
-    res.json(curUsers);
+  setTimeout(() => res.json(curUsers), delay);
 });
 
 api.get('/users/:id', (req: Request, res: Response) => {
-    const curUser: User = users[req.params.id];
+  const curUser: User = users[req.params.id];
 
+  setTimeout(() => {
     if (curUser === undefined || curUser.deleted) {
-        res.send('user is not exist');
+      res.send('user is not exist');
     } else {
-        res.json(curUser);
+      res.json(curUser);
     }
+  }, delay);
 });
 
 api.post('/users/add', jsonParser, (req: Request, res: Response) => {
@@ -61,13 +64,14 @@ api.put('/users/:id', jsonParser, (req: Request, res: Response) => {
 });
 
 api.delete('/users/:id', (req: Request, res: Response) => {
-    const curUser = users[req.params.id];
+  const curUser = users[req.params.id];
 
+  setTimeout(() => {
     if (curUser === undefined || curUser.deleted) {
-        res.send('user is not exist');
+      res.send('user is not exist');
     } else {
-        curUser.deleted = true;
-
-        res.send(curUser);
+      curUser.deleted = true;
+      res.send(curUser);
     }
+  }, delay);
 });
