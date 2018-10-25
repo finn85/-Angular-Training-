@@ -1,0 +1,21 @@
+<div class="panel">
+  <h1>Login to Your account</h1>
+  <form [formGroup] = "loginForm">
+    <label>
+    <span>LOGINNAME</span>
+    <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+    </label>
+    <!--<div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">-->
+    <!--{{errMsgs['name']}}-->
+    <!--</div>-->
+    <label>
+      <span>PASSWORD</span>
+      <input type="text" formControlName="password" [placeholder]="placeholders.password">
+    </label>
+  </form>
+  <button>SIGN IN</button>
+  <div class="links">
+    <a routerLink="/forgotPassword">Forgot you password?</a>
+    <a routerLink="/registration">Create an account</a>
+  </div>
+</div>
