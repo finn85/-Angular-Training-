@@ -2,20 +2,24 @@
   <h1>Login to Your account</h1>
   <form [formGroup] = "loginForm">
     <label>
-    <span>LOGINNAME</span>
-    <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+      <span>LOGIN NAME</span>
+      <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+      <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
     </label>
-    <!--<div class="error" *ngIf = "userForm.controls['name'].invalid && userForm.controls['name'].dirty">-->
-    <!--{{errMsgs['name']}}-->
-    <!--</div>-->
+    <div class="error" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">
+    {{errMsgs['loginName']}}
+    </div>
     <label>
       <span>PASSWORD</span>
       <input type="text" formControlName="password" [placeholder]="placeholders.password">
+      <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>
+    <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
+      {{errMsgs['password']}}
+    </div>
   </form>
-  <button>SIGN IN</button>
-  <div class="links">
-    <a routerLink="/forgotPassword">Forgot you password?</a>
-    <a routerLink="/registration">Create an account</a>
-  </div>
+  <button routerLink="/userPage">LOG IN</button>
+  <a routerLink="/forgotPassword">Forgot you password?</a>
 </div>

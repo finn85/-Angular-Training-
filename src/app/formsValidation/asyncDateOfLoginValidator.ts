@@ -1,6 +1,5 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
 import {Observable} from 'rxjs/internal/Observable';
-import {delay} from 'rxjs/operators';
 import {Observer} from 'rxjs/internal/types';
 import {
   checkSymbols,
@@ -13,6 +12,7 @@ import {
   checkDateDayFormat,
   checkDateDay
 } from './validationFunctions';
+import {delay} from "rxjs/operators";
 
 
 export const asyncDateOfLoginValidator: AsyncValidatorFn = (control: AbstractControl) => {
@@ -24,6 +24,7 @@ export const asyncDateOfLoginValidator: AsyncValidatorFn = (control: AbstractCon
   const month: string = value.split(' ')[1];
   const yearStr: string = value.split(' ')[2];
   const year: number = +value.split(' ')[2];
+  const delayVal: number = 1500;
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
     if (required(value, control)) {
@@ -60,6 +61,6 @@ export const asyncDateOfLoginValidator: AsyncValidatorFn = (control: AbstractCon
     }
     observer.next(null);
     observer.complete();
-  }).pipe(delay(3000));
+  }).pipe(delay(delayVal))
 };
 

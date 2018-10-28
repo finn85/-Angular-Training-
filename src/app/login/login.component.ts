@@ -1,34 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {selectErrMsg} from "../formsValidation/selectErrMsg";
+import {allErrMsgs} from "../formsValidation/allErrMsgs";
+import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
+import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  loginNameControl: FormControl;
-  passwordControl: FormControl;
-  loginNameValue: string;
-  passwordValue: string;
+export class LoginComponent implements DoCheck,OnInit {
 
-  constructor(){
+  loginForm!: FormGroup;
+  loginNameCtrl!: FormControl;
+  passwordCtrl!: FormControl;
+
+  constructor(private userService: UserService){}
+
+  ngOnInit() {
     this.loginForm = new FormGroup({
-      'loginName': this.loginNameControl = new FormControl(),
-      'password': this.passwordControl = new FormControl()
-    });
-    this.loginNameValue = this.loginNameControl.value;
-    this.passwordValue = this.passwordControl.value;
+      'loginName': this.loginNameCtrl = new FormControl(null,[],[
+        asyncLoginNameValidator
+      ]),
+      'password': this.passwordCtrl = new FormControl(null,[],[
+        asyncPasswordValidator
+      ])
+    })
+  }
+
+  ngDoCheck() {
+    if (!this.loginNameCtrl.pending && this.loginNameCtrl.dirty) {
+      this.getErrMsg('loginName');
+    }
+    if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
+      this.getErrMsg('password');
+    }
+    this.userService.currentUser.login = this.loginNameCtrl.value;
+    console.log(this.loginNameCtrl.value);
+    console.log(this.userService.currentUser);
   }
 
   placeholders = {
-    loginName: 'Enter login name',
-    password: 'Enter password'
+    loginName: 'One word (numbers and letters)',
+    password: 'One word (numbers and letters)'
   };
 
-  ngOnInit() {
-  }
+  errMsgs: ValidationErrors = {
+    loginName: null,
+    password: null
+  };
 
+  getErrMsg = (controlName: string): void => {
+    this.errMsgs[controlName] = selectErrMsg(this.loginForm, controlName, allErrMsgs[controlName]);
+  };
 }

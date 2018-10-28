@@ -1,4 +1,12 @@
 export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
+  loginName: {
+    required: 'Login Name is required',
+    incorrectSymbols: 'Please, enter one word (english letters and numbers only)',
+  },
+  password: {
+    required: 'Password is required',
+    incorrectSymbols: 'Please, enter one word (english letters and numbers only)',
+  },
   name: {
     required: 'Name is required',
     incorrectSymbols: 'Please, enter english letters only',

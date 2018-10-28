@@ -1,10 +1,10 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
 import {Observable} from 'rxjs/internal/Observable';
-import {delay} from 'rxjs/operators';
 import {Observer} from 'rxjs/internal/types';
 import {checkSymbols,
         checkNumberInterval,
         required} from './validationFunctions';
+import {delay} from "rxjs/operators";
 
 
 export const asyncAgeValidator: AsyncValidatorFn = (control: AbstractControl) => {
@@ -12,6 +12,7 @@ export const asyncAgeValidator: AsyncValidatorFn = (control: AbstractControl) =>
   const valueStr: string = (control.value !==null) ? control.value.trim() : '';
   const valueNumb: number = Number(valueStr);
   const validSymbols: string[] = '0123456789'.split('');
+  const delayVal: number = 1500;
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
     if (required(valueStr, control)) {
@@ -28,6 +29,6 @@ export const asyncAgeValidator: AsyncValidatorFn = (control: AbstractControl) =>
     }
     observer.next(null);
     observer.complete();
-  }).pipe(delay(3000));
+  }).pipe(delay(delayVal))
 };
 

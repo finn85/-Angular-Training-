@@ -16,8 +16,10 @@ api.use(express.static(__dirname + '/static'));
 
 api.get('/users', (req: Request, res: Response) => {
   const curUsers = users.filter( (item) => !item.deleted );
+  res.cookie('nameTest', 'value');
+  res.json(curUsers);
 
-  setTimeout(() => res.json(curUsers), delay);
+  // setTimeout(() => res.json(curUsers), delay);
 });
 
 api.get('/users/:id', (req: Request, res: Response) => {

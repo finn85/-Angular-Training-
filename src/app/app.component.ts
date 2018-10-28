@@ -3,7 +3,7 @@ import {FormGroup, FormControl, ValidationErrors} from '@angular/forms';
 
 import {selectErrMsg} from './formsValidation/selectErrMsg';
 import {allErrMsgs} from './formsValidation/allErrMsgs';
-import {covertDateFormat} from './formsValidation/validationFunctions';
+import {covertDateFormat} from './formsValidation/validationFunctions';//todo convert word mistake
 
 import {asyncAgeValidator} from "./formsValidation/asyncAgeValidator";
 import {asyncNameValidator} from "./formsValidation/asyncNameValidator";
@@ -11,11 +11,13 @@ import {asyncDateOfBirthValidator} from "./formsValidation/asyncDateOfBirthValid
 import {asyncDateOfLoginValidator} from "./formsValidation/asyncDateOfLoginValidator";
 import {asyncDateOfNotifValidator} from "./formsValidation/asyncDateOfNotifValidator";
 import {validatedDataInterface} from "./formsValidation/interfaceValidatedData";
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-root',
   template:`<router-outlet></router-outlet>`,
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [UserService]
 })
 
 export class AppComponent implements DoCheck {

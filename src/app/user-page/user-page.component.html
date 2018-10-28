@@ -1,0 +1,86 @@
+<div class="panel panel1">
+  <h1>User info</h1>
+  <h1>User info</h1>
+  <h1>User info</h1>
+</div>
+
+<div class="panel panel2">
+  <h1>Change user info</h1>
+  <div class="left-part">
+    <form [formGroup] = "userForm">
+      <label>
+        <span>LOGIN NAME</span>
+        <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+        <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">
+        {{errMsgs['loginName']}}
+      </div>
+      <label>
+        <span>PASSWORD</span>
+        <input type="text" formControlName="password" [placeholder]="placeholders.password">
+        <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
+        {{errMsgs['password']}}
+      </div>
+    </form>
+  </div>
+  <div class="right-part">
+    <form [formGroup] = "userForm">
+      <label>
+        <span>NAME</span>
+        <input type="text" formControlName="name" [placeholder]="placeholders.name">
+        <span class="valid" *ngIf = "nameCtrl.valid && nameCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">
+        {{errMsgs['name']}}
+      </div>
+      <label>
+        <span>AGE</span>
+        <input type="text" formControlName="age" [placeholder]="placeholders.age">
+        <span class="valid" *ngIf = "ageCtrl.valid && ageCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "ageCtrl.invalid && ageCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "ageCtrl.invalid && ageCtrl.dirty">
+        {{errMsgs['age']}}
+      </div>
+      <label>
+        <span>DATE OF BIRTH</span>
+        <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth">
+        <span class="valid" *ngIf = "dateOfBirthCtrl.valid && dateOfBirthCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">
+        {{errMsgs['dateOfBirth']}}
+      </div>
+      <label>
+        <span>DATE OF LOGIN</span>
+        <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin">
+        <span class="valid" *ngIf = "dateOfLoginCtrl.valid && dateOfLoginCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">
+        {{errMsgs['dateOfLogin']}}
+      </div>
+      <label>
+        <span>DATE OF NOTIFICATION</span>
+        <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif">
+        <span class="valid" *ngIf = "dateOfNotifCtrl.valid && dateOfNotifCtrl.dirty">ok</span>
+        <span class="invalid" *ngIf = "dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">x</span>
+      </label>
+      <div class="error" *ngIf = "dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">
+        {{errMsgs['dateOfNotif']}}
+      </div>
+      <label>
+        <span>IFORMATION</span>
+        <textarea formControlName="info" [placeholder]="placeholders.info"></textarea>
+      </label>
+    </form>
+  </div>
+  <button class="button1">CHANGE</button>
+  <button class="button2" routerLink="/">LOG OUT</button>
+</div>
