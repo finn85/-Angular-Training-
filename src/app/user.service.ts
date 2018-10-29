@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
-interface User {
-  login: string|null;
-  password: string|null;
-  name: string|null;
-  age: string|null;
-  dateOfBirth: string|null;
-  dateOfLogin: string|null;
-  dateOfNotif: string|null;
-  information: string|null;
-}
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/internal/Observable";
+// import {Observable} from "rxjs/internal/Observable";
 
-@Injectable(/*{
+// import {User} from "./Interfaces/User";
+
+@Injectable({
   providedIn: 'root'
-}*/)
+})
 export class UserService {
-  currentUser: User = {
-    login: null,
-    password: null,
-    name: null,
-    age: null,
-    dateOfBirth: null,
-    dateOfLogin: null,
-    dateOfNotif: null,
-    information: null
+  constructor(private http: HttpClient) {}
+
+  checkUserLoginAndPassword(formValues: object): any {
+    return this.http.post(`http://localhost:3000/login`, formValues)
+  }
+
+  getUserById(id: string){
+    if (id) {
+      return this.http.get(`http://localhost:3000/users/${id}`)
+    } else {
+      return new Observable();
+    }
+
   }
 }

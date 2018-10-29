@@ -1,4 +1,4 @@
-import {Component, DoCheck} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
 import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
 import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
@@ -9,6 +9,8 @@ import {asyncDateOfLoginValidator} from "../formsValidation/asyncDateOfLoginVali
 import {asyncDateOfNotifValidator} from "../formsValidation/asyncDateOfNotifValidator";
 import {selectErrMsg} from "../formsValidation/selectErrMsg";
 import {allErrMsgs} from "../formsValidation/allErrMsgs";
+import {UserService} from "../user.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-user-page',
@@ -16,20 +18,29 @@ import {allErrMsgs} from "../formsValidation/allErrMsgs";
   styleUrls: ['./user-page.component.scss']
 })
 
-export class UserPageComponent implements DoCheck {
+export class UserPageComponent implements DoCheck, OnInit {
 
-  userForm: FormGroup;
+  userForm!: FormGroup;
 
-  loginNameCtrl: FormControl;
-  passwordCtrl: FormControl;
-  nameCtrl: FormControl;
-  ageCtrl: FormControl;
-  dateOfBirthCtrl: FormControl;
-  dateOfLoginCtrl: FormControl;
-  dateOfNotifCtrl: FormControl;
-  infoCtrl: FormControl;
+  loginNameCtrl!: FormControl;
+  passwordCtrl!: FormControl;
+  nameCtrl!: FormControl;
+  ageCtrl!: FormControl;
+  dateOfBirthCtrl!: FormControl;
+  dateOfLoginCtrl!: FormControl;
+  dateOfNotifCtrl!: FormControl;
+  infoCtrl!: FormControl;
 
-  constructor(){
+  constructor(private userService: UserService, private  cookieService: CookieService){}
+
+  ngOnInit() {
+    const curentId: string = this.cookieService.get('id');
+
+    this.userService.getUserById(curentId)
+      .subscribe(data => {
+        console.log(data);
+      });
+
     this.userForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
         asyncLoginNameValidator
@@ -80,6 +91,7 @@ export class UserPageComponent implements DoCheck {
     }
   }
 
+
   placeholders = {
     loginName: 'One word (numbers and letters)',
     password: 'One word (numbers and letters)',
@@ -101,7 +113,11 @@ export class UserPageComponent implements DoCheck {
     dateOfNotif: null
   };
 
-getErrMsg = (controlName: string): void => {
-  this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
-};
+  logOut = () => {
+    this.cookieService.delete('id')
+  };
+
+  getErrMsg = (controlName: string): void => {
+    this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
+  };
 }

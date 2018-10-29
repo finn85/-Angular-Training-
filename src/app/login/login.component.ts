@@ -38,9 +38,7 @@ export class LoginComponent implements DoCheck,OnInit {
     if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
       this.getErrMsg('password');
     }
-    this.userService.currentUser.login = this.loginNameCtrl.value;
-    console.log(this.loginNameCtrl.value);
-    console.log(this.userService.currentUser);
+
   }
 
   placeholders = {
@@ -53,7 +51,19 @@ export class LoginComponent implements DoCheck,OnInit {
     password: null
   };
 
+  authentication = {
+    success: false,
+
+  };
+
   getErrMsg = (controlName: string): void => {
     this.errMsgs[controlName] = selectErrMsg(this.loginForm, controlName, allErrMsgs[controlName]);
   };
+
+  submit = () => {
+    this.userService.checkUserLoginAndPassword(this.loginForm.value)
+      .subscribe((data: boolean) => {
+        console.log(data);
+      })
+  }
 }

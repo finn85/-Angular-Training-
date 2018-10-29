@@ -10,7 +10,7 @@ import {asyncNameValidator} from "./formsValidation/asyncNameValidator";
 import {asyncDateOfBirthValidator} from "./formsValidation/asyncDateOfBirthValidator";
 import {asyncDateOfLoginValidator} from "./formsValidation/asyncDateOfLoginValidator";
 import {asyncDateOfNotifValidator} from "./formsValidation/asyncDateOfNotifValidator";
-import {validatedDataInterface} from "./formsValidation/interfaceValidatedData";
+import {validatedDataInterface} from "./Interfaces/ValidatedData";
 import {UserService} from "./user.service";
 
 @Component({
