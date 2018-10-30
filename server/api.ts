@@ -14,10 +14,10 @@ api.listen(port, () => console.log(`[Angular Platform] API listening on port ${p
 
 api.use(express.static(__dirname + '/static'));
 
+
+
 api.get('/users', (req: Request, res: Response) => {
   const curUsers = users.filter( (item) => !item.deleted );
-  // res.cookie('nameTest', 'value');
-  console.log('text');
   setTimeout(() => res.json(curUsers), delay);
 });
 
@@ -32,6 +32,10 @@ api.get('/users/:id', (req: Request, res: Response) => {
     }
   }, delay);
 });
+
+// api.get('/*', (req: Request, res: Response) => {
+//   res.redirect('/')
+// });
 
   api.post('/users/add', jsonParser, (req: Request, res: Response) => {
     const newUser: User = {
@@ -56,7 +60,7 @@ api.post('/login', jsonParser, ((req: Request, res: Response) => {
     .find((item) => (item.loginName === curData.loginName && item.password === curData.password));
 
   if (curUser !== undefined) {
-    res.cookie('id', curUser.id);
+    res.cookie('id', curUser.id, {maxAge: 90000000});
     res.send(true)
   } else {
     res.send(false)

@@ -5,6 +5,8 @@ import {allErrMsgs} from "../formsValidation/allErrMsgs";
 import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
 import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
 import {UserService} from "../user.service";
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,9 +20,15 @@ export class LoginComponent implements DoCheck,OnInit {
   loginNameCtrl!: FormControl;
   passwordCtrl!: FormControl;
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService,
+              private cookieService: CookieService,
+              private router: Router){}
 
   ngOnInit() {
+    if (this.cookieService.get('id')) {
+      this.router.navigate(['/userPage'])
+    }
+
     this.loginForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
         asyncLoginNameValidator

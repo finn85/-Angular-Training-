@@ -35,11 +35,16 @@ export class UserPageComponent implements DoCheck, OnInit {
 
   ngOnInit() {
     const curentId: string = this.cookieService.get('id');
+    console.log(curentId);
+    // this.userService.getUserById(curentId)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    this.userService.getUserById(curentId).pipe(map((data:any) => {
+      console.log(data);
+      return data.toString();
+    }));
 
-    this.userService.getUserById(curentId)
-      .subscribe(data => {
-        console.log(data);
-      });
 
     this.userForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
