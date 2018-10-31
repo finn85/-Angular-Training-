@@ -40,10 +40,7 @@ export class UserPageComponent implements DoCheck, OnInit {
     //   .subscribe(data => {
     //     console.log(data);
     //   });
-    this.userService.getUserById(curentId).pipe(map((data:any) => {
-      console.log(data);
-      return data.toString();
-    }));
+    this.userService.getUserById(curentId).subscribe(a => console.log(a));
 
 
     this.userForm = new FormGroup({

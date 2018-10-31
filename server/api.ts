@@ -14,8 +14,6 @@ api.listen(port, () => console.log(`[Angular Platform] API listening on port ${p
 
 api.use(express.static(__dirname + '/static'));
 
-
-
 api.get('/users', (req: Request, res: Response) => {
   const curUsers = users.filter( (item) => !item.deleted );
   setTimeout(() => res.json(curUsers), delay);
@@ -33,9 +31,9 @@ api.get('/users/:id', (req: Request, res: Response) => {
   }, delay);
 });
 
-// api.get('/*', (req: Request, res: Response) => {
-//   res.redirect('/')
-// });
+api.get('/*', (req: Request, res: Response) => {
+  res.sendFile(__dirname + '/static/index.html')
+});
 
   api.post('/users/add', jsonParser, (req: Request, res: Response) => {
     const newUser: User = {
