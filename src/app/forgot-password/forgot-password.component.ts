@@ -1,27 +1,28 @@
-import {Component, DoCheck} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
 import {selectErrMsg} from "../formsValidation/selectErrMsg";
 import {allErrMsgs} from "../formsValidation/allErrMsgs";
 import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
 })
-export class ForgotPasswordComponent implements DoCheck{
+export class ForgotPasswordComponent implements DoCheck, OnInit{
 
-  passRecoveryForm: FormGroup;
-  loginNameCtrl: FormControl;
-  loginNameVal: string;
+  passRecoveryForm!: FormGroup;
+  loginNameCtrl!: FormControl;
 
-  constructor(){
+  constructor(private userService: UserService){}
+
+  ngOnInit() {
     this.passRecoveryForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
         asyncLoginNameValidator
       ]),
     });
-    this.loginNameVal = this.loginNameCtrl.value;
   }
 
   ngDoCheck() {
@@ -41,4 +42,6 @@ export class ForgotPasswordComponent implements DoCheck{
   getErrMsg = (controlName: string): void => {
     this.errMsgs[controlName] = selectErrMsg(this.passRecoveryForm, controlName, allErrMsgs[controlName]);
   };
+
+  getPassword = this.userService.getPassword;
 }

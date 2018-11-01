@@ -11,12 +11,16 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   checkUserLoginAndPassword(formValues: object): any {
-    return this.http.post(`http://localhost:3000/login`, formValues)
+    return this.http.post(`/api/users/login`, formValues)
   }
 
-  getUserById(id: string){
+  getPassword = () => {
+    console.log('test')
+  };
+
+  getUserById = (id: string) =>{
     if (id) {
-      return this.http.get(`http://localhost:3000/users/${id}`)/*.pipe(map(data=> ))*/
+      return this.http.get(`/api/users/${id}`)/*.pipe(map(data=> ))*/
     } else {
       return new Observable();//todo wrong line
     }

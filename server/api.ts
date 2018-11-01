@@ -3,23 +3,33 @@ import * as express from 'express';
 import {json} from 'body-parser';
 import {User} from "./interfaces/User";
 
+
+
+
+
 const api = express();
 const jsonParser = json();
 const port: number = 3000;
-const delay: number = 0;
+const delay: number = 3000;
 const users: User[] = require('./data/users.json');
 
+// import * as cors from 'cors';
+// const corsOptions = {
+//   origin: 'https://localhost:4200',
+//   credentials: true
+// };
+// api.use(cors(corsOptions));
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));
 
 api.use(express.static(__dirname + '/static'));
 
-api.get('/users', (req: Request, res: Response) => {
+api.get('/api/users', (req: Request, res: Response) => {
   const curUsers = users.filter( (item) => !item.deleted );
   setTimeout(() => res.json(curUsers), delay);
 });
 
-api.get('/users/:id', (req: Request, res: Response) => {
+api.get('/api/users/:id', (req: Request, res: Response) => {
   const curUser: User = users[req.params.id];
 
   setTimeout(() => {
@@ -35,7 +45,7 @@ api.get('/*', (req: Request, res: Response) => {
   res.sendFile(__dirname + '/static/index.html')
 });
 
-  api.post('/users/add', jsonParser, (req: Request, res: Response) => {
+  api.post('/api/users/add', jsonParser, (req: Request, res: Response) => {
     const newUser: User = {
         id: users.length,
         loginName: req.body.login,
@@ -51,21 +61,23 @@ api.get('/*', (req: Request, res: Response) => {
     res.send(newUser);
 });
 
-api.post('/login', jsonParser, ((req: Request, res: Response) => {
+api.post('/api/users/login', jsonParser, ((req: Request, res: Response) => {
   const curData = req.body;
   const curUsers: User[] = users.filter( (item) => !item.deleted );
   const curUser: User|undefined = curUsers
     .find((item) => (item.loginName === curData.loginName && item.password === curData.password));
 
-  if (curUser !== undefined) {
-    res.cookie('id', curUser.id, {maxAge: 90000000});
-    res.send(true)
-  } else {
-    res.send(false)
-  }
+  setTimeout(() => {
+    if (curUser !== undefined) {
+      res.cookie('id', curUser.id, {maxAge: 90000000});
+      res.send(true)
+    } else {
+      res.send(false)
+    }
+  }, delay)
 }));
 
-api.put('/users/:id', jsonParser, (req: Request, res: Response) => {
+api.put('/api/users/:id', jsonParser, (req: Request, res: Response) => {
     const curUser = users[req.params.id];
 
     if (curUser === undefined || curUser.deleted) {
@@ -81,7 +93,7 @@ api.put('/users/:id', jsonParser, (req: Request, res: Response) => {
     }
 });
 
-api.delete('/users/:id', (req: Request, res: Response) => {
+api.delete('/api/users/:id', (req: Request, res: Response) => {
   const curUser = users[req.params.id];
 
   setTimeout(() => {

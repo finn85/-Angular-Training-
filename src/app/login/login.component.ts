@@ -1,12 +1,14 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {Router} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
+
+import {UserService} from "../user.service";
+import {SpinnerService} from "../spinner.service";
 import {selectErrMsg} from "../formsValidation/selectErrMsg";
 import {allErrMsgs} from "../formsValidation/allErrMsgs";
 import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
 import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
-import {UserService} from "../user.service";
-import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements DoCheck,OnInit {
 
   constructor(private userService: UserService,
               private cookieService: CookieService,
-              private router: Router){}
+              private router: Router,
+              private spinnerService: SpinnerService){}
 
   ngOnInit() {
     if (this.cookieService.get('id')) {
@@ -46,7 +49,6 @@ export class LoginComponent implements DoCheck,OnInit {
     if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
       this.getErrMsg('password');
     }
-
   }
 
   placeholders = {
@@ -64,14 +66,21 @@ export class LoginComponent implements DoCheck,OnInit {
 
   };
 
+  loaded:boolean = false;
+
   getErrMsg = (controlName: string): void => {
     this.errMsgs[controlName] = selectErrMsg(this.loginForm, controlName, allErrMsgs[controlName]);
   };
 
   submit = () => {
+    this.spinnerService.spinner.start();
     this.userService.checkUserLoginAndPassword(this.loginForm.value)
       .subscribe((data: boolean) => {
-        console.log(data);
+          console.log(data);
+          this.router.navigate(['/userPage']);
+          this.loaded = true;
+          this.spinnerService.spinner.stop();
       })
+
   }
 }

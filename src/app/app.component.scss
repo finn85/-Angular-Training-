@@ -1,6 +1,13 @@
 :host {
   grid-area: app;
+  display: grid;
+  grid-template-rows: 60px auto auto;
+  grid-template-areas: 'header' '.';
+  header {
+    grid-area: header;
+  }
   router-outlet {
+    position: fixed;
     height: 0;
     width: 0;
   }

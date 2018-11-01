@@ -10,6 +10,7 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {NotFoundComponent} from './not-found/not-found.component';
 import {UserPageComponent} from './user-page/user-page.component';
 import {UserService} from "./user.service";
+import {SpinnerService} from "./spinner.service";
 
 import {AppRoutingModule} from "./app-routing.module";
 
@@ -29,7 +30,8 @@ import {AppRoutingModule} from "./app-routing.module";
   ],
   providers: [
     UserService,
-    CookieService
+    CookieService,
+    SpinnerService
   ],
   bootstrap: [AppComponent]
 })

@@ -11,6 +11,7 @@ import {selectErrMsg} from "../formsValidation/selectErrMsg";
 import {allErrMsgs} from "../formsValidation/allErrMsgs";
 import {UserService} from "../user.service";
 import {CookieService} from "ngx-cookie-service";
+// import {SpinnerService} from "../spinner.service";
 
 @Component({
   selector: 'app-user-page',
@@ -31,16 +32,26 @@ export class UserPageComponent implements DoCheck, OnInit {
   dateOfNotifCtrl!: FormControl;
   infoCtrl!: FormControl;
 
-  constructor(private userService: UserService, private  cookieService: CookieService){}
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService/*,
+    private spinnerService: SpinnerService*/
+  ){}
 
   ngOnInit() {
-    const curentId: string = this.cookieService.get('id');
-    console.log(curentId);
-    // this.userService.getUserById(curentId)
+
+    const currentId: string = this.cookieService.get('id');
+    console.log(`current id: ${currentId}`);
+
+    this.userService.getUserById(currentId).subscribe(a => console.log(a));
+
+
+
+    // this.userService.getUserById(currentId)
     //   .subscribe(data => {
     //     console.log(data);
     //   });
-    this.userService.getUserById(curentId).subscribe(a => console.log(a));
+
 
 
     this.userForm = new FormGroup({
