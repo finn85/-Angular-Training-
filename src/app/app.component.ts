@@ -7,9 +7,9 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent{
-  liksIsHide!: boolean;
+  linksIsHide!: boolean;
 
     onActivate = (childComponent: any) => {
-      this.liksIsHide = childComponent.liksIsHide
+      this.linksIsHide = childComponent.linksIsHide
     }
 }

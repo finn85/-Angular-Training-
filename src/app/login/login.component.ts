@@ -1,14 +1,15 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
-import {Router} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
+import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
-import {UserService} from "../user.service";
-import {SpinnerService} from "../spinner.service";
-import {selectErrMsg} from "../formsValidation/selectErrMsg";
-import {allErrMsgs} from "../formsValidation/allErrMsgs";
-import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
-import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
+import {UserService} from '../user.service';
+import {SpinnerService} from '../spinner.service';
+
+import {selectErrMsg} from '../formsValidation/selectErrMsg';
+import {allErrMsgs} from '../formsValidation/allErrMsgs';
+import {asyncLoginNameValidator} from '../formsValidation/asyncLoginNameValidator';
+import {asyncPasswordValidator} from '../formsValidation/asyncPasswordValidator';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +19,19 @@ import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator"
 
 export class LoginComponent implements DoCheck,OnInit {
 
+  linksIsHide: boolean = true;
+  dataIsIncorrect!: boolean;
+
   loginForm!: FormGroup;
   loginNameCtrl!: FormControl;
   passwordCtrl!: FormControl;
 
-  constructor(private userService: UserService,
-              private cookieService: CookieService,
-              private router: Router,
-              private spinnerService: SpinnerService){}
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService,
+    private router: Router,
+    private spinnerService: SpinnerService
+  ){}
 
   ngOnInit() {
     if (this.cookieService.get('id')) {
@@ -49,6 +55,9 @@ export class LoginComponent implements DoCheck,OnInit {
     if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
       this.getErrMsg('password');
     }
+    if (this.loginForm.pending) {
+      this.dataIsIncorrect = false;
+    }
   }
 
   placeholders = {
@@ -61,13 +70,6 @@ export class LoginComponent implements DoCheck,OnInit {
     password: null
   };
 
-  authentication = {
-    success: false,
-
-  };
-
-  loaded:boolean = false;
-
   getErrMsg = (controlName: string): void => {
     this.errMsgs[controlName] = selectErrMsg(this.loginForm, controlName, allErrMsgs[controlName]);
   };
@@ -76,11 +78,13 @@ export class LoginComponent implements DoCheck,OnInit {
     this.spinnerService.spinner.start();
     this.userService.checkUserLoginAndPassword(this.loginForm.value)
       .subscribe((data: boolean) => {
-          console.log(data);
-          this.router.navigate(['/userPage']);
-          this.loaded = true;
-          this.spinnerService.spinner.stop();
+          if (data) {
+            this.router.navigate(['/userPage']);
+            this.spinnerService.spinner.stop();
+          } else {
+            this.dataIsIncorrect = true;
+            this.spinnerService.spinner.stop();
+          }
       })
-
   }
 }

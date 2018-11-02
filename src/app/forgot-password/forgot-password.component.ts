@@ -1,12 +1,12 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 
-import {UserService} from "../user.service";
-import {SpinnerService} from "../spinner.service";
+import {UserService} from '../user.service';
+import {SpinnerService} from '../spinner.service';
 
-import {selectErrMsg} from "../formsValidation/selectErrMsg";
-import {allErrMsgs} from "../formsValidation/allErrMsgs";
-import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
+import {selectErrMsg} from '../formsValidation/selectErrMsg';
+import {allErrMsgs} from '../formsValidation/allErrMsgs';
+import {asyncLoginNameValidator} from '../formsValidation/asyncLoginNameValidator';
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,7 +15,7 @@ import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidato
 })
 export class ForgotPasswordComponent implements DoCheck, OnInit{
 
-  liksIsHide: boolean = true;
+  linksIsHide: boolean = true;
   password: string = 'test';
   showPassword: boolean = false;
 

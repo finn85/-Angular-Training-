@@ -19,7 +19,10 @@
     <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
       {{errMsgs['password']}}
     </div>
+    <div class="error" *ngIf = "dataIsIncorrect">
+      LoginName or Password is wrong. Please check.
+    </div>
   </form>
-  <button (click)="submit()">LOG IN</button>
+  <button (click)="submit()" [disabled]="loginForm.invalid||loginForm.pending">LOG IN</button>
   <a routerLink="/forgotPassword">Forgot you password?</a>
 </div>

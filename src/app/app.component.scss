@@ -5,6 +5,20 @@
   grid-template-areas: 'header' '.' '.';
   header {
     grid-area: header;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-areas: 'firstLink secondLink .';
+    grid-gap: 10px;
+    a {
+      margin: auto;
+    }
+    a:first-child {
+      grid-area: firstLink;
+    }
+    a:nth-child(2) {
+      grid-area: secondLink;
+    }
   }
   router-outlet {
     position: fixed;
