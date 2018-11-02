@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -35,7 +35,7 @@ export class LoginComponent implements DoCheck,OnInit {
 
   ngOnInit() {
     if (this.cookieService.get('id')) {
-      this.router.navigate(['/userPage'])
+      this.router.navigate(['/userProfile'])
     }
 
     this.loginForm = new FormGroup({
@@ -79,12 +79,19 @@ export class LoginComponent implements DoCheck,OnInit {
     this.userService.checkUserLoginAndPassword(this.loginForm.value)
       .subscribe((data: boolean) => {
           if (data) {
-            this.router.navigate(['/userPage']);
+            this.router.navigate(['/userProfile']);
             this.spinnerService.spinner.stop();
           } else {
             this.dataIsIncorrect = true;
             this.spinnerService.spinner.stop();
           }
       })
+  };
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.loginForm.valid && !this.loginForm.pending) {
+      this.submit()
+    }
   }
 }

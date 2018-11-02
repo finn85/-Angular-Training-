@@ -1,14 +1,7 @@
 :host {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-areas: '.' 'info' 'change';
-  .panel1 {
-    grid-area: info;
-    margin: 20px 0;
-  }
-  .panel2 {
-    grid-area: change;
-    margin-bottom: 20px;
+  grid-area: content;
+  .panel {
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 30px 1fr 1fr;
     grid-template-rows: auto auto auto;

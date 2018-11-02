@@ -1,22 +1,29 @@
 :host {
   grid-area: app;
   display: grid;
+  background-color: rgba(0, 0, 0, 0.04);
   grid-template-rows: 60px auto 1fr;
-  grid-template-areas: 'header' '.' '.';
+  grid-template-areas: 'header' 'content' '.';
   header {
     grid-area: header;
     padding: 0 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-areas: 'firstLink secondLink .';
+    grid-template-columns: 2fr 4fr 1fr 1fr;
+    grid-template-areas: 'name . firstLink secondLink';
     grid-gap: 10px;
+    .name {
+      grid-area: name;
+      margin: auto 0;
+      font-size: 110%;
+      font-weight: bold;
+    }
     a {
       margin: auto;
     }
-    a:first-child {
+    a:nth-child(2) {
       grid-area: firstLink;
     }
-    a:nth-child(2) {
+    a:nth-child(3) {
       grid-area: secondLink;
     }
   }
@@ -26,53 +33,6 @@
     width: 0;
   }
 }
-
-  //  .ng-pending.ng-dirty {
-  //    animation-duration: 1.5s;
-  //    animation-name: pending;
-  //    animation-iteration-count: infinite;
-  //    animation-direction: alternate;
-  //  }
-  //
-  //  $pendingAnimColor: rgba(255, 245, 9, 0.37);
-  //  @keyframes pending {
-  //    @for $pendingCounter from 0 through 100 {
-  //      #{$pendingCounter}% {
-  //        background-image: linear-gradient(to left, transparent 0%, $pendingAnimColor 0% + $pendingCounter, transparent 100%);
-  //      }
-  //    }
-  //  }
-
-  //  .ng-valid.ng-dirty:focus {
-  //    background-color: rgba(34, 229, 24, 0.14);
-  //  }
-
-  //  .ng-invalid.ng-dirty:focus {
-  //    background-color: rgba(221, 4, 7, 0.11);
-  //  }
-  //}
-
-
-  //.submitted {
-  //   margin: 15px 0;
-  //  h3 {
-  //    text-align: center;
-  //    margin: 0 0 10px;
-  //  }
-  //  p {
-  //    margin: 0;
-  //  }
-  //  animation-duration: 1s;
-  //  animation-name: increase-opacity;
-  //}
-  //@keyframes increase-opacity {
-  //  from {
-  //    opacity: 0;
-  //  }
-  //  to {
-  //    opacity: 100%;
-  //  }
-  //}
 
 
 

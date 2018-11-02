@@ -6,17 +6,19 @@ import {User} from "./interfaces/User";
 const api = express();
 const jsonParser = json();
 const port: number = 3000;
-const delay: number = 3000;
+const delay: number = 1000;
 const users: User[] = require('./data/users.json');
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));
 
 api.use(express.static(__dirname + '/static'));
 
+
 api.get('/api/users', (req: Request, res: Response) => {
   const curUsers = users.filter( (item) => !item.deleted );
   setTimeout(() => res.json(curUsers), delay);
 });
+
 
 api.get('/api/users/:id', (req: Request, res: Response) => {
   const curUser: User = users[req.params.id];
@@ -30,25 +32,27 @@ api.get('/api/users/:id', (req: Request, res: Response) => {
   }, delay);
 });
 
+
 api.get('/*', (req: Request, res: Response) => {
   res.sendFile(__dirname + '/static/index.html')
 });
 
-  api.post('/api/users/add', jsonParser, (req: Request, res: Response) => {
-    const newUser: User = {
-        id: users.length,
-        loginName: req.body.login,
-        name: req.body.name,
-        password: req.body.password,
-        dateOfBirth: req.body.dateOfBirth,
-        dateOfLogin: req.body.dateOfLogin,
-        dateOfNotif: req.body.dateOfNotif,
-        information: req.body.information
-    };
-
-    users.push(newUser);
-    res.send(newUser);
+api.post('/api/users/add', jsonParser, (req: Request, res: Response) => {
+  const newUser: User = {
+      id: users.length,
+      loginName: req.body.login,
+      password: req.body.password,
+      name: req.body.name,
+      age: req.body.age,
+      dateOfBirth: req.body.dateOfBirth,
+      dateOfLogin: req.body.dateOfLogin,
+      dateOfNotif: req.body.dateOfNotif,
+      info: req.body.info
+  };
+  users.push(newUser);
+  res.send(newUser);
 });
+
 
 api.post('/api/users/login', jsonParser, ((req: Request, res: Response) => {
   const curData = req.body;
@@ -88,19 +92,22 @@ api.put('/api/users/:id', jsonParser, (req: Request, res: Response) => {
     if (curUser === undefined || curUser.deleted) {
         res.send('user is not exist');
     } else {
-        curUser.name = req.body.name;
+        curUser.loginName = req.body.loginName;
         curUser.password = req.body.password;
+        curUser.name = req.body.name;
+        curUser.age = req.body.age;
         curUser.dateOfBirth = req.body.dateOfBirth;
+        curUser.dateOfLogin = req.body.dateOfLogin;
         curUser.dateOfNotif = req.body.dateOfNotif;
-        curUser.information = req.body.information;
+        curUser.info = req.body.info;
 
         res.send(curUser);
     }
 });
 
+
 api.delete('/api/users/:id', (req: Request, res: Response) => {
   const curUser = users[req.params.id];
-
   setTimeout(() => {
     if (curUser === undefined || curUser.deleted) {
       res.send('user is not exist');

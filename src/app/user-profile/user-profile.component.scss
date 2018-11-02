@@ -1,0 +1,32 @@
+:host {
+  grid-area: content;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'panel' '.';
+  .panel {
+    margin-top: 50px;
+    grid-area: panel;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'header header' 'info info' '. button';
+    h1 {
+      grid-area: header;
+      margin-bottom: 30px;
+    }
+    .info {
+      grid-area: info;
+      margin-bottom: 30px;
+      p {
+        span {
+          font-weight: bold;
+          color: #515151;
+          text-shadow: none;
+        }
+      }
+    }
+    .button {
+      grid-area: button;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 
 import {UserService} from '../user.service';
@@ -64,5 +64,12 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
         this.showPassword = true;
         this.spinnerService.spinner.stop()
       })
+  };
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.passRecoveryForm.valid && !this.passRecoveryForm.pending) {
+      this.getPassword();
+    }
   }
 }

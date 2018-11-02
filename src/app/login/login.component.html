@@ -12,7 +12,7 @@
     </div>
     <label>
       <span>PASSWORD</span>
-      <input type="text" formControlName="password" [placeholder]="placeholders.password">
+      <input type="password" formControlName="password" [placeholder]="placeholders.password">
       <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>

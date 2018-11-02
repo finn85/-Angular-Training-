@@ -4,15 +4,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 
+import {AppRoutingModule} from "./app-routing.module";
+
+import {UserService} from "./user.service";
+import {SpinnerService} from "./spinner.service";
+
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {NotFoundComponent} from './not-found/not-found.component';
-import {UserPageComponent} from './user-page/user-page.component';
-import {UserService} from "./user.service";
-import {SpinnerService} from "./spinner.service";
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 
-import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import {AppRoutingModule} from "./app-routing.module";
     LoginComponent,
     ForgotPasswordComponent,
     NotFoundComponent,
-    UserPageComponent
+    UserProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

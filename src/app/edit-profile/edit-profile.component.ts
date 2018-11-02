@@ -1,5 +1,11 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {Router} from '@angular/router';
+
+import {UserService} from "../user.service";
+import {CookieService} from "ngx-cookie-service";
+import {SpinnerService} from "../spinner.service";
+
 import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
 import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
 import {asyncNameValidator} from "../formsValidation/asyncNameValidator";
@@ -9,17 +15,19 @@ import {asyncDateOfLoginValidator} from "../formsValidation/asyncDateOfLoginVali
 import {asyncDateOfNotifValidator} from "../formsValidation/asyncDateOfNotifValidator";
 import {selectErrMsg} from "../formsValidation/selectErrMsg";
 import {allErrMsgs} from "../formsValidation/allErrMsgs";
-import {UserService} from "../user.service";
-import {CookieService} from "ngx-cookie-service";
-// import {SpinnerService} from "../spinner.service";
+import {User} from "../Interfaces/User";
 
 @Component({
-  selector: 'app-user-page',
-  templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss']
 })
 
-export class UserPageComponent implements DoCheck, OnInit {
+export class EditProfileComponent implements DoCheck, OnInit {
+
+  linksIsHide: boolean = false;
+
+  curUser!: User;
 
   userForm!: FormGroup;
 
@@ -34,25 +42,26 @@ export class UserPageComponent implements DoCheck, OnInit {
 
   constructor(
     private userService: UserService,
-    private cookieService: CookieService/*,
-    private spinnerService: SpinnerService*/
+    private cookieService: CookieService,
+    private spinnerService: SpinnerService,
+    private router: Router
   ){}
 
   ngOnInit() {
 
     const currentId: string = this.cookieService.get('id');
-    console.log(`current id: ${currentId}`);
-
-    this.userService.getUserById(currentId).subscribe(a => console.log(a));
-
-
-
-    // this.userService.getUserById(currentId)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   });
-
-
+    if (!currentId) {
+      this.router.navigate(['/login'])
+    } else {
+      this.spinnerService.spinner.start();
+      this.userService.getUserById(currentId)
+        .subscribe((data: any) => {
+          this.curUser = data;
+          delete this.curUser.id;
+          this.userForm.setValue(this.curUser);
+          this.spinnerService.spinner.stop();
+        });
+    }
 
     this.userForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
@@ -77,7 +86,7 @@ export class UserPageComponent implements DoCheck, OnInit {
         asyncDateOfNotifValidator
       ]),
       'info': this.infoCtrl = new FormControl()
-    })
+    });
   }
 
   ngDoCheck() {
@@ -126,11 +135,27 @@ export class UserPageComponent implements DoCheck, OnInit {
     dateOfNotif: null
   };
 
+  changeInfo = () => {
+    const currentId: string = this.cookieService.get('id');
+    this.userService.changeInfo(currentId, this.userForm.value)
+      .subscribe( () => {
+        this.router.navigate(['/userProfile'])
+      });
+  };
+
   logOut = () => {
-    this.cookieService.delete('id')
+    this.cookieService.delete('id');
+    this.router.navigate(['/login'])
   };
 
   getErrMsg = (controlName: string): void => {
     this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
   };
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this.userForm.valid && !this.userForm.pending) {
+      this.changeInfo();
+    }
+  }
 }

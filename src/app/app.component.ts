@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 
+import {CookieService} from 'ngx-cookie-service';
+import {UserService} from './user.service';
+
 @Component({
   selector: 'app-root',
   templateUrl:`./app.component.html`,
@@ -7,9 +10,32 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent{
-  linksIsHide!: boolean;
 
-    onActivate = (childComponent: any) => {
-      this.linksIsHide = childComponent.linksIsHide
+  linksIsHide!: boolean;
+  curName!: string;
+
+  constructor(
+    private cookieService: CookieService,
+    private userService: UserService
+  ){}
+
+  onActivate = (childComponent: any) => {
+
+    this.linksIsHide = childComponent.linksIsHide;
+
+    const currentId: string = this.cookieService.get('id');
+    if (currentId) {
+      this.userService.getUserById(currentId)
+        .subscribe((data: any) => {
+          this.curName = data.name;
+        });
+    } else {
+      this.curName = '';
     }
+  }
 }
+//todo multilanguage
+//todo refactor dates on client and server sides
+//todo single interface
+//todo refactor users.json
+//todo clear comments

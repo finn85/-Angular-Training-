@@ -1,11 +1,5 @@
-<div class="panel panel1">
-  <h1>User info</h1>
-  <h1>User info</h1>
-  <h1>User info</h1>
-</div>
-
-<div class="panel panel2">
-  <h1>Change user info</h1>
+<div class="panel">
+  <h1>Edit Profile</h1>
   <div class="left-part">
     <form [formGroup] = "userForm">
       <label>
@@ -81,6 +75,6 @@
       </label>
     </form>
   </div>
-  <button class="button1">CHANGE</button>
-  <button class="button2" (click)="logOut()" routerLink="/">LOG OUT</button>
+  <button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">CHANGE</button>
+  <button class="button2" (click)="logOut()">LOG OUT</button>
 </div>

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/internal/Observable";
-
-// import {User} from "./Interfaces/User";
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +15,11 @@ export class UserService {
     return this.http.post('/api/users/password', formValues)
   };
 
-  getUserById = (id: string) =>{
-    if (id) {
-      return this.http.get(`/api/users/${id}`)/*.pipe(map(data=> ))*/
-    } else {
-      return new Observable();//todo wrong line
-    }
+  getUserById = (id: string) => {
+    return this.http.get(`/api/users/${id}`)
+  };
 
+  changeInfo = (id: string, formValues: object) => {
+    return this.http.put(`/api/users/${id}`, formValues)
   }
 }
