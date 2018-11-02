@@ -1,6 +1,8 @@
 <header class="panel">
+  <a routerLink="/" [hidden]="liksIsHide">User Profile</a>
+  <a routerLink="/" [hidden]="liksIsHide">Edit Profile</a>
 </header>
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
 <!--<h1>User Form</h1>-->
 
 <!--<form [formGroup] = "userForm">-->

@@ -3,22 +3,11 @@ import * as express from 'express';
 import {json} from 'body-parser';
 import {User} from "./interfaces/User";
 
-
-
-
-
 const api = express();
 const jsonParser = json();
 const port: number = 3000;
 const delay: number = 3000;
 const users: User[] = require('./data/users.json');
-
-// import * as cors from 'cors';
-// const corsOptions = {
-//   origin: 'https://localhost:4200',
-//   credentials: true
-// };
-// api.use(cors(corsOptions));
 
 api.listen(port, () => console.log(`[Angular Platform] API listening on port ${port}!`));
 
@@ -76,6 +65,22 @@ api.post('/api/users/login', jsonParser, ((req: Request, res: Response) => {
     }
   }, delay)
 }));
+
+
+api.post('/api/users/password', jsonParser, ((req: Request, res: Response) => {
+  const curLoginName = req.body.loginName;
+  const curUsers: User[] = users.filter( (item) => !item.deleted );
+  const curUser: User|undefined = curUsers
+    .find((item) => (item.loginName === curLoginName));
+  setTimeout(() => {
+    if (curUser === undefined) {
+      res.send({message: 'User is not exist'})
+    } else {
+      res.send({message: curUser.password})
+    }
+  }, delay)
+}));
+
 
 api.put('/api/users/:id', jsonParser, (req: Request, res: Response) => {
     const curUser = users[req.params.id];

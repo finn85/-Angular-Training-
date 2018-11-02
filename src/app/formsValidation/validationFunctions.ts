@@ -2,7 +2,7 @@ import {AbstractControl} from "@angular/forms";
 import {validatedDataInterface} from "../Interfaces/ValidatedData";
 //common
 export const required = (value: string, control: AbstractControl): boolean =>
-  (value === '' && control.dirty);
+  (value === '' || value === null && control.dirty );
 
 export const checkSymbols = (validSymbols: string[], value: string): boolean => {
   const arrOfSymbols = value.split('');

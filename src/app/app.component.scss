@@ -1,8 +1,8 @@
 :host {
   grid-area: app;
   display: grid;
-  grid-template-rows: 60px auto auto;
-  grid-template-areas: 'header' '.';
+  grid-template-rows: 60px auto 1fr;
+  grid-template-areas: 'header' '.' '.';
   header {
     grid-area: header;
   }

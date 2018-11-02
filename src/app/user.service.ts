@@ -14,8 +14,8 @@ export class UserService {
     return this.http.post(`/api/users/login`, formValues)
   }
 
-  getPassword = () => {
-    console.log('test')
+  getPassword = (formValues: object) => {
+    return this.http.post('/api/users/password', formValues)
   };
 
   getUserById = (id: string) =>{
