@@ -6,10 +6,10 @@ import {CookieService} from 'ngx-cookie-service';
 import {UserService} from '../user.service';
 import {SpinnerService} from '../spinner.service';
 
-import {selectErrMsg} from '../formsValidation/selectErrMsg';
-import {allErrMsgs} from '../formsValidation/allErrMsgs';
-import {asyncLoginNameValidator} from '../formsValidation/asyncLoginNameValidator';
-import {asyncPasswordValidator} from '../formsValidation/asyncPasswordValidator';
+import {selectErrMsg} from '../forms-validation/selectErrMsg';
+import {allErrMsgs} from '../forms-validation/allErrMsgs';
+import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
+import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator';
 
 @Component({
   selector: 'app-login',

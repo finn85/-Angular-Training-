@@ -6,16 +6,16 @@ import {UserService} from "../user.service";
 import {CookieService} from "ngx-cookie-service";
 import {SpinnerService} from "../spinner.service";
 
-import {asyncLoginNameValidator} from "../formsValidation/asyncLoginNameValidator";
-import {asyncPasswordValidator} from "../formsValidation/asyncPasswordValidator";
-import {asyncNameValidator} from "../formsValidation/asyncNameValidator";
-import {asyncAgeValidator} from "../formsValidation/asyncAgeValidator";
-import {asyncDateOfBirthValidator} from "../formsValidation/asyncDateOfBirthValidator";
-import {asyncDateOfLoginValidator} from "../formsValidation/asyncDateOfLoginValidator";
-import {asyncDateOfNotifValidator} from "../formsValidation/asyncDateOfNotifValidator";
-import {selectErrMsg} from "../formsValidation/selectErrMsg";
-import {allErrMsgs} from "../formsValidation/allErrMsgs";
-import {User} from "../Interfaces/User";
+import {asyncLoginNameValidator} from "../forms-validation/asyncLoginNameValidator";
+import {asyncPasswordValidator} from "../forms-validation/asyncPasswordValidator";
+import {asyncNameValidator} from "../forms-validation/asyncNameValidator";
+import {asyncAgeValidator} from "../forms-validation/asyncAgeValidator";
+import {asyncDateOfBirthValidator} from "../forms-validation/asyncDateOfBirthValidator";
+import {asyncDateOfLoginValidator} from "../forms-validation/asyncDateOfLoginValidator";
+import {asyncDateOfNotifValidator} from "../forms-validation/asyncDateOfNotifValidator";
+import {selectErrMsg} from "../forms-validation/selectErrMsg";
+import {allErrMsgs} from "../forms-validation/allErrMsgs";
+import {User} from "../../../server/api";
 
 @Component({
   selector: 'app-edit-profile',
@@ -137,7 +137,6 @@ export class EditProfileComponent implements DoCheck, OnInit {
   changeInfo = () => {
     const currentId: string = this.cookieService.get('id');
     const changedUser = this.userService.modifyUserDataToServer(this.userForm.value);
-    console.log(changedUser);
     this.userService.changeInfo(currentId, changedUser)
       .subscribe( () => {
         this.router.navigate(['/userProfile'])

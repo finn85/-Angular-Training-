@@ -35,5 +35,4 @@ export class AppComponent{
   }
 }
 //todo multilanguage
-//todo single interface
 //todo clear comments

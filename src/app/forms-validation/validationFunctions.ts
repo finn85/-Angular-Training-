@@ -1,5 +1,8 @@
 import {AbstractControl} from "@angular/forms";
-import {validatedDataInterface} from "../Interfaces/ValidatedData";
+
+interface validatedDataInterface {
+  [data: string]: string,
+}
 //common
 export const required = (value: string, control: AbstractControl): boolean =>
   (value === '' || value === null && control.dirty );

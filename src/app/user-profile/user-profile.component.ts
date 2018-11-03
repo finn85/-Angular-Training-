@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {UserService} from "../user.service";
 import {CookieService} from "ngx-cookie-service";
 import {SpinnerService} from "../spinner.service";
-import {User} from "../Interfaces/User";
+import {User} from "../../../server/api";
 
 @Component({
   selector: 'app-user-page',

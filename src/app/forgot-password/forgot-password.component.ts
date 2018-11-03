@@ -4,9 +4,9 @@ import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 import {UserService} from '../user.service';
 import {SpinnerService} from '../spinner.service';
 
-import {selectErrMsg} from '../formsValidation/selectErrMsg';
-import {allErrMsgs} from '../formsValidation/allErrMsgs';
-import {asyncLoginNameValidator} from '../formsValidation/asyncLoginNameValidator';
+import {selectErrMsg} from '../forms-validation/selectErrMsg';
+import {allErrMsgs} from '../forms-validation/allErrMsgs';
+import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
 
 @Component({
   selector: 'app-forgot-password',
