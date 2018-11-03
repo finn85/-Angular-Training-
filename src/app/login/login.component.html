@@ -7,7 +7,13 @@
       <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
     </label>
-    <div class="error" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">
+    <div class="error" >
+      <p ><!--*ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty"-->
+        {{ 'login.errors.loginName.required' | translate }}
+      </p>
+      <p >
+        {{ 'login.errors.loginName.incorrectSymb' | translate }}
+      </p>
     {{errMsgs['loginName']}}
     </div>
     <label>
@@ -16,8 +22,13 @@
       <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>
-    <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
-      {{errMsgs['password']}}
+    <div class="error">
+      <p >
+        {{ 'login.errors.password.required' | translate }} <!--*ngIf = "passwordCtrl.invalid && passwordCtrl.dirty"-->
+      </p>
+      <p >
+        {{ 'login.errors.password.incorrectSymb' | translate }}
+      </p>
     </div>
     <div class="error" *ngIf = "dataIsIncorrect">
       {{ 'login.invalidLogin' | translate }}

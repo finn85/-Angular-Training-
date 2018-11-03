@@ -9,6 +9,34 @@
     "plchold": {
       "loginName": "One word (numbers and letters)",
       "password": "One word (numbers and letters)"
+    },
+    "errors": {
+      "loginName": {
+        "required": "Login Name is required",
+        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+      },
+      "password": {
+        "required": "Password is required",
+        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+      }
+    }
+  },
+  "forgot": {
+    "title": "Password recovery",
+    "loginName": "LOGIN NAME",
+    "get": "GET PASSWORD",
+    "back": "Back to login window",
+    "yourPass": "YOUR PASSWORD",
+    "userNotExist": "User is not exist",
+    "plchold": {
+      "loginName": "One word (numbers and letters)",
+      "password": "One word (numbers and letters)"
+    },
+    "errors": {
+      "loginName": {
+        "required": "Login Name is required",
+        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+      }
     }
   }
 }

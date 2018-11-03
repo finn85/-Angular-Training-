@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SpinnerService {
+
+  constructor() {}
+
   public spinner = {
     block: document.createElement('div'),
+
+    timerId: 0,
 
     start(){
       this.block.style.position = 'fixed';
@@ -15,12 +20,16 @@ export class SpinnerService {
       this.block.style.textAlign = 'center';
       this.block.style.lineHeight = '100vh';
       this.block.style.textShadow = '1px 1px 3px black';
-      this.block.innerHTML = 'Loading. Please wait';
+      this.timerId = setInterval(() => {
+        this.block.innerHTML += '.';
+      }, 100);
       document.body.appendChild(this.block);
     },
     stop(){
       document.body.removeChild(this.block);
+      clearInterval(this.timerId);
+      this.block.innerHTML = ''
     }
   };
-  constructor() { }
+
 }

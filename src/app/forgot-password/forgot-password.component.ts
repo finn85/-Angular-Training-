@@ -1,5 +1,6 @@
 import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {TranslateService} from "@ngx-translate/core";
 
 import {UserService} from '../user.service';
 import {SpinnerService} from '../spinner.service';
@@ -16,15 +17,17 @@ import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidat
 export class ForgotPasswordComponent implements DoCheck, OnInit{
 
   linksIsHide: boolean = true;
-  password: string = 'test';
-  showPassword: boolean = false;
+  password!: string;
+  showPassMessage: boolean = false;
+  showPassErr: boolean = false;
 
   passRecoveryForm!: FormGroup;
   loginNameCtrl!: FormControl;
 
   constructor(
     private userService: UserService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    public translate: TranslateService,
   ){}
 
   ngOnInit() {
@@ -40,13 +43,10 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
       this.getErrMsg('loginName');
     }
     if (this.loginNameCtrl.pending) {
-      this.showPassword = false;
+      this.showPassMessage = false;
     }
+    this.translate.use(this.userService.curLang);
   }
-
-  placeholders = {
-    loginName: 'One word (numbers and letters)',
-  };
 
   errMsgs: ValidationErrors = {
     loginName: null
@@ -60,8 +60,13 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
     this.spinnerService.spinner.start();
     this.userService.getPassword(this.passRecoveryForm.value)
       .subscribe((data: any) => {
-        this.password = data.message;
-        this.showPassword = true;
+        this.showPassMessage = true;
+        if (data.message === false) {
+          this.showPassErr = true;
+        } else {
+          this.showPassErr = false;
+          this.password = data.message;
+        }
         this.spinnerService.spinner.stop()
       })
   };

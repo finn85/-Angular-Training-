@@ -103,7 +103,7 @@ api.post('/api/users/password', jsonParser, ((req: Request, res: Response) => {
     .find((item) => (item.loginName === curLoginName));
   setTimeout(() => {
     if (curUser === undefined) {
-      res.send({message: 'User is not exist'})
+      res.send({message: false})
     } else {
       res.send({message: curUser.password})
     }

@@ -54,7 +54,6 @@ export class LoginComponent implements DoCheck,OnInit {
         asyncPasswordValidator
       ])
     });
-    console.log(this.translate.get('login.plchold.loginName'),)
   }
 
   ngDoCheck() {
