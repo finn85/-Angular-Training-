@@ -6,6 +6,9 @@ import {User} from "../../server/api";
   providedIn: 'root'
 })
 export class UserService {
+
+  curLang: string = 'en';
+
   constructor(private http: HttpClient) {}
 
   checkUserLoginAndPassword(formValues: object): any {

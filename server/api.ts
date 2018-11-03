@@ -7,6 +7,8 @@ const jsonParser = json();
 const port: number = 3000;
 const delay: number = 1000;
 const users: User[] = require('./data/users.json');
+const en: object = require('./assets/i18n/en.json');
+const ru: object = require('./assets/i18n/ru.json');
 
 export interface User {
   id?: number;
@@ -45,9 +47,20 @@ api.get('/api/users/:id', (req: Request, res: Response) => {
 });
 
 
+api.get('/assets/i18n/en.json',(req: Request, res: Response) => {
+  res.send(en)
+});
+
+
+api.get('/assets/i18n/ru.json',(req: Request, res: Response) => {
+  res.send(ru)
+});
+
+
 api.get('/*', (req: Request, res: Response) => {
   res.sendFile(__dirname + '/static/index.html')
 });
+
 
 api.post('/api/users/add', jsonParser, (req: Request, res: Response) => {
   const newUser: User = {

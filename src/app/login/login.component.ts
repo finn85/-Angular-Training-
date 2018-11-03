@@ -1,6 +1,7 @@
 import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 import {CookieService} from 'ngx-cookie-service';
 
 import {UserService} from '../user.service';
@@ -30,10 +31,17 @@ export class LoginComponent implements DoCheck,OnInit {
     private userService: UserService,
     private cookieService: CookieService,
     private router: Router,
+    public translate: TranslateService,
     private spinnerService: SpinnerService
-  ){}
+  ){
+
+  }
 
   ngOnInit() {
+
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+
     if (this.cookieService.get('id')) {
       this.router.navigate(['/userProfile'])
     }
@@ -45,7 +53,8 @@ export class LoginComponent implements DoCheck,OnInit {
       'password': this.passwordCtrl = new FormControl(null,[],[
         asyncPasswordValidator
       ])
-    })
+    });
+    console.log(this.translate.get('login.plchold.loginName'),)
   }
 
   ngDoCheck() {
@@ -58,12 +67,8 @@ export class LoginComponent implements DoCheck,OnInit {
     if (this.loginForm.pending) {
       this.dataIsIncorrect = false;
     }
+    this.translate.use(this.userService.curLang);
   }
-
-  placeholders = {
-    loginName: 'One word (numbers and letters)',
-    password: 'One word (numbers and letters)'
-  };
 
   errMsgs: ValidationErrors = {
     loginName: null,

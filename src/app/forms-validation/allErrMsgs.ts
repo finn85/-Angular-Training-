@@ -27,7 +27,6 @@ export const allErrMsgs: {[key: string]: {[key: string]: string}} = {
     incorrectMonth: 'Please check month (example - 01, 02 ... 12)',
     incorrectDayFormat: 'Please check date (example - 01, 02 ...)',
     incorrectDay: 'Please check date (number of days in a month)'
-
   },
   dateOfLogin: {
     required:'Date of login is required',

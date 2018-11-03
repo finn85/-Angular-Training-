@@ -1,7 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {CookieService} from "ngx-cookie-service";
 
 import {AppRoutingModule} from "./app-routing.module";
@@ -16,6 +18,9 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -30,7 +35,14 @@ import {EditProfileComponent} from "./edit-profile/edit-profile.component";
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     UserService,

@@ -8,9 +8,8 @@
     grid-area: header;
     padding: 0 30px;
     display: grid;
-    grid-template-columns: 2fr 4fr 1fr 1fr;
-    grid-template-areas: 'name . firstLink secondLink';
-    grid-gap: 10px;
+    grid-template-columns: 2fr 2fr 1fr 1fr .5fr .5fr;
+    grid-template-areas: 'name . firstLink secondLink en ru';
     .name {
       grid-area: name;
       margin: auto 0;
@@ -19,12 +18,24 @@
     }
     a {
       margin: auto;
+      padding: 5px;
     }
     a:nth-child(2) {
       grid-area: firstLink;
     }
     a:nth-child(3) {
       grid-area: secondLink;
+    }
+    .en, .ru {
+      margin: auto;
+      width: 30px;
+      border-radius: 15px;
+    }
+    .en {
+      grid-area: en;
+    }
+    .ru {
+      grid-area: ru;
     }
   }
   router-outlet {

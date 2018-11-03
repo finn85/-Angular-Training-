@@ -32,6 +32,10 @@ export class AppComponent{
     } else {
       this.curName = '';
     }
+  };
+
+  changeLanguage = (lang: string): void => {
+    this.userService.curLang = lang;
   }
 }
 //todo multilanguage

@@ -1,0 +1,14 @@
+{
+  "login": {
+    "title": "Login to Your account",
+    "loginName": "LOGIN NAME",
+    "password": "PASSWORD",
+    "logIn": "LOG IN",
+    "forgot": "Forgot you password?",
+    "invalidLogin": "LoginName or Password is wrong. Please check",
+    "plchold": {
+      "loginName": "One word (numbers and letters)",
+      "password": "One word (numbers and letters)"
+    }
+  }
+}

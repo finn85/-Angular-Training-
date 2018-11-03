@@ -1,9 +1,9 @@
 <div class="panel">
-  <h1>Login to Your account</h1>
+  <h1>{{ 'login.title' | translate }}</h1>
   <form [formGroup] = "loginForm">
     <label>
-      <span>LOGIN NAME</span>
-      <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+      <span>{{ 'login.loginName' | translate }}</span>
+      <input type="text" formControlName="loginName" [placeholder]="'login.plchold.loginName' | translate">
       <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
     </label>
@@ -11,8 +11,8 @@
     {{errMsgs['loginName']}}
     </div>
     <label>
-      <span>PASSWORD</span>
-      <input type="password" formControlName="password" [placeholder]="placeholders.password">
+      <span>{{ 'login.password' | translate }}</span>
+      <input type="password" formControlName="password" [placeholder]="'login.plchold.password' | translate">
       <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>
@@ -20,9 +20,9 @@
       {{errMsgs['password']}}
     </div>
     <div class="error" *ngIf = "dataIsIncorrect">
-      LoginName or Password is wrong. Please check.
+      {{ 'login.invalidLogin' | translate }}
     </div>
   </form>
-  <button (click)="submit()" [disabled]="loginForm.invalid||loginForm.pending">LOG IN</button>
-  <a routerLink="/forgotPassword">Forgot you password?</a>
+  <button (click)="submit()" [disabled]="loginForm.invalid||loginForm.pending">{{ 'login.logIn' | translate }}</button>
+  <a routerLink="/forgotPassword">{{ 'login.forgot' | translate }}</a>
 </div>

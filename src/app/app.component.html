@@ -2,5 +2,7 @@
   <div class="name" [hidden]="linksIsHide">{{curName}}</div>
   <a routerLink="/userProfile" [hidden]="linksIsHide">User Profile</a>
   <a routerLink="/editProfile" [hidden]="linksIsHide">Edit Profile</a>
+  <button class="en" (click)="changeLanguage('en')">En</button>
+  <button class="ru" (click)="changeLanguage('ru')">Ru</button>
 </header>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
