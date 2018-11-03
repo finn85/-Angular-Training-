@@ -35,7 +35,5 @@ export class AppComponent{
   }
 }
 //todo multilanguage
-//todo refactor dates on client and server sides
 //todo single interface
-//todo refactor users.json
 //todo clear comments

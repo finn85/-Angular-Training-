@@ -38,7 +38,6 @@ export class EditProfileComponent implements DoCheck, OnInit {
   dateOfBirthCtrl!: FormControl;
   dateOfLoginCtrl!: FormControl;
   dateOfNotifCtrl!: FormControl;
-  infoCtrl!: FormControl;
 
   constructor(
     private userService: UserService,
@@ -56,8 +55,8 @@ export class EditProfileComponent implements DoCheck, OnInit {
       this.spinnerService.spinner.start();
       this.userService.getUserById(currentId)
         .subscribe((data: any) => {
+          data = this.userService.modifyUserDataFromServer(data);
           this.curUser = data;
-          delete this.curUser.id;
           this.userForm.setValue(this.curUser);
           this.spinnerService.spinner.stop();
         });
@@ -85,7 +84,7 @@ export class EditProfileComponent implements DoCheck, OnInit {
       'dateOfNotif': this.dateOfNotifCtrl = new FormControl(null,[],[
         asyncDateOfNotifValidator
       ]),
-      'info': this.infoCtrl = new FormControl()
+      'info': new FormControl()
     });
   }
 
@@ -120,8 +119,8 @@ export class EditProfileComponent implements DoCheck, OnInit {
     name: 'One or two words (only letters)',
     age: 'From 18 till 65',
     dateOfBirth: 'Format: YYYY/MM/DD',
-    dateOfLogin: 'Format: DD MMMM YYYY',
-    dateOfNotif: 'Format: DD-MMM-YY',
+    dateOfLogin: 'Format: YYYY/MM/DD',
+    dateOfNotif: 'Format: YYYY/MM/DD',
     info: 'Information about you'
   };
 
@@ -137,7 +136,9 @@ export class EditProfileComponent implements DoCheck, OnInit {
 
   changeInfo = () => {
     const currentId: string = this.cookieService.get('id');
-    this.userService.changeInfo(currentId, this.userForm.value)
+    const changedUser = this.userService.modifyUserDataToServer(this.userForm.value);
+    console.log(changedUser);
+    this.userService.changeInfo(currentId, changedUser)
       .subscribe( () => {
         this.router.navigate(['/userProfile'])
       });

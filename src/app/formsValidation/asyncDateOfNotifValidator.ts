@@ -18,13 +18,13 @@ import {delay} from "rxjs/operators";
 export const asyncDateOfNotifValidator: AsyncValidatorFn = (control: AbstractControl) => {
 
   const value: string = (control.value !==null) ? clearFromSpaces(control.value) : '';
-  const validSymbols: string[] = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -'.split('');
-  const currentYear: number = new Date().getFullYear()%100;
-  const dayStr: string = value.split('-')[0];
-  const day: number = +value.split('-')[0];
-  const month: string = value.split('-')[1];
-  const yearStr: string = value.split('-')[2];
-  const year: number = +value.split('-')[2];
+  const validSymbols: string[] = '0123456789/ '.split('');
+  const currentYear: number = new Date().getFullYear();
+  const yearStr: string = value.split('/')[0];
+  const year: number = +value.split('/')[0];
+  const month: string = value.split('/')[1];
+  const dayStr: string = value.split('/')[2];
+  const day: number = +value.split('/')[2];
   const delayVal: number = 1500;
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
@@ -36,8 +36,20 @@ export const asyncDateOfNotifValidator: AsyncValidatorFn = (control: AbstractCon
       observer.next({incorrectSymbols: 'true'});
       observer.complete();
     }
-    if (checkDateFormat(value, '-')) {
+    if (checkDateFormat(value, '/')) {
       observer.next({incorrectFormat: 'true'});
+      observer.complete();
+    }
+    if (checkDateYearFormat(yearStr, 4)) {
+      observer.next({incorrectYearFormat: 'true'});
+      observer.complete();
+    }
+    if (checkDateYear(year, currentYear, 2050)) {
+      observer.next({incorrectYear: 'true'});
+      observer.complete();
+    }
+    if (checkDateMonth(month, 'MM')) {
+      observer.next({incorrectMonth: 'true'});
       observer.complete();
     }
     if (checkDateDayFormat(dayStr)) {
@@ -48,20 +60,7 @@ export const asyncDateOfNotifValidator: AsyncValidatorFn = (control: AbstractCon
       observer.next({incorrectDay: 'true'});
       observer.complete();
     }
-    if (checkDateMonth(month, 'MMM')) {
-      observer.next({incorrectMonth: 'true'});
-      observer.complete();
-    }
-    if (checkDateYearFormat(yearStr, 2)) {
-      observer.next({incorrectYearFormat: 'true'});
-      observer.complete();
-    }
-    if (checkDateYear(year, currentYear, 50)) {
-      observer.next({incorrectYear: 'true'});
-      observer.complete();
-    }
     observer.next(null);
     observer.complete();
   }).pipe(delay(delayVal))
 };
-

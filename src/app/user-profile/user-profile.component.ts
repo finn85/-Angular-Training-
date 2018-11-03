@@ -42,6 +42,7 @@ export class UserProfileComponent implements OnInit {
       this.spinnerService.spinner.start();
       this.userService.getUserById(currentId)
         .subscribe((data: any) => {
+          data = this.userService.modifyUserDataFromServer(data);
           this.curUser = data;
           this.spinnerService.spinner.stop();
       });
