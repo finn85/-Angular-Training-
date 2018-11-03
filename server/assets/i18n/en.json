@@ -38,5 +38,18 @@
         "incorrectSymb": "Please, enter one word (letters and numbers only)"
       }
     }
+  },
+  "userProfile": {
+    "title": "User Profile",
+    "logOut": "LOG OUT",
+    "loginName": "LOGIN NAME:    ",
+    "password": "PASSWORD: ",
+    "name": "NAME: ",
+    "age": "AGE: ",
+    "dateOfBirth": "DATE OF BIRTH: ",
+    "dateOfLogin": "DATE OF LOGIN: ",
+    "dateOfNotif": "DATE OF NOTIFICATION: ",
+    "info": "INFORMATION: "
   }
+
 }

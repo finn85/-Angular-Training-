@@ -38,5 +38,6 @@ export class AppComponent{
     this.userService.curLang = lang;
   }
 }
+//todo saveCookie with current language
 //todo multilanguage
 //todo clear comments

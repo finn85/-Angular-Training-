@@ -42,7 +42,7 @@ export class EditProfileComponent implements DoCheck, OnInit {
   constructor(
     private userService: UserService,
     private cookieService: CookieService,
-    private spinnerService: SpinnerService,
+    private spinner: SpinnerService,
     private router: Router
   ){}
 
@@ -52,13 +52,13 @@ export class EditProfileComponent implements DoCheck, OnInit {
     if (!currentId) {
       this.router.navigate(['/login'])
     } else {
-      this.spinnerService.spinner.start();
+      this.spinner.start();
       this.userService.getUserById(currentId)
         .subscribe((data: any) => {
           data = this.userService.modifyUserDataFromServer(data);
           this.curUser = data;
           this.userForm.setValue(this.curUser);
-          this.spinnerService.spinner.stop();
+          this.spinner.stop();
         });
     }
 

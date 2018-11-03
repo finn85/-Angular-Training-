@@ -1,14 +1,14 @@
 <div class="panel">
-  <h1>User Profile</h1>
+  <h1>{{ 'userProfile.title' | translate }}</h1>
   <div class="info">
-    <p>LOGIN NAME: <span>{{curUser.loginName}}</span></p>
-    <p>PASSWORD: <span>{{curUser.password}}</span></p>
-    <p>NAME: <span>{{curUser.name}}</span></p>
-    <p>AGE: <span>{{curUser.age}}</span></p>
-    <p>DATE OF BIRTH: <span>{{curUser.dateOfBirth}}</span></p>
-    <p>DATE OF LOGIN: <span>{{curUser.dateOfLogin}}</span></p>
-    <p>DATE OF NOTIFICATION: <span>{{curUser.dateOfNotif}}</span></p>
-    <p>INFORMATION: <span>{{curUser.info}}</span></p>
+    <p>{{ 'userProfile.loginName' | translate }}<span>{{curUser.loginName}}</span></p>
+    <p>{{ 'userProfile.password' | translate }}<span>{{curUser.password}}</span></p>
+    <p>{{ 'userProfile.name' | translate }}<span>{{curUser.name}}</span></p>
+    <p>{{ 'userProfile.age' | translate }}<span>{{curUser.age}}</span></p>
+    <p>{{ 'userProfile.dateOfBirth' | translate }}<span>{{curUser.dateOfBirth}}</span></p>
+    <p>{{ 'userProfile.dateOfLogin' | translate }}<span>{{curUser.dateOfLogin}}</span></p>
+    <p>{{ 'userProfile.dateOfNotif' | translate }}<span>{{curUser.dateOfNotif}}</span></p>
+    <p>{{ 'userProfile.info' | translate }}<span>{{curUser.info}}</span></p>
   </div>
-  <button class="button" (click)="logOut()">LOG OUT</button>
+  <button class="button" (click)="logOut()">{{ 'userProfile.logOut' | translate }}</button>
 </div>

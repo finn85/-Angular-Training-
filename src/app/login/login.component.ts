@@ -32,7 +32,7 @@ export class LoginComponent implements DoCheck,OnInit {
     private cookieService: CookieService,
     private router: Router,
     public translate: TranslateService,
-    private spinnerService: SpinnerService
+    private spinner: SpinnerService
   ){
 
   }
@@ -79,15 +79,15 @@ export class LoginComponent implements DoCheck,OnInit {
   };
 
   submit = () => {
-    this.spinnerService.spinner.start();
+    this.spinner.start();
     this.userService.checkUserLoginAndPassword(this.loginForm.value)
       .subscribe((data: boolean) => {
           if (data) {
             this.router.navigate(['/userProfile']);
-            this.spinnerService.spinner.stop();
+            this.spinner.stop();
           } else {
             this.dataIsIncorrect = true;
-            this.spinnerService.spinner.stop();
+            this.spinner.stop();
           }
       })
   };

@@ -26,7 +26,7 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
 
   constructor(
     private userService: UserService,
-    private spinnerService: SpinnerService,
+    private spinner: SpinnerService,
     public translate: TranslateService,
   ){}
 
@@ -57,7 +57,7 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
   };
 
   getPassword = () => {
-    this.spinnerService.spinner.start();
+    this.spinner.start();
     this.userService.getPassword(this.passRecoveryForm.value)
       .subscribe((data: any) => {
         this.showPassMessage = true;
@@ -67,7 +67,7 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
           this.showPassErr = false;
           this.password = data.message;
         }
-        this.spinnerService.spinner.stop()
+        this.spinner.stop()
       })
   };
 

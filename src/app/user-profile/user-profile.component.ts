@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {TranslateService} from "@ngx-translate/core";
 
 import {UserService} from "../user.service";
 import {CookieService} from "ngx-cookie-service";
@@ -12,7 +13,7 @@ import {User} from "../../../server/api";
   styleUrls: ['./user-profile.component.scss']
 })
 
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, DoCheck {
 
   linksIsHide: boolean = false;
 
@@ -30,8 +31,9 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private cookieService: CookieService,
-    private spinnerService: SpinnerService,
-    private router: Router
+    private spinner: SpinnerService,
+    private router: Router,
+    public translate: TranslateService,
   ){}
 
   ngOnInit() {
@@ -39,14 +41,18 @@ export class UserProfileComponent implements OnInit {
     if (!currentId) {
       this.router.navigate(['/login'])
     } else {
-      this.spinnerService.spinner.start();
+      this.spinner.start();
       this.userService.getUserById(currentId)
         .subscribe((data: any) => {
           data = this.userService.modifyUserDataFromServer(data);
           this.curUser = data;
-          this.spinnerService.spinner.stop();
+          this.spinner.stop();
       });
     }
+   }
+
+   ngDoCheck() {
+     this.translate.use(this.userService.curLang);
    }
 
   logOut = () => {
