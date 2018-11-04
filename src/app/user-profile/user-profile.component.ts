@@ -1,11 +1,11 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
-import {UserService} from "../user.service";
-import {CookieService} from "ngx-cookie-service";
-import {SpinnerService} from "../spinner.service";
-import {User} from "../../../server/api";
+import {UserService} from '../user.service';
+import {CookieService} from 'ngx-cookie-service';
+import {SpinnerService} from '../spinner.service';
+import {User} from '../../../server/api';
 
 @Component({
   selector: 'app-user-page',
@@ -49,11 +49,11 @@ export class UserProfileComponent implements OnInit, DoCheck {
           this.spinner.stop();
       });
     }
-   }
+   };
 
    ngDoCheck() {
      this.translate.use(this.cookie.get('lang'));
-   }
+   };
 
   logOut = () => {
     this.cookie.delete('id');

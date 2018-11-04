@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 
-import {User} from "../../server/api";
+import {User} from '../../server/api';
 
 @Injectable()
 
 export class UserService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient){}
 
   checkUserLoginAndPassword(formValues: object): any {
     return this.http.post(`/api/users/login`, formValues)

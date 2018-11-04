@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {UserProfileComponent} from "./user-profile/user-profile.component";
-import {LoginComponent} from "./login/login.component";
-import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
-import {NotFoundComponent} from "./not-found/not-found.component";
-import {EditProfileComponent} from "./edit-profile/edit-profile.component";
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {LoginComponent} from './login/login.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 
 
 const appRoutes: Routes = [

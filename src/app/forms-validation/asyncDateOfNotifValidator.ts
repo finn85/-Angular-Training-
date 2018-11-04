@@ -26,38 +26,39 @@ export const asyncDateOfNotifValidator: AsyncValidatorFn = (control: AbstractCon
   const dayStr: string = value.split('/')[2];
   const day: number = +value.split('/')[2];
   const delayVal: number = 1500;
+  const ctrlName: string = 'dateOfNotif';
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
     if (required(value, control)) {
-      observer.next({required: 'true'});
+      observer.next({type: 'required', target: ctrlName});
       observer.complete();
     }
     if (checkSymbols(validSymbols, value)) {
-      observer.next({incorrectSymbols: 'true'});
+      observer.next({type: 'incorrectSymbols', target: ctrlName});
       observer.complete();
     }
     if (checkDateFormat(value, '/')) {
-      observer.next({incorrectFormat: 'true'});
+      observer.next({type: 'incorrectFormat', target: ctrlName});
       observer.complete();
     }
     if (checkDateYearFormat(yearStr, 4)) {
-      observer.next({incorrectYearFormat: 'true'});
+      observer.next({type: 'incorrectYearFormat', target: ctrlName});
       observer.complete();
     }
     if (checkDateYear(year, currentYear, 2050)) {
-      observer.next({incorrectYear: 'true'});
+      observer.next({type: 'incorrectYear', target: ctrlName});
       observer.complete();
     }
     if (checkDateMonth(month, 'MM')) {
-      observer.next({incorrectMonth: 'true'});
+      observer.next({type: 'incorrectMonth', target: ctrlName});
       observer.complete();
     }
     if (checkDateDayFormat(dayStr)) {
-      observer.next({incorrectDayFormat: 'true'});
+      observer.next({type: 'incorrectDayFormat', target: ctrlName});
       observer.complete();
     }
     if (checkDateDay(month, day)) {
-      observer.next({incorrectDay: 'true'});
+      observer.next({type: 'incorrectDay', target: ctrlName});
       observer.complete();
     }
     observer.next(null);

@@ -1,22 +1,21 @@
 import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {TranslateService} from "@ngx-translate/core";
 
-import {UserService} from "../user.service";
-import {CookieService} from "ngx-cookie-service";
-import {SpinnerService} from "../spinner.service";
+import {TranslateService} from '@ngx-translate/core';
+import {UserService} from '../user.service';
+import {CookieService} from 'ngx-cookie-service';
+import {SpinnerService} from '../spinner.service';
+import {ValidationService} from '../validation.service';
 
-import {asyncLoginNameValidator} from "../forms-validation/asyncLoginNameValidator";
-import {asyncPasswordValidator} from "../forms-validation/asyncPasswordValidator";
-import {asyncNameValidator} from "../forms-validation/asyncNameValidator";
-import {asyncAgeValidator} from "../forms-validation/asyncAgeValidator";
-import {asyncDateOfBirthValidator} from "../forms-validation/asyncDateOfBirthValidator";
-import {asyncDateOfLoginValidator} from "../forms-validation/asyncDateOfLoginValidator";
-import {asyncDateOfNotifValidator} from "../forms-validation/asyncDateOfNotifValidator";
-import {selectErrMsg} from "../forms-validation/selectErrMsg";
-import {allErrMsgs} from "../forms-validation/allErrMsgs";
-import {User} from "../../../server/api";
+import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
+import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator';
+import {asyncNameValidator} from '../forms-validation/asyncNameValidator';
+import {asyncAgeValidator} from '../forms-validation/asyncAgeValidator';
+import {asyncDateOfBirthValidator} from '../forms-validation/asyncDateOfBirthValidator';
+import {asyncDateOfLoginValidator} from '../forms-validation/asyncDateOfLoginValidator';
+import {asyncDateOfNotifValidator} from '../forms-validation/asyncDateOfNotifValidator';
+import {User} from '../../../server/api';
 
 @Component({
   selector: 'app-edit-profile',
@@ -46,10 +45,10 @@ export class EditProfileComponent implements DoCheck, OnInit {
     private spinner: SpinnerService,
     private router: Router,
     public translate: TranslateService,
+    private validation: ValidationService
   ){}
 
   ngOnInit() {
-
     const currentId: string = this.cookie.get('id');
     if (!currentId) {
       this.router.navigate(['/login'])
@@ -88,41 +87,31 @@ export class EditProfileComponent implements DoCheck, OnInit {
       ]),
       'info': new FormControl()
     });
-  }
+  };
 
   ngDoCheck() {
-    if (!this.loginNameCtrl.pending && this.loginNameCtrl.dirty) {
-      this.getErrMsg('loginName');
+    if (this.loginNameCtrl.invalid && this.loginNameCtrl.dirty) {
+      this.validation.defineErr(this.loginNameCtrl);
     }
-    if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
-      this.getErrMsg('password');
+    if (this.passwordCtrl.invalid && this.passwordCtrl.dirty) {
+      this.validation.defineErr(this.passwordCtrl);
     }
-    if (!this.nameCtrl.pending && this.nameCtrl.dirty) {
-      this.getErrMsg('name');
+    if (this.nameCtrl.invalid && this.nameCtrl.dirty) {
+      this.validation.defineErr(this.nameCtrl);
     }
-    if (!this.ageCtrl.pending && this.ageCtrl.dirty) {
-      this.getErrMsg('age');
+    if (this.ageCtrl.invalid && this.ageCtrl.dirty) {
+      this.validation.defineErr(this.ageCtrl);
     }
-    if (!this.dateOfBirthCtrl.pending && this.dateOfBirthCtrl.dirty) {
-      this.getErrMsg('dateOfBirth');
+    if (this.dateOfBirthCtrl.invalid && this.dateOfBirthCtrl.dirty) {
+      this.validation.defineErr(this.dateOfBirthCtrl);
     }
-    if (!this.dateOfLoginCtrl.pending && this.dateOfLoginCtrl.dirty) {
-      this.getErrMsg('dateOfLogin');
+    if (this.dateOfLoginCtrl.invalid && this.dateOfLoginCtrl.dirty) {
+      this.validation.defineErr(this.dateOfLoginCtrl);
     }
-    if (!this.dateOfNotifCtrl.pending && this.dateOfNotifCtrl.dirty) {
-      this.getErrMsg('dateOfNotif');
+    if (this.dateOfNotifCtrl.invalid && this.dateOfNotifCtrl.dirty) {
+      this.validation.defineErr(this.dateOfNotifCtrl);
     }
     this.translate.use(this.cookie.get('lang'));
-  }
-
-  errMsgs: ValidationErrors = {
-    loginName: null,
-    password: null,
-    name: null,
-    age: null,
-    dateOfBirth: null,
-    dateOfLogin: null,
-    dateOfNotif: null
   };
 
   changeInfo = () => {
@@ -137,10 +126,6 @@ export class EditProfileComponent implements DoCheck, OnInit {
   logOut = () => {
     this.cookie.delete('id');
     this.router.navigate(['/login'])
-  };
-
-  getErrMsg = (controlName: string): void => {
-    this.errMsgs[controlName] = selectErrMsg(this.userForm, controlName, allErrMsgs[controlName]);
   };
 
   @HostListener('window:keyup', ['$event'])

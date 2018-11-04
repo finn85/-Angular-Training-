@@ -1,5 +1,5 @@
 import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {TranslateService} from '@ngx-translate/core';
@@ -8,8 +8,6 @@ import {UserService} from '../user.service';
 import {SpinnerService} from '../spinner.service';
 import {ValidationService} from "../validation.service";
 
-import {selectErrMsg} from '../forms-validation/selectErrMsg';
-import {allErrMsgs} from '../forms-validation/allErrMsgs';
 import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
 import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator';
 
@@ -50,28 +48,19 @@ export class LoginComponent implements DoCheck,OnInit {
         asyncPasswordValidator
       ])
     });
-  }
+  };
 
   ngDoCheck() {
-    if (!this.loginNameCtrl.pending && this.loginNameCtrl.dirty) {
-      this.getErrMsg('loginName');
+    if (this.loginNameCtrl.invalid && this.loginNameCtrl.dirty) {
+      this.validation.defineErr(this.loginNameCtrl);
     }
-    if (!this.passwordCtrl.pending && this.passwordCtrl.dirty) {
-      this.getErrMsg('password');
+    if (this.passwordCtrl.invalid && this.passwordCtrl.dirty) {
+      this.validation.defineErr(this.passwordCtrl);
     }
     if (this.loginForm.pending) {
       this.dataIsIncorrect = false;
     }
     this.translate.use(this.cookie.get('lang'));
-  }
-
-  errMsgs: ValidationErrors = {
-    loginName: null,
-    password: null
-  };
-
-  getErrMsg = (controlName: string): void => {
-    this.errMsgs[controlName] = selectErrMsg(this.loginForm, controlName, allErrMsgs[controlName]);
   };
 
   submit = () => {

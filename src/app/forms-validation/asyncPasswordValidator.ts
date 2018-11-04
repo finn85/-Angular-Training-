@@ -9,14 +9,15 @@ export const asyncPasswordValidator: AsyncValidatorFn = (control: AbstractContro
   const value: string = (control.value !==null) ? control.value.trim() : '';
   const validSymbols: string[] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');
   const delayVal: number = 1500;
+  const ctrlName: string = 'password';
 
   return Observable.create((observer: Observer<ValidationErrors|null>) => {
     if (required(value, control)) {
-      observer.next({required: 'true'});
+      observer.next({type: 'required', target: ctrlName});
       observer.complete();
     }
     if (checkSymbols(validSymbols, value)) {
-      observer.next({incorrectSymbols: 'true'});
+      observer.next({type: 'incorrectSymbols', target: ctrlName});
       observer.complete();
     }
     observer.next(null);

@@ -1,37 +1,40 @@
 <div class="panel">
   <h1>{{ 'userProfile.title' | translate }}</h1>
   <form [formGroup] = "loginForm">
+
     <label>
       <span>{{ 'login.loginName' | translate }}</span>
       <input type="text" formControlName="loginName" [placeholder]="'login.plchold.loginName' | translate">
       <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
     </label>
-    <div class="error" >
-      <p *ngIf = "validation.data.loginName.required"><!--*ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty"-->
+    <div class="error" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">
+      <p *ngIf = "validation.data.loginName.required">
         {{ 'login.errors.loginName.required' | translate }}
       </p>
-      <p *ngIf = "validation.data.loginName.incorrectSymb">
-        {{ 'login.errors.loginName.incorrectSymb' | translate }}
+      <p *ngIf = "validation.data.loginName.incorrectSymbols">
+        {{ 'login.errors.loginName.incorrectSymbols' | translate }}
       </p>
     </div>
+
     <label>
       <span>{{ 'login.password' | translate }}</span>
       <input type="password" formControlName="password" [placeholder]="'login.plchold.password' | translate">
       <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
       <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>
-    <div class="error">
+    <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
       <p *ngIf = "validation.data.password.required">
-        {{ 'login.errors.password.required' | translate }} <!--*ngIf = "passwordCtrl.invalid && passwordCtrl.dirty"-->
+        {{ 'login.errors.password.required' | translate }}
       </p>
-      <p *ngIf = "validation.data.password.incorrectSymb">
-        {{ 'login.errors.password.incorrectSymb' | translate }}
+      <p *ngIf = "validation.data.password.incorrectSymbols">
+        {{ 'login.errors.password.incorrectSymbols' | translate }}
       </p>
     </div>
     <div class="error" *ngIf = "dataIsIncorrect">
       {{ 'login.invalidLogin' | translate }}
     </div>
+
   </form>
   <button (click)="submit()" [disabled]="loginForm.invalid||loginForm.pending">{{ 'login.logIn' | translate }}</button>
   <a routerLink="/forgotPassword">{{ 'login.forgot' | translate }}</a>

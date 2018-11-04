@@ -19,11 +19,11 @@
     "errors": {
       "loginName": {
         "required": "Login Name is required",
-        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+        "incorrectSymbols": "Please, enter one word (letters and numbers only)"
       },
       "password": {
         "required": "Password is required",
-        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+        "incorrectSymbols": "Please, enter one word (letters and numbers only)"
       }
     }
   },
@@ -41,7 +41,7 @@
     "errors": {
       "loginName": {
         "required": "Login Name is required",
-        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+        "incorrectSymbols": "Please, enter one word (letters and numbers only)"
       }
     }
   },
@@ -82,26 +82,26 @@
     "errors": {
       "loginName": {
         "required": "Login Name is required",
-        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+        "incorrectSymbols": "Please, enter one word (letters and numbers only)"
       },
       "password": {
         "required": "Password is required",
-        "incorrectSymb": "Please, enter one word (letters and numbers only)"
+        "incorrectSymbols": "Please, enter one word (letters and numbers only)"
       },
       "name": {
         "required": "Name is required",
-        "incorrectSymb": "Please, enter english letters only",
+        "incorrectSymbols": "Please, enter english letters only",
         "noPascalCase": "Please, enter a first letter in each word in upper case, other letters - in lower case",
         "moreThanTwoWords": "Please, use one or two words, no more"
       },
       "age": {
         "required": "Age is required",
-        "incorrectSymb": "Please, enter integer number only",
+        "incorrectSymbols": "Please, enter integer number only",
         "incorrectInterval": "Please, enter integer number from 18 to 65"
       },
       "dateOfBirth": {
         "required": "Birthday is required",
-        "incorrectSymb": "Please, enter numbers and '/' only",
+        "incorrectSymbols": "Please, enter numbers and '/' only",
         "incorrectFormat": "Correct format is 'YYYY/MM/DD'",
         "incorrectYearFormat": "Correct year format is 'YYYY'",
         "incorrectYear": "Please enter year from 1950 till current",
@@ -111,7 +111,7 @@
       },
       "dateOfLogin": {
         "required":"Date of login is required",
-        "incorrectSymb": "Please, enter numbers and '/' only",
+        "incorrectSymbols": "Please, enter numbers and '/' only",
         "incorrectFormat": "Correct format is 'YYYY/MM/DD'",
         "incorrectYearFormat": "Correct year format is 'YYYY'",
         "incorrectYear": "Please enter year from 1950 till 2050",
@@ -121,7 +121,7 @@
       },
       "dateOfNotif": {
         "required": "Date of notification is required",
-        "incorrectSymb": "Please, enter numbers and '/' only",
+        "incorrectSymbols": "Please, enter numbers and '/' only",
         "incorrectFormat": "Correct format is 'YYYY/MM/DD'",
         "incorrectYearFormat": "Correct year format is 'YYYY'",
         "incorrectYear": "Please enter year from current till 2050",
