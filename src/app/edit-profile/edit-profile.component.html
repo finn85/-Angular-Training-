@@ -46,7 +46,7 @@
         <span class="invalid" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">x</span>
       </label>
       <div class="error" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">
-        <p >
+        <p *ngIf = "validation.data.name.required">
           {{ 'editProfile.errors.name.required' | translate }}
         </p>
         <p *ngIf = "validation.data.name.incorrectSymbols">
