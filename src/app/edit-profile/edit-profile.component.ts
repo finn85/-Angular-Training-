@@ -1,6 +1,7 @@
 import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
 import {Router} from '@angular/router';
+import {TranslateService} from "@ngx-translate/core";
 
 import {UserService} from "../user.service";
 import {CookieService} from "ngx-cookie-service";
@@ -41,14 +42,15 @@ export class EditProfileComponent implements DoCheck, OnInit {
 
   constructor(
     private userService: UserService,
-    private cookieService: CookieService,
+    private cookie: CookieService,
     private spinner: SpinnerService,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService,
   ){}
 
   ngOnInit() {
 
-    const currentId: string = this.cookieService.get('id');
+    const currentId: string = this.cookie.get('id');
     if (!currentId) {
       this.router.navigate(['/login'])
     } else {
@@ -110,19 +112,8 @@ export class EditProfileComponent implements DoCheck, OnInit {
     if (!this.dateOfNotifCtrl.pending && this.dateOfNotifCtrl.dirty) {
       this.getErrMsg('dateOfNotif');
     }
+    this.translate.use(this.cookie.get('lang'));
   }
-
-
-  placeholders = {
-    loginName: 'One word (numbers and letters)',
-    password: 'One word (numbers and letters)',
-    name: 'One or two words (only letters)',
-    age: 'From 18 till 65',
-    dateOfBirth: 'Format: YYYY/MM/DD',
-    dateOfLogin: 'Format: YYYY/MM/DD',
-    dateOfNotif: 'Format: YYYY/MM/DD',
-    info: 'Information about you'
-  };
 
   errMsgs: ValidationErrors = {
     loginName: null,
@@ -135,7 +126,7 @@ export class EditProfileComponent implements DoCheck, OnInit {
   };
 
   changeInfo = () => {
-    const currentId: string = this.cookieService.get('id');
+    const currentId: string = this.cookie.get('id');
     const changedUser = this.userService.modifyUserDataToServer(this.userForm.value);
     this.userService.changeInfo(currentId, changedUser)
       .subscribe( () => {
@@ -144,7 +135,7 @@ export class EditProfileComponent implements DoCheck, OnInit {
   };
 
   logOut = () => {
-    this.cookieService.delete('id');
+    this.cookie.delete('id');
     this.router.navigate(['/login'])
   };
 

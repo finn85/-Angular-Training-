@@ -1,22 +1,22 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {CookieService} from "ngx-cookie-service";
+import {AppRoutingModule} from './app-routing.module';
 
-import {AppRoutingModule} from "./app-routing.module";
-
-import {UserService} from "./user.service";
-import {SpinnerService} from "./spinner.service";
+import {CookieService} from 'ngx-cookie-service';
+import {UserService} from './user.service';
+import {SpinnerService} from './spinner.service';
+import {ValidationService} from './validation.service'
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
-import {EditProfileComponent} from "./edit-profile/edit-profile.component";
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     UserService,
     CookieService,
-    SpinnerService
+    SpinnerService,
+    ValidationService
   ],
   bootstrap: [AppComponent]
 })

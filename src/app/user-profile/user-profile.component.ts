@@ -30,14 +30,14 @@ export class UserProfileComponent implements OnInit, DoCheck {
 
   constructor(
     private userService: UserService,
-    private cookieService: CookieService,
+    private cookie: CookieService,
     private spinner: SpinnerService,
     private router: Router,
     public translate: TranslateService,
   ){}
 
   ngOnInit() {
-    const currentId: string = this.cookieService.get('id');
+    const currentId: string = this.cookie.get('id');
     if (!currentId) {
       this.router.navigate(['/login'])
     } else {
@@ -52,11 +52,11 @@ export class UserProfileComponent implements OnInit, DoCheck {
    }
 
    ngDoCheck() {
-     this.translate.use(this.userService.curLang);
+     this.translate.use(this.cookie.get('lang'));
    }
 
   logOut = () => {
-    this.cookieService.delete('id');
+    this.cookie.delete('id');
     this.router.navigate(['/login'])
   };
 }

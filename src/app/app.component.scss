@@ -8,7 +8,7 @@
     grid-area: header;
     padding: 0 30px;
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr .5fr .5fr;
+    grid-template-columns: 2fr 2fr 1.5fr 1.5fr .5fr .5fr;
     grid-template-areas: 'name . firstLink secondLink en ru';
     .name {
       grid-area: name;

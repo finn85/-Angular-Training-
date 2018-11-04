@@ -8,13 +8,12 @@
       <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
     </label>
     <div class="error" >
-      <p ><!--*ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty"-->
+      <p *ngIf = "validation.data.loginName.required"><!--*ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty"-->
         {{ 'login.errors.loginName.required' | translate }}
       </p>
-      <p >
+      <p *ngIf = "validation.data.loginName.incorrectSymb">
         {{ 'login.errors.loginName.incorrectSymb' | translate }}
       </p>
-    {{errMsgs['loginName']}}
     </div>
     <label>
       <span>{{ 'login.password' | translate }}</span>
@@ -23,10 +22,10 @@
       <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
     </label>
     <div class="error">
-      <p >
+      <p *ngIf = "validation.data.password.required">
         {{ 'login.errors.password.required' | translate }} <!--*ngIf = "passwordCtrl.invalid && passwordCtrl.dirty"-->
       </p>
-      <p >
+      <p *ngIf = "validation.data.password.incorrectSymb">
         {{ 'login.errors.password.incorrectSymb' | translate }}
       </p>
     </div>

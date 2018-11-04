@@ -1,80 +1,178 @@
 <div class="panel">
-  <h1>Edit Profile</h1>
+  <h1>{{ 'editProfile.title' | translate }}</h1>
   <div class="left-part">
     <form [formGroup] = "userForm">
       <label>
-        <span>LOGIN NAME</span>
-        <input type="text" formControlName="loginName" [placeholder]="placeholders.loginName">
+        <span>{{ 'editProfile.loginName' | translate }}</span>
+        <input type="text" formControlName="loginName" [placeholder]="'editProfile.plchold.loginName' | translate">
         <span class="valid" *ngIf = "loginNameCtrl.valid && loginNameCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty">
-        {{errMsgs['loginName']}}
+      <div class="error">
+        <p ><!--*ngIf = "loginNameCtrl.invalid && loginNameCtrl.dirty"-->
+          {{ 'editProfile.errors.loginName.required' | translate }}
+        </p>
+        <p >
+          {{ 'editProfile.errors.loginName.incorrectSymb' | translate }}
+        </p>
       </div>
       <label>
-        <span>PASSWORD</span>
-        <input type="text" formControlName="password" [placeholder]="placeholders.password">
+        <span>{{ 'editProfile.password' | translate }}</span>
+        <input type="text" formControlName="password" [placeholder]="'editProfile.plchold.password' | translate">
         <span class="valid" *ngIf = "passwordCtrl.valid && passwordCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "passwordCtrl.invalid && passwordCtrl.dirty">
-        {{errMsgs['password']}}
+      <div class="error">
+        <p >
+          {{ 'editProfile.errors.password.required' | translate }} <!--*ngIf = "passwordCtrl.invalid && passwordCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.password.incorrectSymb' | translate }}
+        </p>
       </div>
     </form>
   </div>
   <div class="right-part">
     <form [formGroup] = "userForm">
       <label>
-        <span>NAME</span>
-        <input type="text" formControlName="name" [placeholder]="placeholders.name">
+        <span>{{ 'editProfile.name' | translate }}</span>
+        <input type="text" formControlName="name" [placeholder]="'editProfile.plchold.name' | translate">
         <span class="valid" *ngIf = "nameCtrl.valid && nameCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "nameCtrl.invalid && nameCtrl.dirty">
-        {{errMsgs['name']}}
+      <div class="error" >
+        <p >
+          {{ 'editProfile.errors.name.required' | translate }} <!--*ngIf = "nameCtrl.invalid && nameCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.name.incorrectSymb' | translate }}
+        </p>
+        <p >
+          {{ 'editProfile.errors.name.noPascalCase' | translate }}
+        </p>
+        <p >
+          {{ 'editProfile.errors.name.moreThanTwoWords' | translate }}
+        </p>
       </div>
       <label>
-        <span>AGE</span>
-        <input type="text" formControlName="age" [placeholder]="placeholders.age">
+        <span>{{ 'editProfile.age' | translate }}</span>
+        <input type="text" formControlName="age" [placeholder]="'editProfile.plchold.age' | translate">
         <span class="valid" *ngIf = "ageCtrl.valid && ageCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "ageCtrl.invalid && ageCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "ageCtrl.invalid && ageCtrl.dirty">
-        {{errMsgs['age']}}
+      <div class="error" >
+        <p >
+          {{ 'editProfile.errors.age.required' | translate }} <!--*ngIf = "ageCtrl.invalid && ageCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.age.incorrectSymb' | translate }}
+        </p>
+        <p >
+          {{ 'editProfile.errors.age.incorrectInterval' | translate }}
+        </p>
       </div>
       <label>
-        <span>DATE OF BIRTH</span>
-        <input type="text" formControlName="dateOfBirth" [placeholder]="placeholders.dateOfBirth">
+        <span>{{ 'editProfile.dateOfBirth' | translate }}</span>
+        <input type="text" formControlName="dateOfBirth" [placeholder]="'editProfile.plchold.dateOfBirth' | translate">
         <span class="valid" *ngIf = "dateOfBirthCtrl.valid && dateOfBirthCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">
-        {{errMsgs['dateOfBirth']}}
+      <div class="error" >
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.required' | translate }} <!--*ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty"-->
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectSymb' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectYearFormat' | translate }} <!--*ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.dateOfBirth.incorrectYear' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectMonth' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectDayFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfBirth.incorrectDay' | translate }}
+        </p>
       </div>
       <label>
-        <span>DATE OF LOGIN</span>
-        <input type="text" formControlName="dateOfLogin" [placeholder]="placeholders.dateOfLogin">
+        <span>{{ 'editProfile.dateOfLogin' | translate }}</span>
+        <input type="text" formControlName="dateOfLogin" [placeholder]="'editProfile.plchold.dateOfLogin' | translate">
         <span class="valid" *ngIf = "dateOfLoginCtrl.valid && dateOfLoginCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">
-        {{errMsgs['dateOfLogin']}}
+      <div class="error" >
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.required' | translate }} <!--*ngIf = "dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty"-->
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectSymb' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectYearFormat' | translate }} <!--*ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.dateOfLogin.incorrectYear' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectMonth' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectDayFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfLogin.incorrectDay' | translate }}
+        </p>
       </div>
       <label>
-        <span>DATE OF NOTIFICATION</span>
-        <input type="text" formControlName="dateOfNotif" [placeholder]="placeholders.dateOfNotif">
+        <span>{{ 'editProfile.dateOfNotif' | translate }}</span>
+        <input type="text" formControlName="dateOfNotif" [placeholder]="'editProfile.plchold.dateOfNotif' | translate">
         <span class="valid" *ngIf = "dateOfNotifCtrl.valid && dateOfNotifCtrl.dirty">ok</span>
         <span class="invalid" *ngIf = "dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">x</span>
       </label>
-      <div class="error" *ngIf = "dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">
-        {{errMsgs['dateOfNotif']}}
+      <div class="error" >
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.required' | translate }} <!--*ngIf = "dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty"-->
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectSymb' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectYearFormat' | translate }} <!--*ngIf = "dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty"-->
+        </p>
+        <p >
+          {{ 'editProfile.errors.dateOfNotif.incorrectYear' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectMonth' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectDayFormat' | translate }}
+        </p>
+        <p>
+          {{ 'editProfile.errors.dateOfNotif.incorrectDay' | translate }}
+        </p>
       </div>
       <label>
-        <span>IFORMATION</span>
-        <textarea formControlName="info" [placeholder]="placeholders.info"></textarea>
+        <span>{{ 'editProfile.info' | translate }}</span>
+        <textarea formControlName="info" [placeholder]="'editProfile.plchold.info' | translate"></textarea>
       </label>
     </form>
   </div>
-  <button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">CHANGE</button>
-  <button class="button2" (click)="logOut()">LOG OUT</button>
+  <button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">{{ 'editProfile.change' | translate }}</button>
+  <button class="button2" (click)="logOut()">{{ 'editProfile.logOut' | translate }}</button>
 </div>

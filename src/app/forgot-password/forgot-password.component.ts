@@ -8,6 +8,7 @@ import {SpinnerService} from '../spinner.service';
 import {selectErrMsg} from '../forms-validation/selectErrMsg';
 import {allErrMsgs} from '../forms-validation/allErrMsgs';
 import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-forgot-password',
@@ -28,6 +29,7 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
     private userService: UserService,
     private spinner: SpinnerService,
     public translate: TranslateService,
+    private cookie: CookieService
   ){}
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
     if (this.loginNameCtrl.pending) {
       this.showPassMessage = false;
     }
-    this.translate.use(this.userService.curLang);
+    this.translate.use(this.cookie.get('lang'));
   }
 
   errMsgs: ValidationErrors = {

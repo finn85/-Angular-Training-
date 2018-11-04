@@ -1,19 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+
 import {User} from "../../server/api";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UserService {
+@Injectable()
 
-  curLang: string = 'en';
+export class UserService {
 
   constructor(private http: HttpClient) {}
 
   checkUserLoginAndPassword(formValues: object): any {
     return this.http.post(`/api/users/login`, formValues)
-  }
+  };
 
   getPassword = (formValues: object) => {
     return this.http.post('/api/users/password', formValues)
@@ -58,5 +56,5 @@ export class UserService {
     user.dateOfNotif = this.convertDateToServer(user.dateOfNotif);
 
     return user;
-  }
+  };
 }

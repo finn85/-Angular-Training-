@@ -21,7 +21,6 @@ export class SpinnerService {
       this.block.innerHTML += '.';
     }, 100);
     document.body.appendChild(this.block);
-    console.log(this.timerId)
   };
 
   stop(){
