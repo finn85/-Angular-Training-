@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "build": "node removeBuild.js && ng build && npm run buildServer",
+    "build": "node removeBuild.js && ng build && npm run buildApi",
     "start": "node ./build/api.js",
 
     "buildApi": "node copyData.js && tsc -p server",
