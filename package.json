@@ -6,11 +6,13 @@
   "scripts": {
     "build": "node removeBuild.js && ng build && npm run buildServer",
     "start": "node ./build/api.js",
+
+    "buildApi": "node copyData.js && tsc -p server",
     "serve": "ng serve --proxy-config proxy.conf.json",
+
     "clearBuild": "node removeBuild.js",
-    "copyData": "node copyData.js",
-    "buildServer": "node copyData.js && tsc -p server",
-    "buildAndRun": "npm run build && npm run runBuild"
+    "copyData": "node copyData.js"
+
   },
   "dependencies": {
     "@angular/animations": "7.0.2",
