@@ -1,0 +1,16 @@
+:host {
+  grid-area: shortInfo;
+  padding: 5px;
+  display: grid;
+  height: 60px;
+  min-width: 100px;
+  background-color: rgba(80, 174, 87, 0.12);
+  font-size: 90%;
+  .notChosen {
+    text-align: right;
+    line-height: 60px;
+  }
+  .chosen {
+    margin: auto 0;
+  }
+}

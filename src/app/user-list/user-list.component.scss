@@ -1,0 +1,45 @@
+:host{
+  height: 60px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  & ::ng-deep app-user-chosen {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    grid-template-areas: 'shortInfo button';
+    background-color: rgba(0, 157, 9, 0.1);
+    height: 100%;
+  }
+  & ::ng-deep app-user-dropdown-list {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: 'searchTab' 'usersList';
+    position: relative;
+    padding: 5px;
+    height: 300px;
+    background-color: yellow;
+    & ::ng-deep app-user-search-tab {
+      grid-area: searchTab;
+      display: grid;
+      grid-template-columns: 1fr 40px;
+      grid-template-areas: 'search button';
+      height: 50px;
+      background-color: #ffc205;
+      padding: 5px;
+      & ::ng-deep app-user-search-input {
+        grid-area: search;
+        min-width: 100px;
+        background-color: #ae8642;
+      }
+      & ::ng-deep app-user-search-button {
+        grid-area: button;
+        background-color: #ae5414;
+      }
+    }
+    & ::ng-deep app-users-tab {
+      grid-area: usersList;
+      background-color: #d6a08e;
+    }
+  }
+
+}

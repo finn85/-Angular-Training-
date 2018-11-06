@@ -1,0 +1,34 @@
+:host {
+  grid-area: button;
+  margin: auto;
+  .button {
+    height: 30px;
+    width: 30px;
+    padding-right: 2px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #2e2e2e;
+    user-select: none;
+    background-color: #418e46;
+    background-image: linear-gradient(to bottom, hsl(115, 45%, 65%), hsl(115, 23%, 37%));
+    box-shadow: inset 0 1px .5px hsl(115, 43%, 84%),
+    inset 0 -1px .5px hsl(115, 43%, 19%),
+    0 1px 5px rgba(0, 0, 0, .9),
+    0 8px 8px -3px rgba(30, 30, 30, .3);
+    &:hover {
+      background-color: #50ae57;
+      cursor: pointer;
+      background-image: linear-gradient(to bottom, hsl(115, 45%, 74%), hsl(115, 23%, 42%));
+    }
+    &:active {
+      transition: 300ms all;
+      box-shadow: inset 0 1px .5px hsl(115, 43%, 84%),
+      inset 0 -1px .5px hsl(115, 43%, 19%),
+      0 1px .5px rgba(255, 255, 255, .4),
+      0 -1px .5px rgba(0, 0, 0, .5),
+      0 0 5px rgba(0, 0, 0, .9);
+    }
+  }
+}
