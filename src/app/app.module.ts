@@ -5,6 +5,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppRoutingModule} from './app-routing.module';
+import {UserListModule} from "./user-list/user-list.module";
 
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user.service';
@@ -42,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    UserListModule
   ],
   providers: [
     UserService,

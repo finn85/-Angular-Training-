@@ -9,13 +9,17 @@
     grid-area: header;
     padding: 0 30px;
     display: grid;
-    grid-template-columns: 2fr 2fr 1.5fr 1.5fr .5fr .5fr;
-    grid-template-areas: 'name . firstLink secondLink en ru';
+    grid-template-columns: 2fr 3fr .8fr .8fr 40px 40px;
+    grid-template-areas: 'name userList firstLink secondLink en ru';
     .name {
       grid-area: name;
       margin: auto 0;
       font-size: 110%;
       font-weight: bold;
+      align-self: center;
+    }
+    app-user-list {
+      grid-area: userList;
     }
     a {
       margin: auto;
