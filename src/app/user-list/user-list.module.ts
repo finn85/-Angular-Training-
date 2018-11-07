@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {UserListStateService} from "./user-list-state.service";
 import {DataRetrievingService} from "./data-retrieving.service";
-import {DataService} from "./data.service";
+import {LocalDataService} from "./localData.service";
 
 import {UserListComponent} from "./user-list.component";
 import {UserChosenComponent} from './user-chosen/user-chosen.component';
@@ -38,7 +38,7 @@ import { UserComponent } from './user-dropdown-list/users-tab/user/user.componen
   providers: [
     UserListStateService,
     DataRetrievingService,
-    DataService
+    LocalDataService
   ]
 })
 export class UserListModule { }

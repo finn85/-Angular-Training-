@@ -2,7 +2,6 @@
   min-width: 550px;
   grid-area: app;
   display: grid;
-  background-color: rgba(0, 0, 0, 0.04);
   grid-template-rows: 60px auto 1fr;
   grid-template-areas: 'header' 'content' '.';
   header {
@@ -21,16 +20,23 @@
     app-user-list {
       grid-area: userList;
     }
-    a {
-      margin: auto;
+    .linkContainer {
+      display: grid;
       padding: 5px;
+      box-shadow:
+        2px 0 2px -2px rgb(255, 255, 255),
+        inset -2px 0 2px -2px rgb(146, 146, 146);
+      a {
+        margin: auto;
+      }
+      a:nth-child(2) {
+        grid-area: firstLink;
+      }
+      a:nth-child(3) {
+        grid-area: secondLink;
+      }
     }
-    a:nth-child(2) {
-      grid-area: firstLink;
-    }
-    a:nth-child(3) {
-      grid-area: secondLink;
-    }
+
     .en, .ru {
       margin: auto;
       width: 30px;

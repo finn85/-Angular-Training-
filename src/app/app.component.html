@@ -1,8 +1,12 @@
 <header class="panel">
   <div class="name" [hidden]="linksIsHide">{{curName}}</div>
   <app-user-list></app-user-list>
-  <a routerLink="/userProfile" [hidden]="linksIsHide">{{ 'main.userProfile' | translate }}</a>
-  <a routerLink="/editProfile" [hidden]="linksIsHide">{{ 'main.editProfile' | translate }}</a>
+  <div class="linkContainer">
+    <a routerLink="/userProfile" [hidden]="linksIsHide">{{ 'main.userProfile' | translate }}</a>
+  </div>
+  <div class="linkContainer">
+    <a routerLink="/editProfile" [hidden]="linksIsHide">{{ 'main.editProfile' | translate }}</a>
+  </div>
   <button class="en" (click)="changeLanguage('en')">{{ 'main.en' | translate }}</button>
   <button class="ru" (click)="changeLanguage('ru')">{{ 'main.ru' | translate }}</button>
 </header>

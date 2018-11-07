@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
+import {User} from "../../../server/api";
 
 @Injectable()
 
-export class DataService {
+export class LocalDataService {
 
-  users = [
+  data: User[] = [
     {
       id: 0,
       loginName: 'art',
@@ -48,7 +49,6 @@ export class DataService {
       dateOfLogin: '2015-09-20T13:03:10.008Z',
       dateOfNotif: '2020-10-20T13:03:10.008Z',
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor iniint ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui',
-      deleted: true
     }
   ];
 }

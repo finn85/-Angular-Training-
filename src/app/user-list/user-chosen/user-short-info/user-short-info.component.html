@@ -1,12 +1,14 @@
 <ng-template *ngIf="state.userIsChosen; then chosen; else notChosen"></ng-template>
 <ng-template #notChosen>
-  <div class="notChosen">Choose a user:</div>
+  <div class="notChosen">
+    <div>Choose a user:</div>
+  </div>
 </ng-template>
 <ng-template #chosen>
   <div class="chosen">
-    <div class="name">NAME: asdfasdfasdfa</div>
-    <div class="age">AGE: 33</div>
-    <div class="shortInfo">INFO: sadfasdsadfasdfasdfaasdfasdfaasdf</div>
+    <div>NAME: {{data.curUser.name}}</div>
+    <div>AGE: {{data.curUser.age}}</div>
+    <div>INFO: {{data.curUser.info}}</div>
   </div>
 </ng-template>
 

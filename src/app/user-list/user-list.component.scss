@@ -9,18 +9,17 @@
     grid-template-areas: 'shortInfo button';
     height: 100%;
     box-shadow:
-      inset 0 25px 6px -26px rgb(255, 255, 255),
-      inset 25px 0 6px -26px rgb(99, 99, 99),
-      inset -25px 0 6px -26px rgb(99, 99, 99),
-      inset 0 -25px 6px -26px rgb(255, 255, 255);
+      2px 0 2px -2px rgb(255, 255, 255),
+      -2px 0 2px -2px rgb(146, 146, 146),
+      inset 2px 0 2px -2px rgb(255, 255, 255),
+      inset -2px 0 2px -2px rgb(146, 146, 146);
   }
   & ::ng-deep app-user-dropdown-list {
     display: grid;
     grid-template-rows: 50px 1fr;
     grid-template-areas: 'searchTab' 'usersList';
     position: relative;
-    height: 500px;
-    //background-color: yellow;
+    max-height: 500px;
     & ::ng-deep app-user-search-tab {
       grid-area: searchTab;
       display: grid;
@@ -38,12 +37,6 @@
         grid-area: button;
         background-color: #ae5414;
       }
-    }
-    & ::ng-deep app-users-tab {
-      grid-area: usersList;
-      background-color: rgba(215, 215, 215, 0.8);
-
-      overflow: auto;
     }
   }
 

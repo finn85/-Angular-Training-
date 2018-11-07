@@ -1,14 +1,41 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+
+import {LocalDataService} from "./localData.service";
+import {User} from "../../../server/api";
 
 @Injectable()
 
 export class DataRetrievingService {
 
-  convertDateFromStorage = (date: string): string => {
-    const year = date.substring(0, 4);
-    const month = date.substring(5, 7);
-    const day = date.substring(8, 10);
+  dataSource: string = 'server'; // or 'local' from LocalDataService
 
-    return `${year}/${month}/${day}`;
+  users!: User[];
+  curUser!: User;
+
+  constructor (
+    private dataService: LocalDataService,
+    private http: HttpClient
+  ) {
+    this.getUsers();
+  }
+
+  getUsers = (): void => { //todo rename to getUsers
+    switch (this.dataSource) {
+      case 'local':
+        this.users = this.dataService.data;
+        break;
+      case 'server': {
+        this.http.get('/api/users/')
+          .subscribe((data: any) => {
+            this.users = data;
+          });
+        break;
+      }
+    }
+  };
+
+  getUser = (id: number) => {
+    this.curUser = this.users[id];
   };
 }

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {UserListStateService} from "../../user-list-state.service";
+import {DataRetrievingService} from "../../data-retrieving.service";
 
 @Component({
   selector: 'app-user-short-info',
@@ -8,6 +9,9 @@ import {UserListStateService} from "../../user-list-state.service";
 })
 export class UserShortInfoComponent {
 
-  constructor(public state: UserListStateService) { }
+  constructor(
+    public state: UserListStateService,
+    public data: DataRetrievingService
+  ) {}
 
 }
