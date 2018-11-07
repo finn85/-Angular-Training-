@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {UserListStateService} from "./user-list-state.service";
+import {DataRetrievingService} from "./data-retrieving.service";
+import {DataService} from "./data.service";
 
 import {UserListComponent} from "./user-list.component";
 import {UserChosenComponent} from './user-chosen/user-chosen.component';
@@ -12,6 +14,7 @@ import {UserSearchTabComponent} from './user-dropdown-list/user-search-tab/user-
 import {UserSearchInputComponent} from './user-dropdown-list/user-search-tab/user-search-input/user-search-input.component';
 import {UserSearchButtonComponent} from './user-dropdown-list/user-search-tab/user-search-button/user-search-button.component';
 import {UsersTabComponent} from './user-dropdown-list/users-tab/users-tab.component';
+import { UserComponent } from './user-dropdown-list/users-tab/user/user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import {UsersTabComponent} from './user-dropdown-list/users-tab/users-tab.compon
     UserSearchTabComponent,
     UserSearchInputComponent,
     UserSearchButtonComponent,
-    UsersTabComponent
+    UsersTabComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule
@@ -32,7 +36,9 @@ import {UsersTabComponent} from './user-dropdown-list/users-tab/users-tab.compon
     UserListComponent
   ],
   providers: [
-    UserListStateService
+    UserListStateService,
+    DataRetrievingService,
+    DataService
   ]
 })
 export class UserListModule { }
