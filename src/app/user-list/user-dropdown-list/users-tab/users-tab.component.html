@@ -1,3 +1,4 @@
 <div *ngFor="let user of data.users; let i = index">
   <app-user [user]="user" (click)="chooseUser(i)"></app-user>
 </div>
+<div class="notFound" *ngIf="state.userNotFound">User not found</div>

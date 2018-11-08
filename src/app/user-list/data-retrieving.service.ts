@@ -20,7 +20,7 @@ export class DataRetrievingService {
     this.getUsers();
   }
 
-  getUsers = (): void => { //todo rename to getUsers
+  getUsers = (): void => {
     switch (this.dataSource) {
       case 'local':
         this.users = this.dataService.data;

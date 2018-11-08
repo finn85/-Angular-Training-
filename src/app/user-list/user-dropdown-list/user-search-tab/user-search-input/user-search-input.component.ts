@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-search-input',
-  templateUrl: './user-search-input.component.html',
+  template:`<div class="input" contenteditable="true">Enter a name of user</div>`,
   styleUrls: ['./user-search-input.component.css']
 })
 export class UserSearchInputComponent implements OnInit {

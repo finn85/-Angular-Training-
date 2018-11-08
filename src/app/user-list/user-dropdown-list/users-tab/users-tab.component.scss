@@ -2,4 +2,8 @@
   grid-area: usersList;
   background-color: rgba(215, 215, 215, 0.8);
   overflow: auto;
+  .notFound {
+    margin: 5px;
+    background-color: rgb(159, 164, 161);
+  }
 }

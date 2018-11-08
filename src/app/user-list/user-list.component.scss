@@ -1,22 +1,11 @@
-:host{
+:host {
   height: 60px;
   width: 100%;
   position: relative;
   z-index: 1;
-  & ::ng-deep app-user-chosen {
-    display: grid;
-    grid-template-columns: 1fr 40px;
-    grid-template-areas: 'shortInfo button';
-    height: 100%;
-    box-shadow:
-      2px 0 2px -2px rgb(255, 255, 255),
-      -2px 0 2px -2px rgb(146, 146, 146),
-      inset 2px 0 2px -2px rgb(255, 255, 255),
-      inset -2px 0 2px -2px rgb(146, 146, 146);
-  }
   & ::ng-deep app-user-dropdown-list {
     display: grid;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 40px 1fr;
     grid-template-areas: 'searchTab' 'usersList';
     position: relative;
     max-height: 500px;
@@ -25,19 +14,24 @@
       display: grid;
       grid-template-columns: 1fr 40px;
       grid-template-areas: 'search button';
-      height: 50px;
-      background-color: #ffc205;
-      padding: 5px;
+      background-color: rgba(215, 215, 215, 0.8);
       & ::ng-deep app-user-search-input {
         grid-area: search;
+        display: grid;
         min-width: 100px;
-        background-color: #ae8642;
-      }
-      & ::ng-deep app-user-search-button {
-        grid-area: button;
-        background-color: #ae5414;
+        margin: 5px;
+        font-size: .9rem;
+        .input {
+          background-color: rgba(0, 0, 0, .09);
+          height: 30px;
+          width: auto;
+          padding: 6px;
+        }
+        .input:focus {
+          background-color: rgba(255, 255, 255, 0.3);
+          outline: none;
+        }
       }
     }
   }
-
 }
