@@ -1,19 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import {LocalDataService} from "./localData.service";
-import {User} from "../../../server/api";
+import { LocalDataService } from './localData.service';
+import  {UserListStateService} from './user-list-state.service';
+import { User } from '../../../server/api';
 
 @Injectable()
 
 export class DataRetrievingService {
-
-  dataSource: string = 'server'; // or 'local' from LocalDataService
+// 'server' from server or 'local' from LocalDataService
+  dataSource: string = 'local';
 
   users!: User[];
   curUser!: User;
 
   constructor (
+    private state: UserListStateService,
     private dataService: LocalDataService,
     private http: HttpClient
   ) {
@@ -36,6 +38,6 @@ export class DataRetrievingService {
   };
 
   getUser = (id: number) => {
-    this.curUser = this.users[id];
+    this.state.curUser = this.users[id];
   };
 }

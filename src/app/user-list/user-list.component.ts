@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {UserListStateService} from './user-list-state.service';
+import { Component } from '@angular/core';
+import { UserListStateService } from './user-list-state.service';
 
 @Component({
   selector: 'app-user-list',

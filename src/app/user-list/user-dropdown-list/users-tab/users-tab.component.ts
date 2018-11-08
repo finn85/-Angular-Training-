@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {DataRetrievingService} from "../../data-retrieving.service";
 import {UserListStateService} from "../../user-list-state.service";
+import {SearchUsersService} from "../../search-users.service";
 
 @Component({
   selector: 'app-users-tab',
@@ -12,11 +13,16 @@ export class UsersTabComponent {
 
   constructor(
     public data: DataRetrievingService,
-    private state: UserListStateService
+    private state: UserListStateService,
+    public search: SearchUsersService
   ) {}
 
   chooseUser = (index: number) => {
     this.state.userIsChosen = true;
-    this.data.getUser(index);
+    if (this.state.findUser) {
+      this.search.getUser(index);
+    } else {
+      this.data.getUser(index);
+    }
   }
 }

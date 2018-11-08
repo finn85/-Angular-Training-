@@ -3,35 +3,4 @@
   width: 100%;
   position: relative;
   z-index: 1;
-  & ::ng-deep app-user-dropdown-list {
-    display: grid;
-    grid-template-rows: 40px 1fr;
-    grid-template-areas: 'searchTab' 'usersList';
-    position: relative;
-    max-height: 500px;
-    & ::ng-deep app-user-search-tab {
-      grid-area: searchTab;
-      display: grid;
-      grid-template-columns: 1fr 40px;
-      grid-template-areas: 'search button';
-      background-color: rgba(215, 215, 215, 0.8);
-      & ::ng-deep app-user-search-input {
-        grid-area: search;
-        display: grid;
-        min-width: 100px;
-        margin: 5px;
-        font-size: .9rem;
-        .input {
-          background-color: rgba(0, 0, 0, .09);
-          height: 30px;
-          width: auto;
-          padding: 6px;
-        }
-        .input:focus {
-          background-color: rgba(255, 255, 255, 0.3);
-          outline: none;
-        }
-      }
-    }
-  }
 }

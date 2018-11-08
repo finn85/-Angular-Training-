@@ -1,0 +1,18 @@
+:host {
+  grid-area: search;
+  display: grid;
+  min-width: 100px;
+  margin: 5px;
+  font-size: .9rem;
+  .input {
+    background-color: rgba(0, 0, 0, .09);
+    height: 30px;
+    width: auto;
+    padding: 6px;
+    border: none;
+  }
+  .input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+  }
+}

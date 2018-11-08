@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-search-tab',
-  templateUrl: './user-search-tab.component.html',
-  styleUrls: ['./user-search-tab.component.css']
+  template:
+    `<app-user-search-input></app-user-search-input>
+    <app-user-search-button></app-user-search-button>`,
+  styleUrls: ['./user-search-tab.component.scss']
 })
-export class UserSearchTabComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class UserSearchTabComponent { }

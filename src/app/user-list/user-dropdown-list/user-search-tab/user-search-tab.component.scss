@@ -1,0 +1,7 @@
+:host {
+  grid-area: searchTab;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-areas: 'search button';
+  background-color: rgba(215, 215, 215, 0.8);
+}

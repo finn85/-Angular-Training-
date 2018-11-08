@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {UserListStateService} from "../../user-list-state.service";
-import {DataRetrievingService} from "../../data-retrieving.service";
+import { Component } from '@angular/core';
+import { UserListStateService } from '../../user-list-state.service';
+import { DataRetrievingService } from '../../data-retrieving.service';
+import {SearchUsersService} from "../../search-users.service";
 
 @Component({
   selector: 'app-user-show-search-tab-button',
@@ -12,16 +13,20 @@ import {DataRetrievingService} from "../../data-retrieving.service";
     </div>`,
   styleUrls: ['./user-show-search-tab-button.component.scss']
 })
+
 export class UserShowSearchTabButtonComponent {
 
   constructor(
     private state: UserListStateService,
-    public data: DataRetrievingService
-  ){}
+    public data: DataRetrievingService,
+    public search: SearchUsersService
+  ) { }
 
   showOrHideSearchTab = () => {
     this.state.showUserListTab = !this.state.showUserListTab;
+    this.state.findUser = false;
+    this.search.nameForSearching = '';
+    this.state.userNotFound = false;
   };
-
 }
 

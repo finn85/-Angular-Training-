@@ -1,7 +1,7 @@
-<div>Name: {{user.name}}</div>
-<div>AGE: {{user.age}}</div>
-<div>DATE OF BIRTH: {{convertDate(user.dateOfBirth)}}</div>
-<div>DATE OF LOGIN: {{convertDate(user.dateOfLogin)}}</div>
-<div>DATE OF NOTIFICATION: {{convertDate(user.dateOfNotif)}}</div>
-<div>INFO: {{user.info}}</div>
+<div>{{ 'main.userList.name' | translate }}{{user.name}}</div>
+<div>{{ 'main.userList.age' | translate }}{{user.age}}</div>
+<div>{{ 'main.userList.dateOfBirth' | translate }}{{convertDate(user.dateOfBirth)}}</div>
+<div>{{ 'main.userList.dateOfLogin' | translate }}{{convertDate(user.dateOfLogin)}}</div>
+<div>{{ 'main.userList.dateOfNotif' | translate }}{{convertDate(user.dateOfNotif)}}</div>
+<div>{{ 'main.userList.info' | translate }}{{user.info}}</div>
 

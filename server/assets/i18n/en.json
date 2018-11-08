@@ -3,7 +3,18 @@
     "userProfile": "User Profile",
     "editProfile": "Edit Profile",
     "ru": "Ru",
-    "en": "En"
+    "en": "En",
+    "userList": {
+      "chooseAUser": "Choose a user: ",
+      "name": "NAME: ",
+      "age": "AGE: ",
+      "info": "INFO: ",
+      "dateOfBirth": "DATE OF BIRTH: ",
+      "dateOfLogin": "DATE OF LOGIN: ",
+      "dateOfNotif": "DATE OF NOTIFICATION: ",
+      "enterName": "Enter a name of user",
+      "notFound": "User not found"
+    }
   },
   "login": {
     "title": "Login to Your account",

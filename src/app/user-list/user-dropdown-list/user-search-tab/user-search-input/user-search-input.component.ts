@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SearchUsersService } from '../../../search-users.service';
 
 @Component({
   selector: 'app-user-search-input',
-  template:`<div class="input" contenteditable="true">Enter a name of user</div>`,
-  styleUrls: ['./user-search-input.component.css']
+  template:`<input type="text" class="input" [placeholder]="'main.userList.enterName' | translate" [(ngModel)]="searchService.nameForSearching">`,
+  styleUrls: ['./user-search-input.component.scss']
 })
-export class UserSearchInputComponent implements OnInit {
 
-  constructor() { }
+export class UserSearchInputComponent {
 
-  ngOnInit() {
-  }
-
+  constructor(public searchService: SearchUsersService) {}
 }
