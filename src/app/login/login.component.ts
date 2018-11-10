@@ -1,15 +1,14 @@
-import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import {TranslateService} from '@ngx-translate/core';
-import {CookieService} from 'ngx-cookie-service';
-import {UserService} from '../user.service';
-import {SpinnerService} from '../spinner.service';
-import {ValidationService} from "../validation.service";
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../user.service';
+import { SpinnerService } from '../spinner.service';
+import { ValidationService } from '../validation.service';
 
-import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
-import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator';
+import { asyncLoginNameValidator } from '../forms-validation/asyncLoginNameValidator';
+import { asyncPasswordValidator } from '../forms-validation/asyncPasswordValidator';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +18,8 @@ import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator
 
 export class LoginComponent implements DoCheck,OnInit {
 
-  linksIsHide: boolean = true;
-  dataIsIncorrect!: boolean;
+  headerItemsIsHide: boolean = true;
+  dataIsIncorrect: boolean = false;
 
   loginForm!: FormGroup;
   loginNameCtrl!: FormControl;
@@ -30,10 +29,9 @@ export class LoginComponent implements DoCheck,OnInit {
     private userService: UserService,
     private cookie: CookieService,
     private router: Router,
-    public translate: TranslateService,
     private spinner: SpinnerService,
     private validation: ValidationService
-  ){}
+  ) { }
 
   ngOnInit() {
     if (this.cookie.get('id')) {
@@ -60,7 +58,6 @@ export class LoginComponent implements DoCheck,OnInit {
     if (this.loginForm.pending) {
       this.dataIsIncorrect = false;
     }
-    this.translate.use(this.cookie.get('lang'));
   };
 
   submit = () => {
@@ -82,5 +79,5 @@ export class LoginComponent implements DoCheck,OnInit {
     if (event.key === 'Enter' && this.loginForm.valid && !this.loginForm.pending) {
       this.submit()
     }
-  }
+  };
 }

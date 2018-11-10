@@ -1,13 +1,11 @@
-import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
-import {TranslateService} from '@ngx-translate/core';
-import {UserService} from '../user.service';
-import {SpinnerService} from '../spinner.service';
+import { UserService } from '../user.service';
+import { SpinnerService } from '../spinner.service';
 
-import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
-import {CookieService} from 'ngx-cookie-service';
-import {ValidationService} from '../validation.service';
+import { asyncLoginNameValidator } from '../forms-validation/asyncLoginNameValidator';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,7 +15,7 @@ import {ValidationService} from '../validation.service';
 
 export class ForgotPasswordComponent implements DoCheck, OnInit{
 
-  linksIsHide: boolean = true;
+  headerItemsIsHide: boolean = true;
   password!: string;
   showPassMessage: boolean = false;
   showPassErr: boolean = false;
@@ -28,8 +26,6 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
   constructor(
     private userService: UserService,
     private spinner: SpinnerService,
-    public translate: TranslateService,
-    private cookie: CookieService,
     private validation: ValidationService
   ){}
 
@@ -48,7 +44,6 @@ export class ForgotPasswordComponent implements DoCheck, OnInit{
     if (this.loginNameCtrl.pending) {
       this.showPassMessage = false;
     }
-    this.translate.use(this.cookie.get('lang'));
   };
 
   getPassword = () => {

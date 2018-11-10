@@ -1,11 +1,12 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import * as express from 'express';
-import {json} from 'body-parser';
+import { json } from 'body-parser';
 
 const api = express();
 const jsonParser = json();
 const port: number = 3000;
 const delay: number = 1000;
+const cookieMaxAge: number = 90000000;
 const users: User[] = require('./data/users.json');
 const en: object = require('./assets/i18n/en.json');
 const ru: object = require('./assets/i18n/ru.json');
@@ -13,13 +14,14 @@ const ru: object = require('./assets/i18n/ru.json');
 export interface User {
   id?: number;
   loginName: string;
+  password: string;
   name: string;
   age: string;
-  password: string;
   dateOfBirth: string;
   dateOfLogin: string;
   dateOfNotif: string;
   info: string;
+  isAdmin?: boolean;
   deleted?: boolean;
 }
 
@@ -85,10 +87,12 @@ api.post('/api/users/login', jsonParser, ((req: Request, res: Response) => {
   const curUser: User|undefined = curUsers
     .find((item) => (item.loginName === curData.loginName && item.password === curData.password));
 
+
   setTimeout(() => {
     if (curUser !== undefined) {
-      res.cookie('id', curUser.id, {maxAge: 90000000});
-      res.send(true)
+      res.cookie('id', curUser.id, {maxAge: cookieMaxAge});
+      if (curUser.isAdmin) {res.cookie('admin',true, {maxAge: cookieMaxAge})}
+      res.send(true);
     } else {
       res.send(false)
     }

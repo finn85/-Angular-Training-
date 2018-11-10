@@ -1,29 +1,27 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import {User} from '../../server/api';
+import { User } from '../../server/api';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable()
 
 export class UserService {
 
-  constructor(private http: HttpClient){}
+  constructor(
+    private http: HttpClient,
+    private cookie: CookieService,
+    private router: Router
+  ){}
 
-  checkUserLoginAndPassword(formValues: object): any {
-    return this.http.post(`/api/users/login`, formValues)
-  };
+  checkUserLoginAndPassword = (formValues: object): any  => this.http.post(`/api/users/login`, formValues);
 
-  getPassword = (formValues: object) => {
-    return this.http.post('/api/users/password', formValues)
-  };
+  getPassword = (formValues: object) => this.http.post('/api/users/password', formValues);
 
-  getUserById = (id: string) => {
-    return this.http.get(`/api/users/${id}`)
-  };
+  getUserById = (id: string) => this.http.get(`/api/users/${id}`);
 
-  changeInfo = (id: string, formValues: object) => {
-    return this.http.put(`/api/users/${id}`, formValues)
-  };
+  changeInfo = (id: string, formValues: object) => this.http.put(`/api/users/${id}`, formValues);
 
   convertDateFromServer = (date: string): string => {
     const year = date.substring(0, 4);
@@ -43,6 +41,7 @@ export class UserService {
 
   modifyUserDataFromServer = (user: User): User => {
     delete user.id;
+    delete user.isAdmin;
     user.dateOfBirth = this.convertDateFromServer(user.dateOfBirth);
     user.dateOfLogin = this.convertDateFromServer(user.dateOfLogin);
     user.dateOfNotif = this.convertDateFromServer(user.dateOfNotif);
@@ -56,5 +55,11 @@ export class UserService {
     user.dateOfNotif = this.convertDateToServer(user.dateOfNotif);
 
     return user;
+  };
+
+  logOut = () => {
+    this.cookie.delete('id');
+    this.cookie.delete('admin');
+    this.router.navigate(['/login'])
   };
 }

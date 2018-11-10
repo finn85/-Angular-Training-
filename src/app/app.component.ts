@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {TranslateService} from '@ngx-translate/core';
 import {CookieService} from 'ngx-cookie-service';
@@ -10,14 +10,14 @@ import {UserService} from './user.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
 
-  linksIsHide!: boolean;
+  headerItemsIsHide!: boolean;
   curName!: string;
 
   constructor(
     private cookie: CookieService,
-    private userService: UserService,
+    private user: UserService,
     public translate: TranslateService,
   ){}
 
@@ -25,16 +25,12 @@ export class AppComponent implements OnInit, DoCheck {
     this.translate.setDefaultLang('en');
   };
 
-  ngDoCheck(){
-    this.translate.use(this.cookie.get('lang'));
-  };
-
   onActivate = (childComponent: any) => {
-    this.linksIsHide = childComponent.linksIsHide;
+    this.headerItemsIsHide = childComponent.headerItemsIsHide;
 
     const currentId: string = this.cookie.get('id');
     if (currentId) {
-      this.userService.getUserById(currentId)
+      this.user.getUserById(currentId)
         .subscribe((data: any) => {
           this.curName = data.name;
         });
@@ -44,6 +40,7 @@ export class AppComponent implements OnInit, DoCheck {
   };
 
   changeLanguage = (lang: string): void => {
+    this.translate.use(lang);
     this.cookie.set('lang',lang, 30)
   };
 }

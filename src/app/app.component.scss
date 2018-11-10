@@ -8,8 +8,8 @@
     grid-area: header;
     padding: 0 30px;
     display: grid;
-    grid-template-columns: 2fr 3fr .8fr .8fr 40px 40px;
-    grid-template-areas: 'name userList firstLink secondLink en ru';
+    grid-template-columns: 2fr 3fr .7fr .7fr .7fr 40px 40px;
+    grid-template-areas: 'name userList firstLink secondLink thirdLink en ru';
     .name {
       grid-area: name;
       margin: auto 0;
@@ -29,11 +29,17 @@
       a {
         margin: auto;
       }
-      a:nth-child(2) {
+      &.userProfile {
+        grid-area: secondLink;
+      }
+      &.editProfile {
+        grid-area: thirdLink;
+      }
+      &.admin {
         grid-area: firstLink;
       }
-      a:nth-child(3) {
-        grid-area: secondLink;
+      &[hidden] {
+        box-shadow: none;
       }
     }
 

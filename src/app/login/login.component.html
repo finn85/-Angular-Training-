@@ -34,8 +34,8 @@
     <div class="error" *ngIf = "dataIsIncorrect">
       {{ 'login.invalidLogin' | translate }}
     </div>
-
   </form>
+
   <button (click)="submit()" [disabled]="loginForm.invalid||loginForm.pending">{{ 'login.logIn' | translate }}</button>
   <a routerLink="/forgotPassword">{{ 'login.forgot' | translate }}</a>
 </div>

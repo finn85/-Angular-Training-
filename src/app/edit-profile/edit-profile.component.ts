@@ -1,21 +1,20 @@
-import {Component, DoCheck, HostListener, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import { Component, DoCheck, HostListener, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import {TranslateService} from '@ngx-translate/core';
-import {UserService} from '../user.service';
-import {CookieService} from 'ngx-cookie-service';
-import {SpinnerService} from '../spinner.service';
-import {ValidationService} from '../validation.service';
+import { UserService } from '../user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { SpinnerService } from '../spinner.service';
+import { ValidationService } from '../validation.service';
 
-import {asyncLoginNameValidator} from '../forms-validation/asyncLoginNameValidator';
-import {asyncPasswordValidator} from '../forms-validation/asyncPasswordValidator';
-import {asyncNameValidator} from '../forms-validation/asyncNameValidator';
-import {asyncAgeValidator} from '../forms-validation/asyncAgeValidator';
-import {asyncDateOfBirthValidator} from '../forms-validation/asyncDateOfBirthValidator';
-import {asyncDateOfLoginValidator} from '../forms-validation/asyncDateOfLoginValidator';
-import {asyncDateOfNotifValidator} from '../forms-validation/asyncDateOfNotifValidator';
-import {User} from '../../../server/api';
+import { asyncLoginNameValidator } from '../forms-validation/asyncLoginNameValidator';
+import { asyncPasswordValidator } from '../forms-validation/asyncPasswordValidator';
+import { asyncNameValidator } from '../forms-validation/asyncNameValidator';
+import { asyncAgeValidator } from '../forms-validation/asyncAgeValidator';
+import { asyncDateOfBirthValidator } from '../forms-validation/asyncDateOfBirthValidator';
+import { asyncDateOfLoginValidator } from '../forms-validation/asyncDateOfLoginValidator';
+import { asyncDateOfNotifValidator } from '../forms-validation/asyncDateOfNotifValidator';
+import { User } from '../../../server/api';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,7 +24,7 @@ import {User} from '../../../server/api';
 
 export class EditProfileComponent implements DoCheck, OnInit {
 
-  linksIsHide: boolean = false;
+  headerItemsIsHide: boolean = false;
 
   curUser!: User;
 
@@ -40,11 +39,10 @@ export class EditProfileComponent implements DoCheck, OnInit {
   dateOfNotifCtrl!: FormControl;
 
   constructor(
-    private userService: UserService,
+    private user: UserService,
     private cookie: CookieService,
     private spinner: SpinnerService,
     private router: Router,
-    public translate: TranslateService,
     private validation: ValidationService
   ){}
 
@@ -54,9 +52,9 @@ export class EditProfileComponent implements DoCheck, OnInit {
       this.router.navigate(['/login'])
     } else {
       this.spinner.start();
-      this.userService.getUserById(currentId)
+      this.user.getUserById(currentId)
         .subscribe((data: any) => {
-          data = this.userService.modifyUserDataFromServer(data);
+          data = this.user.modifyUserDataFromServer(data);
           this.curUser = data;
           this.userForm.setValue(this.curUser);
           this.spinner.stop();
@@ -111,21 +109,15 @@ export class EditProfileComponent implements DoCheck, OnInit {
     if (this.dateOfNotifCtrl.invalid && this.dateOfNotifCtrl.dirty) {
       this.validation.defineErr(this.dateOfNotifCtrl);
     }
-    this.translate.use(this.cookie.get('lang'));
   };
 
   changeInfo = () => {
     const currentId: string = this.cookie.get('id');
-    const changedUser = this.userService.modifyUserDataToServer(this.userForm.value);
-    this.userService.changeInfo(currentId, changedUser)
+    const changedUser = this.user.modifyUserDataToServer(this.userForm.value);
+    this.user.changeInfo(currentId, changedUser)
       .subscribe( () => {
         this.router.navigate(['/userProfile'])
       });
-  };
-
-  logOut = () => {
-    this.cookie.delete('id');
-    this.router.navigate(['/login'])
   };
 
   @HostListener('window:keyup', ['$event'])
@@ -133,5 +125,5 @@ export class EditProfileComponent implements DoCheck, OnInit {
     if (event.key === 'Enter' && this.userForm.valid && !this.userForm.pending) {
       this.changeInfo();
     }
-  }
+  };
 }

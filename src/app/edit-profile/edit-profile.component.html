@@ -184,5 +184,5 @@
     </form>
   </div>
   <button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">{{ 'editProfile.change' | translate }}</button>
-  <button class="button2" (click)="logOut()">{{ 'editProfile.logOut' | translate }}</button>
+  <button class="button2" (click)="user.logOut()">{{ 'editProfile.logOut' | translate }}</button>
 </div>

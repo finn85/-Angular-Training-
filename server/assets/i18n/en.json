@@ -2,6 +2,7 @@
   "main": {
     "userProfile": "User Profile",
     "editProfile": "Edit Profile",
+    "adminPage": "Admin Page",
     "ru": "Ru",
     "en": "En",
     "userList": {
