@@ -25,6 +25,8 @@ export class UserService {
 
   changeInfo = (id: string, formValues: object) => this.http.put(`/api/users/${id}`, formValues);
 
+  deleteUser = (id: string) => this.http.delete(`/api/users/${id}`);
+
   convertDateFromServer = (date: string): string => {
     const year = date.substring(0, 4);
     const month = date.substring(5, 7);

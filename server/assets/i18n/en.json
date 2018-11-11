@@ -225,6 +225,20 @@
           "incorrectDay": "Please check date (number of days in a month)"
         }
       }
+    },
+    "deleteUser": {
+      "title": "Delete User",
+      "logOut": "LOG OUT",
+      "delete": "DELETE",
+      "userList": "USERLIST",
+      "loginName": "LOGIN NAME",
+      "password": "PASSWORD",
+      "name": "NAME",
+      "age": "AGE",
+      "dateOfBirth": "DATE OF BIRTH",
+      "dateOfLogin": "DATE OF LOGIN",
+      "dateOfNotif": "DATE OF NOTIFICATION",
+      "info": "INFORMATION"
     }
   }
 }

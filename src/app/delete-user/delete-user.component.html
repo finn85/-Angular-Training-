@@ -1,3 +1,57 @@
-<p>
-  delete-user works!
-</p>
+<h2>{{ 'adminPage.deleteUser.title' | translate }}</h2>
+
+<div class="left-part">
+  <span class="fieldName">{{ 'adminPage.deleteUser.userList' | translate }}</span>
+  <div class="userList">
+    <app-user-item *ngFor="let user of curUsers; let i = index" [user]="user" (click)="chooseUser(i)"></app-user-item>
+  </div>
+</div>
+
+<div class="right-part">
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.loginName' | translate }}</span>
+    <div class="value">{{curUser.loginName}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.password' | translate }}</span>
+    <div class="value">{{curUser.password}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.name' | translate }}</span>
+    <div class="value">{{curUser.name}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.age' | translate }}</span>
+    <div class="value">{{curUser.age}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.dateOfBirth' | translate }}</span>
+    <div class="value">{{curUser.dateOfBirth}}</div>
+  </div>
+
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.dateOfLogin' | translate }}</span>
+    <div class="value">{{curUser.dateOfLogin}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.dateOfNotif' | translate }}</span>
+    <div class="value">{{curUser.dateOfNotif}}</div>
+  </div>
+
+  <div>
+    <span class="fieldName">{{ 'adminPage.deleteUser.info' | translate }}</span>
+    <div class="value info">{{curUser.info}}</div>
+  </div>
+</div>
+<button class="button1" (click)="deleteUser()" [disabled]="curUserId  === undefined">
+  {{ 'adminPage.deleteUser.delete' | translate }}
+</button>
+<button class="button2" (click)="user.logOut()">
+  {{ 'adminPage.deleteUser.logOut' | translate }}
+</button>
