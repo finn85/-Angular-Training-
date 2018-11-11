@@ -5,7 +5,6 @@ import { UserService } from '../user.service';
 import { SpinnerService } from '../spinner.service';
 import { ValidationService } from '../validation.service';
 
-import { asyncLoginNameValidator } from '../forms-validation/asyncLoginNameValidator';
 import { asyncPasswordValidator } from '../forms-validation/asyncPasswordValidator';
 import { asyncNameValidator } from '../forms-validation/asyncNameValidator';
 import { asyncAgeValidator } from '../forms-validation/asyncAgeValidator';
@@ -60,9 +59,7 @@ export class EditUserComponent implements DoCheck, OnInit {
 
 
     this.userForm = new FormGroup({
-      'loginName': this.loginNameCtrl = new FormControl(null,[],[
-        asyncLoginNameValidator
-      ]),
+      'loginName': this.loginNameCtrl = new FormControl,
       'password': this.passwordCtrl = new FormControl(null,[],[
         asyncPasswordValidator
       ]),
@@ -86,9 +83,6 @@ export class EditUserComponent implements DoCheck, OnInit {
   };
 
   ngDoCheck() {
-    if (this.loginNameCtrl.invalid && this.loginNameCtrl.dirty) {
-      this.validation.defineErr(this.loginNameCtrl);
-    }
     if (this.passwordCtrl.invalid && this.passwordCtrl.dirty) {
       this.validation.defineErr(this.passwordCtrl);
     }

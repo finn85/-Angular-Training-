@@ -14,14 +14,6 @@
       <span class="fieldName">{{ 'adminPage.editUser.loginName' | translate }}</span>
       <div class="userName">{{curUser.loginName}}</div>
     </div>
-    <div class="error" *ngIf="loginNameCtrl.invalid && loginNameCtrl.dirty">
-      <p *ngIf="validation.data.loginName.required">
-        {{ 'adminPage.editUser.errors.loginName.required' | translate }}
-      </p>
-      <p *ngIf="validation.data.loginName.incorrectSymbols">
-        {{ 'adminPage.editUser.errors.loginName.incorrectSymbols' | translate }}
-      </p>
-    </div>
 
     <label>
       <span>{{ 'adminPage.editUser.password' | translate }}</span>
