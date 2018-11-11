@@ -1,3 +1,8 @@
-<p>
-  admin-page works!
-</p>
+<div class="panel">
+  <h1>{{ 'adminPage.title' | translate }}</h1>
+  <a class="editUser" routerLink="/adminPage/editUser">{{ 'adminPage.actions.editUser' | translate }}</a>
+  <a class="addUser" routerLink="/adminPage/addUser">{{ 'adminPage.actions.addUser' | translate }}</a>
+  <a class="deleteUser" routerLink="/adminPage/deleteUser">{{ 'adminPage.actions.deleteUser' | translate }}</a>
+  <router-outlet></router-outlet>
+</div>
+

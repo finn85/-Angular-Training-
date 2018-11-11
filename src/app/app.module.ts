@@ -19,6 +19,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { UserItemComponent } from './user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     NotFoundComponent,
     UserProfileComponent,
     EditProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    EditUserComponent,
+    AddUserComponent,
+    DeleteUserComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,

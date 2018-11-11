@@ -7,6 +7,9 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {NotFoundComponent} from './not-found/not-found.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {EditUserComponent} from "./edit-user/edit-user.component";
+import {DeleteUserComponent} from "./delete-user/delete-user.component";
+import {AddUserComponent} from "./add-user/add-user.component";
 
 
 const appRoutes: Routes = [
@@ -15,7 +18,14 @@ const appRoutes: Routes = [
   {path: 'forgotPassword', component: ForgotPasswordComponent},
   {path: 'userProfile', component: UserProfileComponent},
   {path: 'editProfile', component: EditProfileComponent},
-  {path: 'adminPage', component: AdminPageComponent},
+  {
+    path: 'adminPage',
+    component: AdminPageComponent,
+    children: [
+      {path: 'editUser', component: EditUserComponent},
+      {path: 'addUser', component: AddUserComponent},
+      {path: 'deleteUser', component: DeleteUserComponent},
+    ]},
   {path: '**', component: NotFoundComponent}
 ];
 

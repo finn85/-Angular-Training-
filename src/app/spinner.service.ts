@@ -8,6 +8,7 @@ export class SpinnerService {
   timerId!: Timer;
 
   start(){
+    this.block.style.zIndex = '10';
     this.block.style.position = 'fixed';
     this.block.style.background = 'rgba(215, 215, 215, .55)';
     this.block.style.height = '100vh';

@@ -21,6 +21,8 @@ export class UserService {
 
   getUserById = (id: string) => this.http.get(`/api/users/${id}`);
 
+  getUsers = () => this.http.get('/api/users/');
+
   changeInfo = (id: string, formValues: object) => this.http.put(`/api/users/${id}`, formValues);
 
   convertDateFromServer = (date: string): string => {

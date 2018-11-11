@@ -1,1 +1,27 @@
+:host {
+  grid-area: content;
+  .panel {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'header header header' 'editUser addUser deleteUser' 'content content content';
+    h1 {
+      grid-area: header;
+    }
+    .editUser,.addUser,.deleteUser {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .editUser {
+      grid-area: editUser;
+    }
+    .addUser {
+      grid-area: addUser;
+    }
+    .deleteUser {
+      grid-area: deleteUser;
+    }
+  }
+}
 

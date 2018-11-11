@@ -1,0 +1,188 @@
+<h2>{{ 'adminPage.editUser.title' | translate }}</h2>
+
+<div class="left-part">
+  <span class="fieldName">{{ 'adminPage.editUser.userList' | translate }}</span>
+  <div class="userList">
+    <app-user-item *ngFor="let user of curUsers; let i = index" [user]="user" (click)="chooseUser(i)"></app-user-item>
+  </div>
+</div>
+
+<div class="right-part">
+  <form [formGroup]="userForm">
+
+    <div>
+      <span class="fieldName">{{ 'adminPage.editUser.loginName' | translate }}</span>
+      <div class="userName">{{curUser.loginName}}</div>
+    </div>
+    <div class="error" *ngIf="loginNameCtrl.invalid && loginNameCtrl.dirty">
+      <p *ngIf="validation.data.loginName.required">
+        {{ 'adminPage.editUser.errors.loginName.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.loginName.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.loginName.incorrectSymbols' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.password' | translate }}</span>
+      <input type="text" formControlName="password" [placeholder]="'adminPage.editUser.plchold.password' | translate">
+      <span class="valid" *ngIf="passwordCtrl.valid && passwordCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="passwordCtrl.invalid && passwordCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="passwordCtrl.invalid && passwordCtrl.dirty">
+      <p *ngIf="validation.data.password.required">
+        {{ 'adminPage.editUser.errors.password.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.password.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.password.incorrectSymbols' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.name' | translate }}</span>
+      <input type="text" formControlName="name" [placeholder]="'adminPage.editUser.plchold.name' | translate">
+      <span class="valid" *ngIf="nameCtrl.valid && nameCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="nameCtrl.invalid && nameCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="nameCtrl.invalid && nameCtrl.dirty">
+      <p *ngIf="validation.data.name.required">
+        {{ 'adminPage.editUser.errors.name.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.name.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.name.incorrectSymbols' | translate }}
+      </p>
+      <p *ngIf="validation.data.name.noPascalCase">
+        {{ 'adminPage.editUser.errors.name.noPascalCase' | translate }}
+      </p>
+      <p *ngIf="validation.data.name.moreThanTwoWords">
+        {{ 'adminPage.editUser.errors.name.moreThanTwoWords' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.age' | translate }}</span>
+      <input type="text" formControlName="age" [placeholder]="'adminPage.editUser.plchold.age' | translate">
+      <span class="valid" *ngIf="ageCtrl.valid && ageCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="ageCtrl.invalid && ageCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="ageCtrl.invalid && ageCtrl.dirty">
+      <p *ngIf="validation.data.age.required">
+        {{ 'adminPage.editUser.errors.age.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.age.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.age.incorrectSymbols' | translate }}
+      </p>
+      <p *ngIf="validation.data.age.incorrectInterval">
+        {{ 'adminPage.editUser.errors.age.incorrectInterval' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.dateOfBirth' | translate }}</span>
+      <input type="text" formControlName="dateOfBirth" [placeholder]="'adminPage.editUser.plchold.dateOfBirth' | translate">
+      <span class="valid" *ngIf="dateOfBirthCtrl.valid && dateOfBirthCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="dateOfBirthCtrl.invalid && dateOfBirthCtrl.dirty">
+      <p *ngIf="validation.data.dateOfBirth.required">
+        {{ 'adminPage.editUser.errors.dateOfBirth.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectSymbols' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectFormat">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectYearFormat">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectYearFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectYear">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectYear' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectMonth">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectMonth' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectDayFormat">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectDayFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfBirth.incorrectDay">
+        {{ 'adminPage.editUser.errors.dateOfBirth.incorrectDay' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.dateOfLogin' | translate }}</span>
+      <input type="text" formControlName="dateOfLogin" [placeholder]="'adminPage.editUser.plchold.dateOfLogin' | translate">
+      <span class="valid" *ngIf="dateOfLoginCtrl.valid && dateOfLoginCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="dateOfLoginCtrl.invalid && dateOfLoginCtrl.dirty">
+      <p *ngIf="validation.data.dateOfLogin.required">
+        {{ 'adminPage.editUser.errors.dateOfLogin.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectSymbols' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectFormat">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectYearFormat">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectYearFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectYear">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectYear' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectMonth">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectMonth' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectDayFormat">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectDayFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfLogin.incorrectDay">
+        {{ 'adminPage.editUser.errors.dateOfLogin.incorrectDay' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.dateOfNotif' | translate }}</span>
+      <input type="text" formControlName="dateOfNotif" [placeholder]="'adminPage.editUser.plchold.dateOfNotif' | translate">
+      <span class="valid" *ngIf="dateOfNotifCtrl.valid && dateOfNotifCtrl.dirty">ok</span>
+      <span class="invalid" *ngIf="dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">x</span>
+    </label>
+    <div class="error" *ngIf="dateOfNotifCtrl.invalid && dateOfNotifCtrl.dirty">
+      <p *ngIf="validation.data.dateOfNotif.required">
+        {{ 'adminPage.editUser.errors.dateOfNotif.required' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectSymbols">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectSymbols' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectFormat">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectYearFormat">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectYearFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectYear">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectYear' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectMonth">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectMonth' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectDayFormat">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectDayFormat' | translate }}
+      </p>
+      <p *ngIf="validation.data.dateOfNotif.incorrectDay">
+        {{ 'adminPage.editUser.errors.dateOfNotif.incorrectDay' | translate }}
+      </p>
+    </div>
+
+    <label>
+      <span>{{ 'adminPage.editUser.info' | translate }}</span>
+      <textarea formControlName="info" [placeholder]="'adminPage.editUser.plchold.info' | translate"></textarea>
+    </label>
+  </form>
+</div>
+<button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">
+  {{ 'adminPage.editUser.change' | translate }}
+</button>
+<button class="button2" (click)="user.logOut()">{{ 'adminPage.editUser.logOut' | translate }}</button>

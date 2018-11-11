@@ -41,7 +41,7 @@ api.get('/api/users/:id', (req: Request, res: Response) => {
 
   setTimeout(() => {
     if (curUser === undefined || curUser.deleted) {
-      res.send('user is not exist');
+      res.send('user-item is not exist');
     } else {
       res.json(curUser);
     }
@@ -119,7 +119,7 @@ api.put('/api/users/:id', jsonParser, (req: Request, res: Response) => {
     const curUser = users[req.params.id];
 
     if (curUser === undefined || curUser.deleted) {
-        res.send('user is not exist');
+        res.send('user-item is not exist');
     } else {
         curUser.loginName = req.body.loginName;
         curUser.password = req.body.password;
@@ -139,7 +139,7 @@ api.delete('/api/users/:id', (req: Request, res: Response) => {
   const curUser = users[req.params.id];
   setTimeout(() => {
     if (curUser === undefined || curUser.deleted) {
-      res.send('user is not exist');
+      res.send('user-item is not exist');
     } else {
       curUser.deleted = true;
       res.send(curUser);

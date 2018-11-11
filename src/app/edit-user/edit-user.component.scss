@@ -1,0 +1,47 @@
+:host {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 1fr 30px 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 'header header header header header'
+  'left-part left-part . right-part right-part'
+  'left-part left-part . button1 button2';
+  h2 {
+    grid-area: header;
+  }
+  .fieldName {
+    display: block;
+    min-height: 30px;
+    padding-top: 7px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 80%;
+  }
+  .userName {
+    min-height: 30px;
+  }
+  .userList {
+    color: #545557;
+    font-weight: bold;
+    height: 560px;
+    width: 100%;
+    border: none;
+    overflow: auto;
+  }
+  .left-part {
+    grid-area: left-part;
+  }
+  .right-part {
+    grid-area: right-part;
+    margin-bottom: 20px;
+  }
+  .button1 {
+    grid-area: button1;
+    width: 95%;
+  }
+  .button2 {
+    grid-area: button2;
+    margin-left: 5%;
+    width: 95%;
+  }
+}
