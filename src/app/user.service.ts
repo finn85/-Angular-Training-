@@ -23,7 +23,9 @@ export class UserService {
 
   getUsers = () => this.http.get('/api/users/');
 
-  changeInfo = (id: string, formValues: object) => this.http.put(`/api/users/${id}`, formValues);
+  addUser = (user: User) => this.http.post('/api/users/add', user);
+
+  changeInfo = (id: string, user: User) => this.http.put(`/api/users/${id}`, user);
 
   deleteUser = (id: string) => this.http.delete(`/api/users/${id}`);
 
@@ -64,6 +66,6 @@ export class UserService {
   logOut = () => {
     this.cookie.delete('id');
     this.cookie.delete('admin');
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   };
 }

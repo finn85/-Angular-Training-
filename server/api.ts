@@ -66,18 +66,21 @@ api.get('/*', (req: Request, res: Response) => {
 
 api.post('/api/users/add', jsonParser, (req: Request, res: Response) => {
   const newUser: User = {
-      id: users.length,
-      loginName: req.body.login,
-      password: req.body.password,
-      name: req.body.name,
-      age: req.body.age,
-      dateOfBirth: req.body.dateOfBirth,
-      dateOfLogin: req.body.dateOfLogin,
-      dateOfNotif: req.body.dateOfNotif,
-      info: req.body.info
+    id: users.length,
+    loginName: req.body.loginName,
+    password: req.body.password,
+    name: req.body.name,
+    age: req.body.age,
+    dateOfBirth: req.body.dateOfBirth,
+    dateOfLogin: req.body.dateOfLogin,
+    dateOfNotif: req.body.dateOfNotif,
+    info: req.body.info
   };
-  users.push(newUser);
-  res.send(newUser);
+  setTimeout(() => {
+    users.push(newUser);
+    res.send(newUser);
+  }, delay)
+
 });
 
 
@@ -145,4 +148,5 @@ api.delete('/api/users/:id', (req: Request, res: Response) => {
       res.send(curUser);
     }
   }, delay);
+
 });

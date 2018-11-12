@@ -31,8 +31,6 @@ export class AddUserComponent implements DoCheck, OnInit {
     dateOfNotif: '',
     info: ''
   };
-  curUserId?: number;
-  curUsers!: User[];
 
   userForm!: FormGroup;
 
@@ -51,13 +49,6 @@ export class AddUserComponent implements DoCheck, OnInit {
   ){}
 
   ngOnInit() {
-    this.spinner.start();
-    this.user.getUsers()
-      .subscribe((data: any) => {
-        this.curUsers = data;
-        this.spinner.stop()
-      });
-
 
     this.userForm = new FormGroup({
       'loginName': this.loginNameCtrl = new FormControl(null,[],[
@@ -109,18 +100,12 @@ export class AddUserComponent implements DoCheck, OnInit {
     }
   };
 
-  chooseUser = (index: number): void => {
-    this.curUserId = this.curUsers[index].id;
-    this.curUser = Object.assign({}, this.curUsers[index]);
-    this.user.modifyUserDataFromServer(this.curUser);
-    this.userForm.setValue(this.curUser);
-  };
-
-  changeInfo = () => {
-    const curId: string = String(this.curUserId);
-    const changedUser = this.user.modifyUserDataToServer(this.userForm.value);
-    this.user.changeInfo(curId, changedUser)
+  addUser = () => {
+    this.spinner.start();
+    const newUser = this.user.modifyUserDataToServer(this.userForm.value);
+    this.user.addUser(newUser)
       .subscribe( () => {
+        this.spinner.stop();
         this.ngOnInit();
       });
   };

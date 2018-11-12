@@ -181,7 +181,7 @@
     </label>
   </form>
 </div>
-<button class="button1" (click)="changeInfo()" [disabled]="userForm.invalid||userForm.pending">
-  {{ 'adminPage.addUser.change' | translate }}
+<button class="button1" (click)="addUser()" [disabled]="userForm.invalid||userForm.pending">
+  {{ 'adminPage.addUser.add' | translate }}
 </button>
 <button class="button2" (click)="user.logOut()">{{ 'adminPage.addUser.logOut' | translate }}</button>
